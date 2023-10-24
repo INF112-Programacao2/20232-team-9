@@ -1,5 +1,5 @@
 #include <iostream>
-//declaração de imposto de renda]
+//declaração de imposto de renda
 //inss e imposto de renda
 //tetos de alíquotas
 //buscar informações no site da receita federal

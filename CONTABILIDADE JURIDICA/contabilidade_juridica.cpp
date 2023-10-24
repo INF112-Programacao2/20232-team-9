@@ -9,7 +9,7 @@
 //IPI (depende do ramo)
 //Verificar se tem matriz, filial ou franquia
 //dados basicos sobre a empresa
-//PLANOS DE CONTAS PARA CADA MODELO DE N    EGÓCIO
+//PLANOS DE CONTAS PARA CADA MODELO DE NEGÓCIO
 //PLANO DE CONTAS É O BALANÇO
 //BALANÇO (feito após feito plano de contas, podendo ser mensal, trimestral, semestral ou anual)
 //o balanço será feito com  vetores (para guardar datas) com double (dinheiro) e deve ser fechado (as contas devem bater)
