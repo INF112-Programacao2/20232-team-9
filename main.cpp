@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdio.h>
+//#include <mysql.h>
 #include "cadastro.h"
 #include "contabilidade_fisica.h"
 #include "contabilidade_juridica.h"
