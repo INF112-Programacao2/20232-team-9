@@ -1,4 +1,5 @@
 #include "cadastro.h"
+#include <bits/stdc++.h>
 // tributação federal:
 // tributação estadual:
 // tributação por municipio:
@@ -21,40 +22,48 @@
 //CLASSE INTERFACE PARA CONTABILIDADE JURIDICA
 
 class ContabilJuridica : public Cadastro{
+	private:
+		double _caixa[12];
+		int _estoque;
+		double _contasReceber;
+		int _realizavelLongoPrazo;
+		int _realizavelCurtoPrazo;
+		double _emprestimos;
+		double _contasPagar;
 
 	public:
 		//SET
 		
 		//ATIVO CIRCULANTE
 		virtual void set_caixa() = 0;
-		virtual void set_estoque() = 0;
-		virtual void set_contasreceber() = 0;
+		void set_estoque();
+		virtual void set_contasReceber() = 0;
 
 		//ATIVO NÃO CIRCULANTE
-		virtual void set_realizavellongoprazo() = 0;
+		virtual void set_realizavelLongoPrazo() = 0;
 		
 		//PASSIVO CIRCULANTE 
-		virtual void set_curtoprazo() = 0;
+		virtual void set_realizavelCurtoPrazo() = 0;
 
 		//PASSIVO NÃO CIRCULANTE
 		virtual void set_emprestimos() = 0;
-		virtual void set_contaspagar() = 0;
+		virtual void set_contasPagar() = 0;
 
 		//GET
 
 		//ATIVO CIRCULANTE
-		virtual void get_caixa() = 0;
-		virtual void get_estoque() = 0;
-		virtual void get_contasreceber() = 0;
+		virtual double get_caixa() = 0;
+		int get_estoque();
+		virtual double get_contasReceber() = 0;
 
 		//ATIVO NÃO CIRCULANTE
-		virtual void get_realizavellongoprazo() = 0;
+		virtual int get_realizavelLongoPrazo() = 0;
 
 		//PASSIVO CIRCULANTE
-		virtual void get_curtoprazo() = 0;
+		virtual int get_realizavelCurtoPrazo() = 0;
 
 		//PASSIVO NÃO CIRCULANTE
-		virtual void get_emprestimos() = 0;
-		virtual void get_contaspagar() = 0;
+		virtual double get_emprestimos() = 0;
+		virtual double get_contasPagar() = 0;
 		 
 };
