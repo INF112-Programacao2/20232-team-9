@@ -3,101 +3,190 @@
 #include "cadastro.h"
 
 
-Cadastro::Cadastro(char *nomepessoa, char *nomeempresa, char *apelidoempresa, char *local, char *cnpj){
-    
-    strcpy (_nomepessoa, nomepessoa);
-    strcpy (_nomeempresa, nomeempresa);
-    strcpy (_apelidoempresa, apelidoempresa);
-    strcpy (_local, local);
-    strcpy (_cnpj, cnpj);
+Cadastro::Cadastro(std::string nomepessoa, std::string nomeempresa, std::string apelidoempresa, std::string local):
+
+_nomepessoa(nomepessoa), _nomeempresa (nomeempresa), _apelidoempresa (apelidoempresa), _local(local) {}
+
+
+
+Cadastro::Cadastro (std::string nomepessoa, std::string local):
+
+_nomepessoa(nomepessoa), _local(local) {}
+
+
+
+void Cadastro::confere_cpf (std::string cpf) {
+
+    int cont=1;
+    int contnotdigit;
+
+    _cpf=cpf;
+
+
+    while (cont>0){
+
+      contnotdigit=0;
+
+     if(_cpf.size()<11 || _cpf.size()>11){
+
+         std::cout<<"CPF Inválido!! Digite um novo CPF válido:"<<std::endl;
+     
+     }
+
+
+
+     else{
+
+       for(int i=0; _cpf[i] != '\0'; i++){
+
+          if (!isdigit (_cpf[i])){
+            contnotdigit++;
+         }
+
+       }
+
+
+       if(contnotdigit>0){
+
+         std::cout<<"CPF Inválido!! Digite um novo CPF válido:"<<std::endl;
+
+        }
+
+
+        else{
+
+          break;
+
+        }
+
+    }  
+
+      std::cin>>_cpf;
+
+  }
 
 }
 
 
-Cadastro::Cadastro (char *nomepessoa, char *local, char *cpf){
+void Cadastro::confere_cnpj (std::string cnpj){
 
-    strcpy (_nomepessoa, nomepessoa);
-    strcpy (_local, local);
-    strcpy (_cpf, cpf);
+    int cont=1;
+    int contnotdigit;
+
+    _cnpj=cnpj;
+
+
+    while (cont>0){
+
+      contnotdigit=0;
+
+     if(_cnpj.size()<14 || _cnpj.size()>14){
+
+         std::cout<<"CNPJ Inválido!! Digite um novo CNPJ válido:"<<std::endl;
+     
+     }
+
+
+
+     else{
+
+       for(int i=0; _cnpj[i] != '\0'; i++){
+
+          if (!isdigit (_cnpj[i])){
+            contnotdigit++;
+         }
+
+       }
+
+
+       if(contnotdigit>0){
+
+         std::cout<<"CNPJ Inválido!! Digite um novo CNPJ válido:"<<std::endl;
+
+        }
+
+
+        else{
+
+          break;
+
+        }
+
+    }  
+
+      std::cin>>_cnpj;
+
+  }
+
 
 }
 
 
-char Cadastro::get_nomepessoa (){
 
-    return *_nomepessoa;
+std::string Cadastro::get_nomepessoa (){
 
-}
-
-
-char Cadastro::get_nomeempresa (){
-
-    return *_nomeempresa;
+    return _nomepessoa;
 
 }
 
 
-char Cadastro::get_apelidoempresa(){
+std::string Cadastro::get_nomeempresa (){
 
-    return *_apelidoempresa;
-
-}
-
-
-char Cadastro::get_cnpj(){
-
-    return *_cnpj;
+    return _nomeempresa;
 
 }
 
 
-char Cadastro::get_cpf(){
+std::string Cadastro::get_apelidoempresa(){
 
-    return *_cpf;
-
-}
-
-
-char Cadastro::get_local(){
-
-    return *_local;
+    return _apelidoempresa;
 
 }
 
 
-void Cadastro::set_nomepessoa (char *nomepessoa){
+std::string Cadastro::get_cnpj(){
 
-    strcpy (_nomepessoa, nomepessoa);
+    return _cnpj;
+
+}
+
+
+std::string Cadastro::get_cpf(){
+
+    return _cpf;
 
 }
 
 
-void Cadastro::set_nomeempresa (char *nomeempresa){
+std::string Cadastro::get_local(){
 
-    strcpy (_nomeempresa, nomeempresa);
-
-}
-
-void Cadastro::set_apelidoempresa (char *apelidoempresa){
-
-    strcpy (_apelidoempresa, apelidoempresa);
+    return _local;
 
 }
 
-void Cadastro::set_local (char *local){
 
-    strcpy (_local, local);
+void Cadastro::set_nomepessoa (std::string nomepessoa){
 
-}
-
-void Cadastro::set_cpf (char *cpf){
-
-    strcpy (_cpf, cpf);
+    _nomepessoa = nomepessoa;
 
 }
 
-void Cadastro::set_cnpj (char *cnpj){
 
-    strcpy (_cnpj, cnpj);
+void Cadastro::set_nomeempresa (std::string nomeempresa){
+
+    _nomeempresa = nomeempresa;
 
 }
+
+void Cadastro::set_apelidoempresa (std::string apelidoempresa){
+
+    _apelidoempresa = apelidoempresa;
+
+}
+
+void Cadastro::set_local (std::string local){
+
+    _local = local;
+
+}
+

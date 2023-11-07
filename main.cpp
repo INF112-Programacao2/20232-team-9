@@ -9,6 +9,9 @@
 
 int main(){
 
+    Cadastro c1 ("Hugo Costa", "HugoCia", "HCAvulk", "Coronel Fabriciano");
+
+    c1.get_nomepessoa ();
 
     return 0;
 }

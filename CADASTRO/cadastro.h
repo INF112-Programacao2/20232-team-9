@@ -1,45 +1,47 @@
+#include <string>
+
 class Cadastro{
  
  private:
   
-  char _nomepessoa [50];
-  char _nomeempresa [30];
-  char _apelidoempresa [30];
-  char _local [30];
-  char _cpf [11];
-  char _cnpj [14];
+  std::string _nomepessoa;
+  std::string _nomeempresa;
+  std::string _apelidoempresa;
+  std::string _local;
+  std::string _cpf;
+  std::string _cnpj;
 
  
  
  public:
 
-    Cadastro (char *nomepessoa, char *nomeempresa, char *apelidoempresa, char *local, char *cnpj);
+    Cadastro (std::string nomepessoa, std::string nomeempresa, std::string apelidoempresa, std::string local);
 
-    Cadastro (char *nomepessoa, char *local, char *cpf);
+    Cadastro (std::string nomepessoa, std::string local);
 
-    char get_nomepessoa ();
+    std::string get_nomepessoa ();
 
-    char get_nomeempresa ();
+    std::string get_nomeempresa ();
 
-    char get_apelidoempresa ();
+    std::string get_apelidoempresa ();
 
-    char get_local ();
+    std::string get_local ();
 
-    char get_cpf ();
+    std::string get_cpf ();
 
-    char get_cnpj ();
+    std::string get_cnpj ();
 
-    void set_nomepessoa (char *nomepessoa);
+    void set_nomepessoa (std::string nomepessoa);
 
-    void set_nomeempresa (char *nomeempresa);
+    void set_nomeempresa (std::string nomeempresa);
 
-    void set_apelidoempresa (char *apelidoempresa);
+    void set_apelidoempresa (std::string apelidoempresa);
 
-    void set_local (char *local);
+    void set_local (std::string local);
 
-    void set_cpf (char *cpf);
+    void confere_cpf (std::string cpf);
 
-    void set_cnpj (char *cnpj);
+    void confere_cnpj (std::string cnpj);
 
 
 };
