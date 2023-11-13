@@ -1,3 +1,6 @@
+#ifndef CONTABILIDADE_JURIDICA_H
+#define CONTABILIDADE_JURIDICA_H
+
 #include "cadastro.h"
 #include <bits/stdc++.h>
 // tributação federal:
@@ -23,47 +26,50 @@
 
 class ContabilJuridica : public Cadastro{
 	private:
-		double _caixa[12];
-		int _estoque;
-		double _contasReceber;
-		int _realizavelLongoPrazo;
-		int _realizavelCurtoPrazo;
-		double _emprestimos;
-		double _contasPagar;
+		std::vector<std::pair<const char*,double>> _caixa;
+		std::vector<std::pair<const char*,int>> _estoque;
+		std::vector<std::pair<const char*,double>> _contasReceber;
+		std::vector<std::pair<const char*,int>> _realizavelLongoPrazo;
+		std::vector<std::pair<const char*,int>> _realizavelCurtoPrazo;
+		std::vector<std::pair<const char*,double>> _emprestimos;
+		std::vector<std::pair<const char*,double>> _contasPagar;
 
 	public:
 		//SET
 		
 		//ATIVO CIRCULANTE
-		virtual void set_caixa() = 0;
-		void set_estoque();
-		virtual void set_contasReceber() = 0;
+		virtual void set_caixa(int quant_elementos);
+		void set_estoque(int quant_elementos);
+		virtual void set_contasReceber(int quant_elementos);
 
 		//ATIVO NÃO CIRCULANTE
-		virtual void set_realizavelLongoPrazo() = 0;
+		virtual void set_realizavelLongoPrazo(int quant_elementos);
 		
 		//PASSIVO CIRCULANTE 
-		virtual void set_realizavelCurtoPrazo() = 0;
+		virtual void set_realizavelCurtoPrazo(int quant_elementos);
 
 		//PASSIVO NÃO CIRCULANTE
-		virtual void set_emprestimos() = 0;
-		virtual void set_contasPagar() = 0;
+		virtual void set_emprestimos(int quant_elementos);
+		virtual void set_contasPagar(int quant_elementos);
 
 		//GET
 
 		//ATIVO CIRCULANTE
-		virtual double get_caixa() = 0;
+		virtual double get_caixa();
 		int get_estoque();
-		virtual double get_contasReceber() = 0;
+		virtual double get_contasReceber();
 
 		//ATIVO NÃO CIRCULANTE
-		virtual int get_realizavelLongoPrazo() = 0;
+		virtual int get_realizavelLongoPrazo();
 
 		//PASSIVO CIRCULANTE
-		virtual int get_realizavelCurtoPrazo() = 0;
+		virtual int get_realizavelCurtoPrazo();
 
 		//PASSIVO NÃO CIRCULANTE
-		virtual double get_emprestimos() = 0;
-		virtual double get_contasPagar() = 0;
+		virtual double get_emprestimos();
+		virtual double get_contasPagar();
 		 
 };
+
+
+#endif // CONTABILIDADE_JURIDICA_H

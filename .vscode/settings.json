@@ -17,5 +17,6 @@
             "username": "root",
             "password": "Nicol@s1410"
         }
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "disabled"
 }

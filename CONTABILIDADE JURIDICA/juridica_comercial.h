@@ -1,3 +1,7 @@
+#ifndef JURIDICA_COMERCIAL_H
+#define JURIDICA_COMERCIAL_H
+
+
 #include "cadastro.h"
 #include "contabilidade_juridica.h"
 
@@ -12,3 +16,6 @@ public:
     virtual void set_contasreceber();
 
 };
+
+
+#endif // JURIDICA_COMERCIAL_H
