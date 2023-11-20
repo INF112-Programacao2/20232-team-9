@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-#include <iostream>
-#include <bits/stdc++.h>
 
-=======
 #include <iostream>
 #include <bits/stdc++.h>
->>>>>>> main
 #include "cadastro.h"
 #include "contabilidade_juridica.h"
 
@@ -188,10 +182,4 @@ void ContabilJuridica::_calculo_aliquotas(){
 
 void ContabilJuridica::_calculo_CNAE(){
     //depende da atividade da empresa (cadastro)
-<<<<<<< HEAD
 }
-=======
->>>>>>> Stashed changes
-=======
-}
->>>>>>> main
