@@ -1,6 +1,9 @@
 #include <iostream>
+<<<<<<< Updated upstream
 #include <bits/stdc++.h>
 #include "contabilidade_fisica.h"
+=======
+>>>>>>> Stashed changes
 //declaração de imposto de renda
 //inss e imposto de renda
 //tetos de alíquotas
@@ -8,6 +11,7 @@
 //caluculo de alíquotas de imposto de renda mensal e anual
 //deduação por dependente
 //desconto simplificado
+<<<<<<< Updated upstream
 //cálculos básicos por porcentagem das tabelas
 
 
@@ -92,3 +96,6 @@ void ContabilFisica::_calcula_inss(){
         //valor = entre 260.40 e 1501.49(teto)
     }
 }
+=======
+//cálculos básicos por porcentagem das tabelas
+>>>>>>> Stashed changes

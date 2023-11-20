@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 #ifndef CONTABILIDADE_FISICA_H
 #define CONTABILIDADE_FISICA_H
 
@@ -30,3 +31,6 @@ public:
 
 
 #endif // CONTABILIDADE_FISICA_H
+=======
+#include <iostream>
+>>>>>>> Stashed changes
