@@ -25,14 +25,17 @@
 //CLASSE INTERFACE PARA CONTABILIDADE JURIDICA
 
 class ContabilJuridica : public Cadastro{
-	private:
-		std::vector<std::pair<const char*,double>> _caixa;
+	protected:
+		std::vector<double> _caixa;
 		std::vector<std::pair<const char*,int>> _estoque;
 		std::vector<std::pair<const char*,double>> _contasReceber;
 		std::vector<std::pair<const char*,int>> _realizavelLongoPrazo;
 		std::vector<std::pair<const char*,int>> _realizavelCurtoPrazo;
 		std::vector<std::pair<const char*,double>> _emprestimos;
 		std::vector<std::pair<const char*,double>> _contasPagar;
+		std::vector<int> _receitas;
+		std::vector<int> _despesas;
+		std::vector<int> _result_dre;
 
 	public:
 		//SET
@@ -68,6 +71,13 @@ class ContabilJuridica : public Cadastro{
 		//PASSIVO NÃO CIRCULANTE
 		virtual double get_emprestimos();
 		virtual double get_contasPagar();
+
+		//METODOS
+		void _calculo_DRE();
+		void _calculo_fluxo_caixa();
+		void _resultado_balancete();
+		void _calculo_aliquotas();
+		void _calculo_CNAE();
 		 
 };
 

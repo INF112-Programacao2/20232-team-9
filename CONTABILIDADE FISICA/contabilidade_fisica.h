@@ -13,12 +13,16 @@ private:
     std::vector<double> _deducao_dependente;
     std::vector<double> _desconto_simplificado;
     std::vector<double> _porcentagem_tabelas;
-    std::vector<double> _porcentagem_tabelas_anual;
-    std::vector<double> _porcentagem_tabelas_mensal;
-    
-
+    double _salario;
 
 public:
+
+    void _calcula_imposto_renda();
+    void _calcula_inss();
+    void _calcula_teto();
+    void _calcula_aliquota();
+    void _calcula_deducao_dependente();
+    void _finaliza_calculos();
 
 
 
