@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> main
 #ifndef CONTABILIDADE_FISICA_H
 #define CONTABILIDADE_FISICA_H
 
 #include "cadastro.h"
 #include <bits/stdc++.h>
 
+<<<<<<< HEAD
 class ContabilFisica: public Cadastro{
+=======
+class ContabilFisica : public Cadastro
+{
+>>>>>>> main
 private:
     std::vector<double> _imposto_renda;
     std::vector<double> _inss;
@@ -17,13 +25,17 @@ private:
     double _salario;
 
 public:
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     void _calcula_imposto_renda();
     void _calcula_inss();
     void _calcula_teto();
     void _calcula_aliquota();
     void _calcula_deducao_dependente();
     void _finaliza_calculos();
+<<<<<<< HEAD
 
 
 
@@ -34,3 +46,8 @@ public:
 =======
 #include <iostream>
 >>>>>>> Stashed changes
+=======
+};
+
+#endif // CONTABILIDADE_FISICA_H
+>>>>>>> main
