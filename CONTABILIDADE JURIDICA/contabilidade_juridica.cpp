@@ -7,20 +7,17 @@
 //SET
 
 void ContabilJuridica::set_caixa(int quant_elementos){
-    const char* fonte;
     double valor;
     for(int i = 0; i < quant_elementos; i++){
-        std::cout << "Digite a fonte: ";
-        std::cin >> fonte;
         std::cout << "Digite o valor: ";
         std::cin >> valor;
-        _caixa.push_back({fonte,valor});
+        _caixa.push_back(valor);
     }
     
 }
 
 void ContabilJuridica::set_contasPagar(int quant_elementos){
-    const char* fonte;
+    std::string fonte;
     double valor;
     for(int i = 0; i < quant_elementos; i++){
         std::cout << "Digite a fonte: ";
@@ -32,7 +29,7 @@ void ContabilJuridica::set_contasPagar(int quant_elementos){
 }
 
 void ContabilJuridica::set_contasReceber(int quant_elementos){
-    const char* fonte;
+    std::string fonte;
     double valor;
     for(int i = 0; i < quant_elementos; i++){
         std::cout << "Digite a fonte: ";
@@ -44,7 +41,7 @@ void ContabilJuridica::set_contasReceber(int quant_elementos){
 }
 
 void ContabilJuridica::set_realizavelCurtoPrazo(int quant_elementos){
-    const char* fonte;
+    std::string fonte;
     int valor;
     for(int i = 0; i < quant_elementos; i++){
         std::cout << "Digite a fonte: ";
@@ -56,7 +53,7 @@ void ContabilJuridica::set_realizavelCurtoPrazo(int quant_elementos){
 }
 
 void ContabilJuridica::set_realizavelLongoPrazo(int quant_elementos){
-    const char* fonte;
+    std::string fonte;
     int valor;
     for(int i = 0; i < quant_elementos; i++){
         std::cout << "Digite a fonte: ";
@@ -68,7 +65,7 @@ void ContabilJuridica::set_realizavelLongoPrazo(int quant_elementos){
 }
 
 void ContabilJuridica::set_emprestimos(int quant_elementos){
-    const char* fonte;
+    std::string fonte;
     double valor;
     for(int i = 0; i < quant_elementos; i++){
         std::cout << "Digite a fonte: ";
@@ -85,7 +82,7 @@ void ContabilJuridica::set_emprestimos(int quant_elementos){
 double ContabilJuridica::get_caixa(){
     double total = 0;
     for(int i = 0; i < _caixa.size(); i++){
-        total += _caixa[i].second;
+        total += _caixa[i];
     }
     return total;
 }
