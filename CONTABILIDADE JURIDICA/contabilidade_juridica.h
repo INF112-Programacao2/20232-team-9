@@ -23,31 +23,35 @@
 
 class ContabilJuridica : public Cadastro{
 	private:
-		double _caixa[12];
-		int _estoque;
-		double _contasReceber;
-		int _realizavelLongoPrazo;
-		int _realizavelCurtoPrazo;
-		double _emprestimos;
-		double _contasPagar;
+		std::vector<int> _caixa;
+		std::vector<std::pair<std::string, double>> _contasPagar;
+		std::vector<std::pair<std::string, double>> _contasReceber;
+		std::vector<std::pair<std::string, double>> _realizavelLongoPrazo;
+		std::vector<std::pair<std::string, double>> _realizavelCurtoPrazo;
+		std::vector<std::pair<std::string, double>> _emprestimos;
+		std::vector<std::pair<std::string, double>> _contasPagar;
+		std::vector<int> _receitas;
+		std::vector<int> _despesas;
+		std::vector<int> _result_dre;
+
 
 	public:
 		//SET
 		
 		//ATIVO CIRCULANTE
-		virtual void set_caixa() = 0;
+		virtual void set_caixa(int qntelement) = 0;
 		void set_estoque();
-		virtual void set_contasReceber() = 0;
+		virtual void set_contasReceber(int qntelement) = 0;
 
 		//ATIVO NÃO CIRCULANTE
-		virtual void set_realizavelLongoPrazo() = 0;
-		
-		//PASSIVO CIRCULANTE 
-		virtual void set_realizavelCurtoPrazo() = 0;
+		virtual void set_realizavelLongoPrazo(int qntelement) = 0;
+
+		//PASSIVO CIRCULANTE
+		virtual void set_realizavelCurtoPrazo(int qntelement) = 0;
 
 		//PASSIVO NÃO CIRCULANTE
-		virtual void set_emprestimos() = 0;
-		virtual void set_contasPagar() = 0;
+		virtual void set_emprestimos(int qntelement) = 0;
+		virtual void set_contasPagar(int qntelement) = 0;
 
 		//GET
 
@@ -65,5 +69,13 @@ class ContabilJuridica : public Cadastro{
 		//PASSIVO NÃO CIRCULANTE
 		virtual double get_emprestimos() = 0;
 		virtual double get_contasPagar() = 0;
+
+		//METODOS
+		void _calculo_DRE();
+		void _calculo_fluxo_caixa();
+		void _resultado_balancete();
+		void _calculo_aliquotas();
+		void _calculo_CNAE();
+
 		 
 };
