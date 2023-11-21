@@ -7,19 +7,21 @@
 class ContabilFisica : public Cadastro
 {
 private:
-    std::vector<double> _imposto_renda;
-    std::vector<double> _inss;
-    std::vector<double> _tetos_aliquotas;
+    std::vector<double> _imposto_renda_mensal;
+    std::vector<double> _inss_mensal;
     std::vector<double> _aliquotas;
-    std::vector<double> _deducao_dependente;
+    std::vector<double> _deducao_dependente_mensal;
     std::vector<double> _desconto_simplificado;
     std::vector<double> _porcentagem_tabelas;
-    double _salario;
+    double _salario_bruto;
+    double _base_calculo;
+    double _inss;
+    double _deducao_dependente;
+
 
 public:
     void _calcula_imposto_renda();
     void _calcula_inss();
-    void _calcula_teto();
     void _calcula_aliquota();
     void _calcula_deducao_dependente();
     void _finaliza_calculos();
