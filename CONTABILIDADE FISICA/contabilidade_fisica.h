@@ -1,10 +1,10 @@
 #ifndef CONTABILIDADE_FISICA_H
 #define CONTABILIDADE_FISICA_H
 
-#include "cadastro.h"
+#include "pessoa.h"
 #include <bits/stdc++.h>
 
-class ContabilFisica : public Cadastro
+class ContabilFisica : public Pessoa
 {
 private:
     std::vector<double> _aliquotas;
