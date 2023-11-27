@@ -12,107 +12,52 @@
 
 // METODOS
 
-void ContabilFisica::_calcula_imposto_renda()
+// INSS
+
+void ContabilFisica::_calcula_inss()
 {
     double salario;
     std::cout << "Digite o seu salário: " << std::endl;
     std::cin >> salario;
     _salario_bruto = salario;
-    // utilizar salario para calcular o imposto de renda na base de calculo
-    if (_base_calculo < 2112)
-    {
-        _imposto_renda_mensal.push_back(0);
-    }
-    else if (_base_calculo >= 2112.01 && salario < 2826.65)
-    {
-        _imposto_renda_mensal.push_back(158.40);
-    }
-    else if (_base_calculo >= 2826.66 && salario < 3751.05)
-    {
-        _imposto_renda_mensal.push_back(370.40);
-    }
-    else if (_base_calculo >= 3751.06 && salario < 4664.68)
-    {
-        _imposto_renda_mensal.push_back(651.73);
-    }
-    else
-    {
-        _imposto_renda_mensal.push_back(884.96);
-    }
-}
-
-void ContabilFisica::_calcula_aliquota(){
-    if (_base_calculo < 2112)
-    {
-        _imposto_renda_mensal.push_back(0);
-    }
-    else if (_base_calculo >= 2112.01 && _base_calculo < 2826.65)
-    {
-        _imposto_renda_mensal.push_back(0.075);
-    }
-    else if (_base_calculo >= 2826.66 && _base_calculo < 3751.05)
-    {
-        _imposto_renda_mensal.push_back(0.15);
-    }
-    else if (_base_calculo >= 3751.06 && _base_calculo < 4664.68)
-    {
-        _imposto_renda_mensal.push_back(0.225);
-    }
-    else
-    {
-        _imposto_renda_mensal.push_back(0.275);
-    }
-}
-
-void ContabilFisica::_calcula_inss()
-{
-    double salario;
-    std::cout << "Digite o seu salário de contribuição: " << std::endl;
-    std::cin >> salario;
-    _salario_bruto = salario;
 
     // Para Empregado, Empregado Doméstico e Trabalhador Avulso:
 
-if(_empregado)
+    if (_empregado)
 
-    if (_salario_bruto <= 1302)
-    {
-        _inss_mensal.push_back(0.075);
-    }
-    else if (_salario_bruto >= 1302.01 && salario <= 2571.29)
-    {
-        _inss_mensal.push_back(0.09);
-    }
-    else if (_salario_bruto >= 2571.30 && salario <= 3856.94)
-    {
-        _inss_mensal.push_back(0.12);
-    }
-    else if (_salario_bruto >= 3856.95 && salario <= 7507.49)
-    {
-        _inss_mensal.push_back(0.14);
-    }
+        if (_salario_bruto <= 1302){
+            _inss = _salario_bruto*0.075;
+        }
+        else if (_salario_bruto >= 1302.01 && _salario_bruto <= 2571.29){
+            _inss = _salario_bruto*0.09;
+        }
+        else if (_salario_bruto >= 2571.30 && salario <= 3856.94){
+            _inss = _salario_bruto*0.12;
+        }
+        else if (_salario_bruto >= 3856.95 && salario <= 7507.49){
+            _inss = _salario_bruto*0.14;
+        }
 
     // Para Contribuinte Individual, Facultativo e MEI
-if(_contribuinte){
+    if (_contribuinte){
 
-    // individual
-    if (_salario_bruto == 1302 && _individual)
-    {
-        _inss_mensal.push_back(0.05);
-        // valor = 65.10
-    }
-    else if (_salario_bruto == 1302 && _facultativo)
-    { // facultativo
-        _inss_mensal.push_back(0.11);
-        // valor = 143.22
-    }
-    else if (_salario_bruto >= 1302 && salario <= 7507.49  && _mei)
-    { //MEI
-        _inss_mensal.push_back(0.20);
-        // valor = entre 260.40 e 1501.49(teto)
+        // individual
+        if (_salario_bruto == 1302 && _individual){
+            _inss = _salario_bruto*0.05;
+            // valor = 65.10
+        }
+        else if (_salario_bruto == 1302 && _facultativo){ // facultativo
+            _inss = _salario_bruto*0.11;
+            // valor = 143.22
+        }
+        else if (_salario_bruto >= 1302 && salario <= 7507.49 && _mei){ // MEI
+            _inss = _salario_bruto*0.20;
+            // valor = entre 260.40 e 1501.49(teto)
+        }
     }
 }
-}
+
+//DEDUÇÃO POR DEPENDENTE
 
 void ContabilFisica::_calcula_deducao_dependente()
 {
@@ -120,12 +65,70 @@ void ContabilFisica::_calcula_deducao_dependente()
     std::cout << "Digite o número de dependentes: " << std::endl;
     std::cin >> dependentes;
     _deducao_dependente = dependentes * 189.59;
-
-
 }
 
 
-void ContabilFisica::_finaliza_calculos()
+// BASE DE CALCULO
+
+void ContabilFisica::_base_calculos()
 {
     _base_calculo = _salario_bruto - _inss - _deducao_dependente;
+}
+
+
+
+// IMPOSTO DE RENDA
+
+void ContabilFisica::_calcula_imposto_renda(){
+    // utilizar salario para calcular o imposto de renda na base de calculo
+    double valor_aliquota;
+    if (_base_calculo < 2112){
+        _imposto_renda_final = ContabilFisica::_calcula_aliquota(_base_calculo);
+    }
+    else if (_base_calculo >= 2112.01 && _base_calculo < 2826.65){
+        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo);
+        _imposto_renda_final = valor_aliquota - 158.40; 
+    }
+    else if (_base_calculo >= 2826.66 && _base_calculo < 3751.05){
+        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo);
+        _imposto_renda_final = valor_aliquota - 370.40;
+    }
+    else if (_base_calculo >= 3751.06 && _base_calculo < 4664.68){
+        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo);
+        _imposto_renda_final = valor_aliquota - 651.53;
+    }
+    else{
+        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo);
+        _imposto_renda_final = valor_aliquota - 884.96;
+    }
+}
+
+
+// ALIQUOTA
+
+
+double ContabilFisica::_calcula_aliquota(double base_calculo){
+    if (_base_calculo < 2112){
+        return 0;
+    }
+    else if (_base_calculo >= 2112.01 && _base_calculo < 2826.65)
+    {
+        return base_calculo*0.075;
+    }
+    else if (_base_calculo >= 2826.66 && _base_calculo < 3751.05)
+    {
+        return base_calculo*0.15;
+    }
+    else if (_base_calculo >= 3751.06 && _base_calculo < 4664.68)
+    {
+        return base_calculo*0.225;
+    }
+    else{
+        return base_calculo*0.275;
+    }
+}
+
+
+double ContabilFisica::get_Imposto_Renda_Final(){
+    return _imposto_renda_final;
 }

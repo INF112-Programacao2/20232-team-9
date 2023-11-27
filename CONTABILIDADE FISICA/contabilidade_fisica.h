@@ -7,8 +7,6 @@
 class ContabilFisica : public Cadastro
 {
 private:
-    std::vector<double> _imposto_renda_mensal;
-    std::vector<double> _inss_mensal;
     std::vector<double> _aliquotas;
     std::vector<double> _deducao_dependente_mensal;
     std::vector<double> _desconto_simplificado;
@@ -18,14 +16,25 @@ private:
     double _inss;
     double _deducao_dependente;
     bool _empregado, _individual, _facultativo, _mei, _contribuinte;
+    double _imposto_renda_final;
 
 
 public:
     void _calcula_imposto_renda();
     void _calcula_inss();
-    void _calcula_aliquota();
+    double _calcula_aliquota(double base_calculo);
     void _calcula_deducao_dependente();
-    void _finaliza_calculos();
+    void _base_calculos();
+    double get_Imposto_Renda_Final();
 };
 
 #endif // CONTABILIDADE_FISICA_H
+
+/*ORDEM DE CALCULOS
+- CALCULAR INSS
+- CALCULAR DEPENDENTES
+- CALCULAR BASE DE CALCULO
+- CALCULAR ALIQUOTA
+- CALCULAR IMPOSTO DE RENDA
+
+*/
