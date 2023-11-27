@@ -17,6 +17,7 @@ private:
     double _base_calculo;
     double _inss;
     double _deducao_dependente;
+    bool _empregado, _individual, _facultativo, _mei, _contribuinte;
 
 
 public:

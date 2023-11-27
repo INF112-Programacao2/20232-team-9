@@ -73,6 +73,8 @@ void ContabilFisica::_calcula_inss()
 
     // Para Empregado, Empregado Doméstico e Trabalhador Avulso:
 
+if(_empregado)
+
     if (_salario_bruto <= 1302)
     {
         _inss_mensal.push_back(0.075);
@@ -91,23 +93,25 @@ void ContabilFisica::_calcula_inss()
     }
 
     // Para Contribuinte Individual, Facultativo e MEI
+if(_contribuinte){
 
     // individual
-    if (_salario_bruto == 1302)
+    if (_salario_bruto == 1302 && _individual)
     {
         _inss_mensal.push_back(0.05);
         // valor = 65.10
     }
-    else if (_salario_bruto == 1302)
+    else if (_salario_bruto == 1302 && _facultativo)
     { // facultativo
         _inss_mensal.push_back(0.11);
         // valor = 143.22
     }
-    else if (_salario_bruto >= 1302 && salario <= 7507.49)
+    else if (_salario_bruto >= 1302 && salario <= 7507.49  && _mei)
     { //MEI
         _inss_mensal.push_back(0.20);
         // valor = entre 260.40 e 1501.49(teto)
     }
+}
 }
 
 void ContabilFisica::_calcula_deducao_dependente()
