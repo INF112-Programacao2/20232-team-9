@@ -1,10 +1,8 @@
-#include "cadastro.h"
+#include "pessoajuridica.h"
 #include "contabilidade_juridica.h"
 
-class Juridica_PrestServi : public ContabilJuridica{
+class JuridicaComercial : public ContabilJuridica{
 private:
-
-
 
 public:
     virtual void set_caixa();

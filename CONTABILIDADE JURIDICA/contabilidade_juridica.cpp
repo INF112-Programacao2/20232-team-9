@@ -1,6 +1,6 @@
 #include <iostream>
 #include <bits/stdc++.h>
-#include "cadastro.h"
+#include "pessoajuridica.h"
 #include "contabilidade_juridica.h"
 
 
@@ -134,14 +134,14 @@ void ContabilJuridica::_calculo_DRE(){
     double despesa = 0;
     double lucro = 0;
     for(int i = 0; i < _contasReceber.size(); i++){
-        receita += _contasReceber[i].second;
+        receita += _contasReceber[i].second; //CÁLCULO DAS RECEITAS
     }
     for(int i = 0; i < _contasPagar.size(); i++){
-        despesa += _contasPagar[i].second;
+        despesa += _contasPagar[i].second; //CÁLCULO DAS DESPESAS
     }
     _receitas.push_back(receita);
     _despesas.push_back(despesa);
-    lucro = receita - despesa;
+    lucro = receita - despesa; //CÁCULO DO LUCRO OU PREJUÍZO
     _result_dre.push_back(lucro);
     std::cout << "Receita: " << receita << std::endl;
     std::cout << "Despesa: " << despesa << std::endl;
@@ -159,16 +159,16 @@ void ContabilJuridica::_calculo_fluxo_caixa(){
 void ContabilJuridica::_resultado_balancete(){
     double ativo = 0;
     double passivo = 0;
-    ativo = get_caixa() + get_contasReceber() + get_realizavelCurtoPrazo() + get_realizavelLongoPrazo();
-    passivo = get_contasPagar() + get_emprestimos();
+    ativo = get_caixa() + get_contasReceber() + get_realizavelLongoPrazo(); //CÁLCULO DO ATIVO
+    passivo = get_contasPagar() + get_emprestimos() + get_realizavelCurtoPrazo(); // CÁLCULO DO PASSIVO
     std::cout << "Ativo: " << ativo << std::endl;
     std::cout << "Passivo: " << passivo << std::endl;
     if(ativo > passivo){
-        std::cout << "Ativo maior que passivo" << std::endl;
+        std::cout << "Ativo maior que passivo" << std::endl; //CASO A EMPRESA ESTEJA COM MAIS FATURAMENTO QUE DÍVIDAS
     }else if(ativo < passivo){
-        std::cout << "Passivo maior que ativo" << std::endl;
+        std::cout << "Passivo maior que ativo" << std::endl; //CASO A EMPRESA ESTEJA COM MAIS DÍVIDAS QUE FATURAMENTO
     }else{
-        std::cout << "Ativo igual ao passivo" << std::endl;
+        std::cout << "Ativo igual ao passivo" << std::endl; //CASO DESEJADO CASO A CONTABILIDADE ESTEJA CORRETA
     }
 }
 

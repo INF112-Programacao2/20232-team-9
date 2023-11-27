@@ -1,8 +1,8 @@
-#include "cadastro.h"
+#include "pessoajuridica.h"
 #include "contabilidade_juridica.h"
 
 
-class Juridica_PrestServi: public ContabilJuridica{
+class JuridicaPrestServi: public ContabilJuridica{
 private:
 
 

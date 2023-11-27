@@ -25,33 +25,42 @@ void ContabilFisica::_calcula_inss()
 
     if (_empregado)
 
-        if (_salario_bruto <= 1302){
+        if (_salario_bruto <= 1320){
             _inss = _salario_bruto*0.075;
         }
-        else if (_salario_bruto >= 1302.01 && _salario_bruto <= 2571.29){
-            _inss = _salario_bruto*0.09;
+        else if (_salario_bruto >= 1320.01 && _salario_bruto <= 2571.29){
+            _inss = ((_salario_bruto-1320)*0.09)+99;
         }
         else if (_salario_bruto >= 2571.30 && salario <= 3856.94){
-            _inss = _salario_bruto*0.12;
+            _inss = ((_salario_bruto-2571.29)*0.12)+(99+112.61);
         }
         else if (_salario_bruto >= 3856.95 && salario <= 7507.49){
-            _inss = _salario_bruto*0.14;
+            _inss = ((_salario_bruto-3856.29)*0.14)+(99+112.61+154.28);
         }
 
     // Para Contribuinte Individual, Facultativo e MEI
     if (_contribuinte){
 
         // individual
-        if (_salario_bruto == 1302 && _individual){
+        if (_salario_bruto <= 1302 && _individual){
             _inss = _salario_bruto*0.05;
+            if(_inss > 66){
+                _inss = 66;
+            }
             // valor = 65.10
         }
-        else if (_salario_bruto == 1302 && _facultativo){ // facultativo
+        else if (_salario_bruto <= 1320 &&  _facultativo){ // facultativo
             _inss = _salario_bruto*0.11;
+            if(_inss > 145.20){
+                _inss = 145.20;
+            }
             // valor = 143.22
         }
-        else if (_salario_bruto >= 1302 && salario <= 7507.49 && _mei){ // MEI
+        else if (_salario_bruto >= 1320 && _salario_bruto <= 7507.49 && _mei){ // MEI
             _inss = _salario_bruto*0.20;
+            if(_inss > 1501.49){
+                _inss = 1501.49;
+            }
             // valor = entre 260.40 e 1501.49(teto)
         }
     }

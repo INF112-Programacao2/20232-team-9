@@ -1,4 +1,4 @@
-#include "cadastro.h"
+#include "pessoajuridica.h"
 #include <bits/stdc++.h>
 // tributação federal:
 // tributação estadual:
@@ -21,13 +21,13 @@
 
 //CLASSE INTERFACE PARA CONTABILIDADE JURIDICA
 
-class ContabilJuridica : public Cadastro{
+class ContabilJuridica : public PessoaJuridica{
 	private:
 		std::vector<int> _caixa;
-		std::vector<std::pair<std::string, double>> _contasPagar;
-		std::vector<std::pair<std::string, double>> _contasReceber;
-		std::vector<std::pair<std::string, double>> _realizavelLongoPrazo;
-		std::vector<std::pair<std::string, double>> _realizavelCurtoPrazo;
+		std::vector<std::pair<std::string, double>> _contasPagar; //CÁCULO DRE
+		std::vector<std::pair<std::string, double>> _contasReceber; //CÁLCULO DRE
+		std::vector<std::pair<std::string, double>> _realizavelLongoPrazo; //CÁLCULO BALANCETE
+		std::vector<std::pair<std::string, double>> _realizavelCurtoPrazo; 
 		std::vector<std::pair<std::string, double>> _emprestimos;
 		std::vector<std::pair<std::string, double>> _contasPagar;
 		std::vector<int> _receitas;
