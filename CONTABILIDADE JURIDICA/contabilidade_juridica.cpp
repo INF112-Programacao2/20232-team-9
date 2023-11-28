@@ -172,7 +172,7 @@ void ContabilJuridica::_resultado_balancete(){
     }
 }
 
-void ContabilJuridica::_calculo_aliquotas(){
+void ContabilJuridica::_calculo_aliquotas_localidade(){
     //depende da localização da empresa (cadastro)
     if(1){//MG
         //aliquota = 12% se vier de outro estado
@@ -191,10 +191,9 @@ void ContabilJuridica::_calculo_aliquotas(){
     }
 }
 
-void ContabilJuridica::_calculo_CNAE(){
-
-    //depende da atividade da empresa (cadastro) - SIMPLES NACIONAL, LUCRO PRESUMIDO E LUCRO REAL
-    
-
-
+double ContabilJuridica::get_receita_bruta(){
+    for(int i = 0; i < _receitas.size(); i++){
+        _receita_bruta += _receitas[i];
+    }
+    return _receita_bruta;
 }

@@ -33,48 +33,52 @@ class ContabilJuridica : public PessoaJuridica{
 		std::vector<int> _receitas;
 		std::vector<int> _despesas;
 		std::vector<int> _result_dre;
+		double _receita_bruta;
 
 
 	public:
 		//SET
 		
 		//ATIVO CIRCULANTE
-		virtual void set_caixa(int qntelement) = 0;
-		virtual void set_contasReceber(int qntelement) = 0;
+		void set_caixa(int qntelement);
+		void set_contasReceber(int qntelement);
 
 		//ATIVO NÃO CIRCULANTE
-		virtual void set_realizavelLongoPrazo(int qntelement) = 0;
+		void set_realizavelLongoPrazo(int qntelement);
 
 		//PASSIVO CIRCULANTE
-		virtual void set_realizavelCurtoPrazo(int qntelement) = 0;
+		void set_realizavelCurtoPrazo(int qntelement);
 
 		//PASSIVO NÃO CIRCULANTE
-		virtual void set_emprestimos(int qntelement) = 0;
-		virtual void set_contasPagar(int qntelement) = 0;
+		void set_emprestimos(int qntelement);
+		void set_contasPagar(int qntelement);
 
 		//GET
 
 		//ATIVO CIRCULANTE
-		virtual double get_caixa() = 0;
+		double get_caixa();
 		int get_estoque();
-		virtual double get_contasReceber() = 0;
+		double get_contasReceber();
 
 		//ATIVO NÃO CIRCULANTE
-		virtual int get_realizavelLongoPrazo() = 0;
+		int get_realizavelLongoPrazo();
 
 		//PASSIVO CIRCULANTE
-		virtual int get_realizavelCurtoPrazo() = 0;
+		int get_realizavelCurtoPrazo();
 
 		//PASSIVO NÃO CIRCULANTE
-		virtual double get_emprestimos() = 0;
-		virtual double get_contasPagar() = 0;
+		double get_emprestimos();
+		double get_contasPagar();
 
 		//METODOS
 		void _calculo_DRE();
 		void _calculo_fluxo_caixa();
 		void _resultado_balancete();
-		void _calculo_aliquotas();
-		void _calculo_CNAE();
+		void _calculo_aliquotas_localidade();
+		double get_receita_bruta();
+		virtual void _calculo_aliquotas_anexos() = 0;
+		virtual double get_result_simples_nacional() = 0;
+
 
 		 
 };
