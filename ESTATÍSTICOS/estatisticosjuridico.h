@@ -26,4 +26,10 @@ public:
 
 };
 
+//Porcentagem de crescimento
+//Media de crescimento
+//Regressão Linear
+//Desvio Padrão
+
+
 #endif

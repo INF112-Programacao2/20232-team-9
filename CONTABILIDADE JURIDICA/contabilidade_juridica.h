@@ -40,7 +40,6 @@ class ContabilJuridica : public PessoaJuridica{
 		
 		//ATIVO CIRCULANTE
 		virtual void set_caixa(int qntelement) = 0;
-		void set_estoque();
 		virtual void set_contasReceber(int qntelement) = 0;
 
 		//ATIVO NÃO CIRCULANTE

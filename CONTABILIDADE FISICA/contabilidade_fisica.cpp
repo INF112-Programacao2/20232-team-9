@@ -42,14 +42,14 @@ void ContabilFisica::_calcula_inss()
     if (_contribuinte){
 
         // individual
-        if (_salario_bruto <= 1302 && _individual){
+        if (_salario_bruto >= 1320 && _individual){
             _inss = _salario_bruto*0.05;
             if(_inss > 66){
                 _inss = 66;
             }
             // valor = 65.10
         }
-        else if (_salario_bruto <= 1320 &&  _facultativo){ // facultativo
+        else if (_salario_bruto >= 1320 &&  _facultativo){ // facultativo
             _inss = _salario_bruto*0.11;
             if(_inss > 145.20){
                 _inss = 145.20;
