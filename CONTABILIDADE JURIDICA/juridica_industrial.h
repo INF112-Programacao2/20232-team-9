@@ -4,11 +4,16 @@
 class JuridicaIndustrial: public ContabilJuridica{
 private:
     std::vector<std::string, double> _estoque;
+    double _result_simples_nacional;
 
 public:
-    virtual void set_caixa();
-    virtual void set_estoque();
-    virtual void set_contasreceber();
+    //SET
+    void set_estoque();
+    //GET
+    void get_estoque();
+    //METODOS
+    void _calculo_aliquotas_anexos();
+    double get_result_simples_nacional();
 
 };
 /*

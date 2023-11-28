@@ -3,12 +3,11 @@
 
 class JuridicaComercial : public ContabilJuridica{
 private:
+    double _result_simples_nacional;
 
 public:
-    virtual void set_caixa();
-    virtual void set_estoque();
-    virtual void set_contasreceber();
-
+    void _calculo_aliquotas_anexos();
+    double get_result_simples_nacional();
 };
 /*
 // COMERCIO
