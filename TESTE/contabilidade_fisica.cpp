@@ -140,5 +140,13 @@ double ContabilFisica::_calcula_aliquota(double base_calculo){
 
 
 double ContabilFisica::get_Imposto_Renda_Final(){
-    return _imposto_renda_final;
+    if(_imposto_renda_final < 0){
+        std::cout << "Imposto de renda a restituir: ";
+        return _imposto_renda_final*(-1);
+    }
+    else if(_imposto_renda_final > 0){
+        std::cout << "Imposto de renda a pagar: ";
+        return _imposto_renda_final;
+    }
+    return;
 }

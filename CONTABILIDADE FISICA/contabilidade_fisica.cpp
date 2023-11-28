@@ -42,7 +42,7 @@ void ContabilFisica::_calcula_inss()
     // Para Contribuinte Individual, Facultativo e MEI
     else{
 
-        // individual
+        // individual 
         if (_salario_bruto >= 1320  &&  ContabilFisica::get_tipo_pessoa()=="Contribuinte Individual"){
             _inss = _salario_bruto*0.05;
             if(_inss > 66){
@@ -76,7 +76,6 @@ void ContabilFisica::_calcula_deducao_dependente()
     std::cin >> dependentes;
     _deducao_dependente = dependentes * 189.59;
 }
-
 
 // BASE DE CALCULO
 
