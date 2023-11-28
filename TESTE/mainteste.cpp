@@ -2,6 +2,7 @@
 #include <cstring>
 #include "pessoa.h"
 #include "pessoajuridica.h"
+#include "contabilidade_fisica.h"
 
 void confere_nomes (std::string &nome){
 
@@ -137,6 +138,7 @@ int main(){
         }
 
         Pessoa fisico (nomepessoa, local);
+        ContabilFisica conta;
         std::cout<<"Digite o CPF do proprietario: \n";
         fisico.insere_cpf ( );
         std::cout<<std::endl;
@@ -147,6 +149,11 @@ int main(){
           fisico.edicao_cadastro_fis (fisico);
         }
         fisico.tipo_pessoa (); 
+        conta._calcula_inss(fisico);
+        conta._calcula_deducao_dependente ();
+        conta._base_calculos ();
+        conta._calcula_imposto_renda ();
+        std::cout<<conta.get_Imposto_Renda_Final ()<<std::endl;
     }
 
  return 0;

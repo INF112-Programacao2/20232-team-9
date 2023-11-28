@@ -4,7 +4,7 @@
 #include "pessoa.h"
 #include <bits/stdc++.h>
 
-class ContabilFisica : public Pessoa
+class ContabilFisica
 {
 private:
     std::vector<double> _aliquotas;
@@ -20,9 +20,8 @@ private:
 
 
 public:
-    ContabilFisica ();
     void _calcula_imposto_renda();
-    void _calcula_inss();
+    void _calcula_inss(Pessoa &fisico);
     double _calcula_aliquota(double base_calculo);
     void _calcula_deducao_dependente();
     void _base_calculos();
