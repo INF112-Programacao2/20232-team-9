@@ -148,5 +148,5 @@ double ContabilFisica::get_Imposto_Renda_Final(){
         std::cout << "Imposto de renda a pagar: ";
         return _imposto_renda_final;
     }
-    return;
+    return 0;
 }
