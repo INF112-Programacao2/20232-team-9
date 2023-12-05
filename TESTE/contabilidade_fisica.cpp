@@ -17,8 +17,26 @@
 void ContabilFisica::_calcula_inss(Pessoa &fisico)
 {
     double salario;
+    std::cout<<std::endl;
     std::cout << "Digite o seu salário: " << std::endl;
-    std::cin >> salario;
+    while(true){
+     try{
+      std::cin >> salario;
+      if(std::cin.fail()){
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        throw std::invalid_argument ("Devem ser digitados apenas números! Digite um salário válido: ");
+      }
+      else if(salario<0){
+        throw std::invalid_argument ("O salário digitado deve ser um número positivo! Digite novamente: ");
+      }
+      break;
+
+     }catch(std::invalid_argument &e){
+        std::cerr<<e.what ()<<std::endl;
+     }
+    }
+
     _salario_bruto = salario;
 
     // Para Empregado, Empregado Doméstico e Trabalhador Avulso:
@@ -72,8 +90,25 @@ void ContabilFisica::_calcula_inss(Pessoa &fisico)
 void ContabilFisica::_calcula_deducao_dependente()
 {
     int dependentes;
+    std::cout<<std::endl;
     std::cout << "Digite o número de dependentes: " << std::endl;
-    std::cin >> dependentes;
+    while(true){
+     try{
+      std::cin >> dependentes;
+      if(std::cin.fail()){
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        throw std::invalid_argument ("Devem ser digitados apenas números! Digite um número válido: ");
+      }
+      else if(dependentes<0){
+        throw std::invalid_argument ("O número digitado deve ser positivo! Digite novamente: ");
+      }
+      break;
+
+     }catch(std::invalid_argument &e){
+        std::cerr<<e.what ()<<std::endl;
+     }
+    }
     _deducao_dependente = dependentes * 189.59;
 }
 
@@ -140,11 +175,12 @@ double ContabilFisica::_calcula_aliquota(double base_calculo){
 
 
 double ContabilFisica::get_Imposto_Renda_Final(){
+  std::cout<<std::endl;
     if(_imposto_renda_final < 0){
         std::cout << "Imposto de renda a restituir: ";
         return _imposto_renda_final*(-1);
     }
-    else if(_imposto_renda_final > 0){
+    else if(_imposto_renda_final >= 0){
         std::cout << "Imposto de renda a pagar: ";
         return _imposto_renda_final;
     }
