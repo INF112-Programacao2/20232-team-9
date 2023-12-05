@@ -1,5 +1,8 @@
+#ifndef JURIDICAINDUSTRIAL_H_
+#define JURIDICAINDUSTRIAL_H_
 #include "pessoajuridica.h"
 #include "contabilidade_juridica.h"
+#include <bits/stdc++.h>
 
 class JuridicaIndustrial: public ContabilJuridica{
 private:
@@ -16,6 +19,7 @@ public:
     double get_result_simples_nacional();
 
 };
+#endif
 /*
 //INDUSTRIA*
 

@@ -1,5 +1,8 @@
+#ifndef JURIDICAPRESTSERVI_H_
+#define JURIDICAPRESTSERVI_H_
 #include "pessoajuridica.h"
 #include "contabilidade_juridica.h"
+#include <bits/stdc++.h>
 
 
 class JuridicaPrestServi: public ContabilJuridica{
@@ -10,6 +13,7 @@ public:
     void _calculo_aliquotas_anexos();
     double get_result_simples_nacional();
 };
+#endif
 /*
 // SERVIÇO
 

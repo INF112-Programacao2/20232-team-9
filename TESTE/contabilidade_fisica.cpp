@@ -158,18 +158,18 @@ double ContabilFisica::_calcula_aliquota(double base_calculo){
     }
     else if (_base_calculo >= 2112.01 && _base_calculo < 2826.65)
     {
-        return base_calculo*0.075;
+        return _aliquota = (base_calculo*0.075);
     }
     else if (_base_calculo >= 2826.66 && _base_calculo < 3751.05)
     {
-        return base_calculo*0.15;
+        return _aliquota = (base_calculo*0.15);
     }
     else if (_base_calculo >= 3751.06 && _base_calculo < 4664.68)
     {
-        return base_calculo*0.225;
+        return _aliquota = (base_calculo*0.225);
     }
     else{
-        return base_calculo*0.275;
+        return _aliquota = (base_calculo*0.275);
     }
 }
 
@@ -182,6 +182,34 @@ double ContabilFisica::get_Imposto_Renda_Final(){
     }
     else if(_imposto_renda_final >= 0){
         std::cout << "Imposto de renda a pagar: ";
+        return _imposto_renda_final;
+    }
+    return 0;
+}
+
+double ContabilFisica::get_inss(){
+    return _inss;
+}
+
+double ContabilFisica::get_deducao_dependente(){
+    return _deducao_dependente;
+}
+
+double ContabilFisica::get_base_calculo(){
+    return _base_calculo;
+}
+
+double ContabilFisica::get_aliquota(){
+    return _aliquota;
+}
+
+double ContabilFisica::get_imposto_dados(){
+    if (_imposto_renda_final < 0)
+    {
+        return _imposto_renda_final * (-1);
+    }
+    else if (_imposto_renda_final >= 0)
+    {
         return _imposto_renda_final;
     }
     return 0;

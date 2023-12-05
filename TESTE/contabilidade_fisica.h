@@ -15,17 +15,25 @@ private:
     double _base_calculo;
     double _inss;
     double _deducao_dependente;
+    double _aliquota;
     bool _empregado, _individual, _facultativo, _mei, _contribuinte;
     double _imposto_renda_final;
 
 
 public:
+    //GETS
+    double get_inss();
+    double get_deducao_dependente();
+    double get_base_calculo();
+    double get_aliquota();
+    double get_imposto_dados();
+    double get_Imposto_Renda_Final();
+
     void _calcula_imposto_renda();
     void _calcula_inss(Pessoa &fisico);
     double _calcula_aliquota(double base_calculo);
     void _calcula_deducao_dependente();
     void _base_calculos();
-    double get_Imposto_Renda_Final();
 };
 
 #endif // CONTABILIDADE_FISICA_H

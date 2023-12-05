@@ -1,8 +1,11 @@
-#include <iostream>
-#include <cstring>
+#include <bits/stdc++.h>
 #include "pessoa.h"
 #include "pessoajuridica.h"
 #include "contabilidade_fisica.h"
+#include "contabilidade_juridica.h"
+#include "juridica_comercial.h"
+#include "juridica_industrial.h"
+#include "juridica_prestservico.h"
 
 void confere_nomes (std::string &nome){
 
@@ -101,7 +104,39 @@ int main(){
         else{
           juridico.edicao_cadastro (juridico);
         }
+        std::cout<<std::endl;
+        std::cout<<"Qual é o modelo jurídico da empresa? \n";
+        std::cout<<"(1)- Industrial \n"<<"(2)- Comercial \n"<<"(3)- Prestação de Serviço \n";
+        while(true){
+          try{
+            std::cin>>opcao;
+              if(opcao != "1" && opcao != "2" && opcao != "3"){
+                throw std::invalid_argument ("Opção inválida!! Digite uma opção válida: ");
+              }
 
+            break;
+          }catch(std::invalid_argument &e){
+            std::cerr<<e.what()<<std::endl;
+          }
+        }
+        if(opcao=="1"){
+          JuridicaIndustrial industria;
+          industria.set_caixa ();
+          industria.get_caixa ();
+          industria.set_contasPagar ();
+          industria.get_contasPagar ();
+          industria.set_contasReceber ();
+          industria.get_contasReceber ();
+          industria._calculo_DRE ();
+          industria._calculo_fluxo_caixa ();
+        }
+        else if(opcao=="2"){
+          JuridicaComercial comercio;
+        }
+        else{
+          JuridicaPrestServi servico;
+        }
+        
     }
 
     else if(opcao=="2"){
