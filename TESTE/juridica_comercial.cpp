@@ -48,5 +48,5 @@ double JuridicaComercial::get_result_simples_nacional(){
         std::cout << "Valor a restituir: " << std::endl;
         return _result_simples_nacional;
     }
-    return;
+    return 0;
 }

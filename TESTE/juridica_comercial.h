@@ -1,5 +1,8 @@
+#ifndef JURIDICACOMERCIAL_H_
+#define JURIDICACOMERCIAL_H_
 #include "pessoajuridica.h"
 #include "contabilidade_juridica.h"
+#include <bits/stdc++.h>
 
 class JuridicaComercial : public ContabilJuridica{
 private:
@@ -9,6 +12,7 @@ public:
     void _calculo_aliquotas_anexos();
     double get_result_simples_nacional();
 };
+#endif
 /*
 // COMERCIO
 

@@ -1,4 +1,7 @@
+#ifndef CONTABIL_JURIDICA_H
+#define CONTABIL_JURIDICA_H
 #include "pessoajuridica.h"
+#include "pessoa.h"
 #include <bits/stdc++.h>
 // tributação federal:
 // tributação estadual:
@@ -77,7 +80,6 @@ class ContabilJuridica {
 		double get_receita_bruta();
 		virtual void _calculo_aliquotas_anexos() = 0;
 		virtual double get_result_simples_nacional() = 0;
-
-
 		 
 };
+#endif
