@@ -29,7 +29,6 @@ class ContabilJuridica {
 		std::vector<std::pair<std::string, double>> _realizavelLongoPrazo; //CÁLCULO BALANCETE
 		std::vector<std::pair<std::string, double>> _realizavelCurtoPrazo; 
 		std::vector<std::pair<std::string, double>> _emprestimos;
-		std::vector<std::pair<std::string, double>> _contasPagar;
 		std::vector<int> _receitas;
 		std::vector<int> _despesas;
 		std::vector<int> _result_dre;
