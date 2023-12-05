@@ -29,7 +29,6 @@ class ContabilJuridica {
 		std::vector<std::pair<std::string, double>> _realizavelLongoPrazo; //CÁLCULO BALANCETE
 		std::vector<std::pair<std::string, double>> _realizavelCurtoPrazo; 
 		std::vector<std::pair<std::string, double>> _emprestimos;
-		std::vector<std::pair<std::string, double>> _contasPagar;
 		std::vector<int> _receitas;
 		std::vector<int> _despesas;
 		std::vector<int> _result_dre;
@@ -40,18 +39,18 @@ class ContabilJuridica {
 		//SET
 		
 		//ATIVO CIRCULANTE
-		void set_caixa(int qntelement);
-		void set_contasReceber(int qntelement);
+		void set_caixa();
+		void set_contasReceber();
 
 		//ATIVO NÃO CIRCULANTE
-		void set_realizavelLongoPrazo(int qntelement);
+		void set_realizavelLongoPrazo();
 
 		//PASSIVO CIRCULANTE
-		void set_realizavelCurtoPrazo(int qntelement);
+		void set_realizavelCurtoPrazo();
 
 		//PASSIVO NÃO CIRCULANTE
-		void set_emprestimos(int qntelement);
-		void set_contasPagar(int qntelement);
+		void set_emprestimos();
+		void set_contasPagar();
 
 		//GET
 
@@ -74,7 +73,7 @@ class ContabilJuridica {
 		void _calculo_DRE();
 		void _calculo_fluxo_caixa();
 		void _resultado_balancete();
-		void _calculo_aliquotas_localidade(PessoaJuridica &juridico);
+		/*void _calculo_aliquotas_localidade(PessoaJuridica &juridico);*/
 		double get_receita_bruta();
 		virtual void _calculo_aliquotas_anexos() = 0;
 		virtual double get_result_simples_nacional() = 0;

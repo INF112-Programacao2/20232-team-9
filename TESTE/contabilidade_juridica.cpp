@@ -6,73 +6,161 @@
 
 //SET
 
-void ContabilJuridica::set_caixa(int quant_elementos){
+void ContabilJuridica::set_caixa(){
     double valor;
-    for(int i = 0; i < quant_elementos; i++){
-        std::cout << "Digite o valor: ";
-        std::cin >> valor;
-        _caixa.push_back(valor);
+    bool opcao = false;
+    int valida;
+    while(!opcao){
+        std::cout << "Você deseja adicionar um valor ao caixa? " << std::endl;
+        std::cout << "(1) - Sim" << std::endl;
+        std::cout << "(2) - Não" << std::endl;
+        std::cin >> valida;
+        if(valida == 1){
+            std::cout << "Digite o valor: ";
+            std::cin >> valor;
+            _caixa.push_back(valor);
+        }
+        else if(valida == 2){
+            opcao = true;
+        }
+        else{
+            std::cout << "Opção inválida" << std::endl;
+        }
     }
     
 }
 
-void ContabilJuridica::set_contasPagar(int quant_elementos){
+void ContabilJuridica::set_contasPagar(){
     std::string fonte;
     double valor;
-    for(int i = 0; i < quant_elementos; i++){
-        std::cout << "Digite a fonte: ";
-        std::cin >> fonte;
-        std::cout << "Digite o valor: ";
-        std::cin >> valor;
-        _contasPagar.push_back({fonte,valor});
+    bool opcao = false;
+    int valida;
+    while (!opcao){
+        std::cout << "Você deseja adicionar um valor ao caixa? " << std::endl;
+        std::cout << "(1) - Sim" << std::endl;
+        std::cout << "(2) - Não" << std::endl;
+        std::cin >> valida;
+        if(valida == 1){
+            std::cout << "Digite a fonte: ";
+            std::cin >> fonte;
+            std::cout << "Digite o valor: ";
+            std::cin >> valor;
+            _contasPagar.push_back({fonte,valor});
+        }
+        else if(valida == 2){
+            opcao = true;
+        }
+        else{
+            std::cout << "Opção inválida" << std::endl;
+        }
     }
 }
 
-void ContabilJuridica::set_contasReceber(int quant_elementos){
+void ContabilJuridica::set_contasReceber(){
     std::string fonte;
     double valor;
-    for(int i = 0; i < quant_elementos; i++){
-        std::cout << "Digite a fonte: ";
-        std::cin >> fonte;
-        std::cout << "Digite o valor: ";
-        std::cin >> valor;
-        _contasReceber.push_back({fonte,valor});
+    bool opcao = false;
+    int valida;
+    while (!opcao)
+    {
+        std::cout << "Você deseja adicionar um valor ao caixa? " << std::endl;
+        std::cout << "(1) - Sim" << std::endl;
+        std::cout << "(2) - Não" << std::endl;
+        std::cin >> valida;
+        if(valida == 1){
+            std::cout << "Digite a fonte: ";
+            std::cin >> fonte;
+            std::cout << "Digite o valor: ";
+            std::cin >> valor;
+            _contasReceber.push_back({fonte,valor});
+        }
+        else if(valida == 2){
+            opcao = true;
+        }
+        else{
+            std::cout << "Opção inválida" << std::endl;
+        }
     }
 }
 
-void ContabilJuridica::set_realizavelCurtoPrazo(int quant_elementos){
+void ContabilJuridica::set_realizavelCurtoPrazo(){
     std::string fonte;
     int valor;
-    for(int i = 0; i < quant_elementos; i++){
-        std::cout << "Digite a fonte: ";
-        std::cin >> fonte;
-        std::cout << "Digite o valor: ";
-        std::cin >> valor;
-        _realizavelCurtoPrazo.push_back({fonte,valor});
+    bool opcao = false;
+    int valida;
+    while (!opcao)
+    {
+        std::cout << "Você deseja adicionar um valor ao caixa? " << std::endl;
+        std::cout << "(1) - Sim" << std::endl;
+        std::cout << "(2) - Não" << std::endl;
+        std::cin >> valida;
+        if(valida == 1){
+            std::cout << "Digite a fonte: ";
+            std::cin >> fonte;
+            std::cout << "Digite o valor: ";
+            std::cin >> valor;
+            _realizavelCurtoPrazo.push_back({fonte,valor});
+        }
+        else if(valida == 2){
+            opcao = true;
+        }
+        else{
+            std::cout << "Opção inválida" << std::endl;
+        }
     }
 }
 
-void ContabilJuridica::set_realizavelLongoPrazo(int quant_elementos){
+void ContabilJuridica::set_realizavelLongoPrazo(){
     std::string fonte;
     int valor;
-    for(int i = 0; i < quant_elementos; i++){
-        std::cout << "Digite a fonte: ";
-        std::cin >> fonte;
-        std::cout << "Digite o valor: ";
-        std::cin >> valor;
-        _realizavelLongoPrazo.push_back({fonte,valor});
+    bool opcao = false;
+    int valida;
+    while (!opcao)
+    {
+        std::cout << "Você deseja adicionar um valor ao caixa? " << std::endl;
+        std::cout << "(1) - Sim" << std::endl;
+        std::cout << "(2) - Não" << std::endl;
+        std::cin >> valida;
+        if(valida == 1){
+            std::cout << "Digite a fonte: ";
+            std::cin >> fonte;
+            std::cout << "Digite o valor: ";
+            std::cin >> valor;
+            _realizavelLongoPrazo.push_back({fonte,valor});
+        }
+        else if(valida == 2){
+            opcao = true;
+        }
+        else{
+            std::cout << "Opção inválida" << std::endl;
+        }
     }
 }
 
-void ContabilJuridica::set_emprestimos(int quant_elementos){
+void ContabilJuridica::set_emprestimos(){
     std::string fonte;
     double valor;
-    for(int i = 0; i < quant_elementos; i++){
-        std::cout << "Digite a fonte: ";
-        std::cin >> fonte;
-        std::cout << "Digite o valor: ";
-        std::cin >> valor;
-        _emprestimos.push_back({fonte,valor});
+    bool opcao = false;
+    int valida;
+    while (!opcao)
+    {
+        std::cout << "Você deseja adicionar um valor ao caixa? " << std::endl;
+        std::cout << "(1) - Sim" << std::endl;
+        std::cout << "(2) - Não" << std::endl;
+        std::cin >> valida;
+        if(valida == 1){
+            std::cout << "Digite a fonte: ";
+            std::cin >> fonte;
+            std::cout << "Digite o valor: ";
+            std::cin >> valor;
+            _emprestimos.push_back({fonte,valor});
+        }
+        else if(valida == 2){
+            opcao = true;
+        }
+        else{
+            std::cout << "Opção inválida" << std::endl;
+        }
     }
 }
 
@@ -90,40 +178,50 @@ double ContabilJuridica::get_caixa(){
 double ContabilJuridica::get_contasPagar(){
     double total = 0;
     for(int i = 0; i < _contasPagar.size(); i++){
+        std::cout << _contasPagar[i].first << " " << _contasPagar[i].second << std::endl;
         total += _contasPagar[i].second;
     }
+    std::cout << "Valor total de Contas a Pagar: ";
     return total;
 }
 
 double ContabilJuridica::get_contasReceber(){
     double total = 0;
     for(int i = 0; i < _contasReceber.size(); i++){
+        std::cout << _contasReceber[i].first << " " << _contasReceber[i].second << std::endl;
         total += _contasReceber[i].second;
     }
+    std::cout << "Valor total de Contas a Receber: ";
     return total;
 }
 
 int ContabilJuridica::get_realizavelCurtoPrazo(){
     int total = 0;
     for(int i = 0; i < _realizavelCurtoPrazo.size(); i++){
+        std::cout << _realizavelCurtoPrazo[i].first << " " << _realizavelCurtoPrazo[i].second << std::endl;
         total += _realizavelCurtoPrazo[i].second;
     }
+    std::cout << "Valor total de Realizável a Curto Prazo: ";
     return total;
 }
 
 int ContabilJuridica::get_realizavelLongoPrazo(){
     int total = 0;
     for(int i = 0; i < _realizavelLongoPrazo.size(); i++){
+        std::cout << _realizavelLongoPrazo[i].first << " " << _realizavelLongoPrazo[i].second << std::endl;
         total += _realizavelLongoPrazo[i].second;
     }
+    std::cout << "Valor total de Realizável a Longo Prazo: ";
     return total;
 }
 
 double ContabilJuridica::get_emprestimos(){
     double total = 0;
     for(int i = 0; i < _emprestimos.size(); i++){
+        std::cout << _emprestimos[i].first << " " << _emprestimos[i].second << std::endl;
         total += _emprestimos[i].second;
     }
+    std::cout << "Valor total de Empréstimos: ";
     return total;
 }
 
@@ -172,9 +270,10 @@ void ContabilJuridica::_resultado_balancete(){
     }
 }
 
-void ContabilJuridica::_calculo_aliquotas_localidade(PessoaJuridica &juridico){
+/*void ContabilJuridica::_calculo_aliquotas_localidade(PessoaJuridica &juridico){
     //depende da localização da empresa (cadastro)
     if(juridico.get_local () == "MG"){ //MG
+        
         //aliquota = 12% se vier de outro estado
         //aliquota = 18% se vier de outro pais
         //aliquota = 18% se for de MG
@@ -189,7 +288,7 @@ void ContabilJuridica::_calculo_aliquotas_localidade(PessoaJuridica &juridico){
         //aliquota = 20% se vier de outro pais
         //aliquota = 20% se for de RJ
     }
-}
+}*/
 
 double ContabilJuridica::get_receita_bruta(){
     for(int i = 0; i < _receitas.size(); i++){
