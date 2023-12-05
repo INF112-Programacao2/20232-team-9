@@ -14,7 +14,7 @@
 
 // INSS
 
-void ContabilFisica::_calcula_inss()
+void ContabilFisica::_calcula_inss(Pessoa &fisico)
 {
     double salario;
     std::cout << "Digite o seu salário: " << std::endl;
@@ -23,7 +23,7 @@ void ContabilFisica::_calcula_inss()
 
     // Para Empregado, Empregado Doméstico e Trabalhador Avulso:
 
-    if (ContabilFisica::get_tipo_pessoa()=="Empregado"){
+    if (fisico.get_tipo_pessoa()=="Empregado"){
 
         if (_salario_bruto <= 1320){
             _inss = _salario_bruto*0.075;
@@ -43,21 +43,21 @@ void ContabilFisica::_calcula_inss()
     else{
 
         // individual
-        if (_salario_bruto >= 1320  &&  ContabilFisica::get_tipo_pessoa()=="Contribuinte Individual"){
+        if (_salario_bruto >= 1320  &&  fisico.get_tipo_pessoa()=="Contribuinte Individual"){
             _inss = _salario_bruto*0.05;
             if(_inss > 66){
                 _inss = 66;
             }
             // valor = 65.10
         }
-        else if (_salario_bruto >= 1320  &&  ContabilFisica::get_tipo_pessoa()=="Contribuinte Facultativo"){ // facultativo
+        else if (_salario_bruto >= 1320  &&  fisico.get_tipo_pessoa()=="Contribuinte Facultativo"){ // facultativo
             _inss = _salario_bruto*0.11;
             if(_inss > 145.20){
                 _inss = 145.20;
             }
             // valor = 143.22
         }
-        else if (_salario_bruto >= 1320  &&  _salario_bruto <= 7507.49  &&  ContabilFisica::get_tipo_pessoa()=="Microempreendedor"){ // MEI
+        else if (_salario_bruto >= 1320  &&  _salario_bruto <= 7507.49  &&  fisico.get_tipo_pessoa()=="Microempreendedor"){ // MEI
             _inss = _salario_bruto*0.20;
             if(_inss > 1501.49){
                 _inss = 1501.49;
@@ -140,5 +140,13 @@ double ContabilFisica::_calcula_aliquota(double base_calculo){
 
 
 double ContabilFisica::get_Imposto_Renda_Final(){
-    return _imposto_renda_final;
+    if(_imposto_renda_final < 0){
+        std::cout << "Imposto de renda a restituir: ";
+        return _imposto_renda_final*(-1);
+    }
+    else if(_imposto_renda_final > 0){
+        std::cout << "Imposto de renda a pagar: ";
+        return _imposto_renda_final;
+    }
+    return 0;
 }
