@@ -15,7 +15,7 @@
 // INSS
 
 void ContabilFisica::_calcula_inss(Pessoa &fisico)
-{
+{   
     double salario;
     std::cout<<std::endl;
     std::cout << "Digite o seu salário: " << std::endl;
