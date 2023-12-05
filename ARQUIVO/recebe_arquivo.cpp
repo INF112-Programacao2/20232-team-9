@@ -3,10 +3,11 @@
 #include <fstream>
 #include <bits/stdc++.h>
 #include "recebe_arquivo.h"
+#include "pessoa.h"
 
-void recebe_dados_fisico(ContabilFisica &dados){
+void recebe_dados_fisico(ContabilFisica &dados, Pessoa &fisico){
     std::fstream out("Usuarios_Fisico.csv", std::ios::out | std::ios::app);
-    out << dados.get_cpf() << "," << dados.get_nomepessoa() << std::endl;
+    out << fisico.get_cpf() << "," << fisico.get_nomepessoa() << std::endl;
     out << "INSS" << "," << dados.get_inss() << std::endl;
     out << "Dependente" << "," << dados.get_deducao_dependente() <<std::endl;
     out << "Base" << "," << dados.get_base_calculo() << std::endl;
