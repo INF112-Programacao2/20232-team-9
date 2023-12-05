@@ -122,11 +122,11 @@ int main(){
         if(opcao=="1"){
           JuridicaIndustrial industria;
           industria.set_caixa ();
-          industria.get_caixa ();
+          std::cout<<industria.get_caixa ()<<std::endl;
           industria.set_contasPagar ();
-          industria.get_contasPagar ();
+          std::cout<<industria.get_contasPagar ()<<std::endl;
           industria.set_contasReceber ();
-          industria.get_contasReceber ();
+          std::cout<<industria.get_contasReceber ()<<std::endl;
           industria._calculo_DRE ();
           industria._calculo_fluxo_caixa ();
         }

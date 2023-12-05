@@ -10,8 +10,8 @@ private:
     double _result_simples_nacional;
 
 public:
-    void _calculo_aliquotas_anexos();
-    double get_result_simples_nacional();
+    virtual void _calculo_aliquotas_anexos();
+    virtual double get_result_simples_nacional();
 };
 #endif
 /*

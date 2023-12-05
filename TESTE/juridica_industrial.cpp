@@ -61,11 +61,11 @@ void JuridicaIndustrial::set_estoque(){
     std::cin >> nome;
     std::cout << "Digite o valor do produto: ";
     std::cin >> valor;
-    _estoque.push_back({nome, valor});
+    _estoque.push_back(std::make_pair(nome, valor));
 }
 
 void JuridicaIndustrial::get_estoque(){
-    for (int i = 0; i < _estoque.size(); i++){
-        std::cout << _estoque[i] << std::endl;
-    }
+   // for (int i = 0; i < _estoque.size(); i++){
+       // std::cout << _estoque[i] << std::endl;
+    //}
 }
