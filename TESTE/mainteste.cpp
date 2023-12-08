@@ -7,6 +7,46 @@
 #include "juridica_industrial.h"
 #include "juridica_prestservico.h"
 
+double contabil(std::string cpf_informado){
+    std::fstream in("Pessoa_Fisica.csv", std::ios::out);
+    std::string cpf, nome;
+    double deducao_dependente, inss, base_calculo, aliquota, imposto_renda;
+    if (!in.is_open()){
+        std::cerr <<"erro ao abrir arquivo!" <<std::endl;
+    }
+    while(in.peek() != EOF || cpf_informado != cpf){
+        
+        getline(in, cpf, ',');
+
+        if(cpf == cpf_informado){
+            std::string nome, local, tipo;
+            ContabilFisica conta;
+
+            getline(in, nome, ',');
+            getline(in, local, ',');
+            Pessoa p(nome, local);
+
+            getline(in, tipo, '\n');
+            p.insere_cpf(cpf);
+            p.set_tipo_pessoa(tipo);
+
+
+
+            conta._calcula_inss(p);
+            conta._calcula_deducao_dependente ();
+            conta._base_calculos ();
+            conta._calcula_imposto_renda ();
+            return conta.get_Imposto_Renda_Final();
+        }
+        
+        else{
+            getline(in, cpf, '\n');
+        }
+        in.close();
+
+    }
+}
+
 void confere_nomes (std::string &nome){
 
   while(true){
@@ -210,18 +250,14 @@ int main(){
 
       //PARA CONTABILIDADE FISICA 
       /*
-        conta._calcula_inss(fisico);
-        conta._calcula_deducao_dependente ();
-        conta._base_calculos ();
-        conta._calcula_imposto_renda ();
-        std::cout<<conta.get_Imposto_Renda_Final ()<<std::endl;
+        std::cout<<contabil(cpf)<<std::endl;
       */
 
 
       //PARA CONTABILIDADE DO TIPO JURIDICO INDUSTRIAL 
       /*
           JuridicaIndustrial industria;
-          industria.set_caixa ();
+          industria.set_caixa();
           std::cout<<industria.get_caixa ()<<std::endl;
           industria.set_contasPagar ();
           std::cout<<industria.get_contasPagar ()<<std::endl;
