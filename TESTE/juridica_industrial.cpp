@@ -55,17 +55,35 @@ double JuridicaIndustrial::get_result_simples_nacional(){
 }
 
 void JuridicaIndustrial::set_estoque(){
-    std::string nome;
-    double valor;
-    std::cout << "Digite o nome do produto: ";
-    std::cin >> nome;
-    std::cout << "Digite o valor do produto: ";
-    std::cin >> valor;
-    _estoque.push_back(std::make_pair(nome, valor));
+    std::string fonte;
+    int valor;
+    bool opcao = false;
+    int valida;
+    while(!opcao){
+        std::cout << std::endl;
+        std::cout << "Você deseja adicionar informação ao estoque? " << std::endl;
+        std::cout << "(1) - Sim" << std::endl;
+        std::cout << "(2) - Não" << std::endl;
+        std::cin >> valida;
+        if(valida == 1){
+            std::cin.ignore();
+            std::cout << "Digite o nome do produto: ";
+            getline(std::cin, fonte);
+            std::cout << "Digite o valor do produto: ";
+            std::cin >> valor;
+            _estoque.push_back({fonte, valor});
+        }
+        else if(valida == 2){
+            opcao = true;
+        }
+        else{
+            std::cout << "Opção inválida" << std::endl;
+        }
+    }
 }
 
-void JuridicaIndustrial::get_estoque(){
-   // for (int i = 0; i < _estoque.size(); i++){
-       // std::cout << _estoque[i] << std::endl;
-    //}
+void JuridicaIndustrial::get_estoque(){ //valor do estoque
+    for (int i = 0; i < _estoque.size(); i++){
+        std::cout <<"Fonte: " <<  _estoque[i].first << "Valor: " << _estoque[i].second << std::endl;
+    }
 }

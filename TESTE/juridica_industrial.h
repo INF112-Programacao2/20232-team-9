@@ -10,8 +10,8 @@ private:
     double _result_simples_nacional;
 
 public:
-    //SET
-    void set_estoque();
+    //SET   
+    void set_estoque(); 
     //GET
     void get_estoque();
     //METODOS
