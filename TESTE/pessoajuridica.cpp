@@ -229,3 +229,40 @@ void PessoaJuridica::set_apelidoempresa (std::string apelidoempresa){
 
 }
 
+void PessoaJuridica::modelo_negocio (){
+  std::string opcao;
+
+  std::cout<<"Qual é o modelo jurídico da empresa? \n";
+  std::cout<<"(1)- Industrial \n"<<"(2)- Comercial \n"<<"(3)- Prestação de Serviço \n";
+    while(true){
+      try{
+        std::cin>>opcao;
+        if(opcao != "1" && opcao != "2" && opcao != "3"){
+          throw std::invalid_argument ("Opção inválida!! Digite uma opção válida: ");
+        }
+
+         break;
+        }catch(std::invalid_argument &e){
+          std::cerr<<e.what()<<std::endl;
+      }
+    }
+
+  if(opcao=="1"){
+    _modeloempresa="Industrial";
+  } 
+  else if(opcao=="2"){
+    _modeloempresa="Comercial";
+  } 
+  else{
+    _modeloempresa="Prestação de Serviço";
+  }
+
+}
+
+
+std::string PessoaJuridica::get_modelo_negocio (){
+
+  return _modeloempresa;
+
+}
+
