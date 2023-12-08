@@ -14,3 +14,7 @@ void recebe_dados_fisico(ContabilFisica &dados, Pessoa &fisico){
     out << "Aliquota" << "," << dados.get_aliquota() << std::endl;
     out << "Imposto de Renda" << "," << dados.get_imposto_dados() << std::endl;
 }
+
+void recebe_dados_industrial(JuridicaIndustrial &dados){
+    
+}
