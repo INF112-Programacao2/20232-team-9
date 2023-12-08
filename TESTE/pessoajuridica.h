@@ -10,6 +10,7 @@ class PessoaJuridica : public Pessoa{
   std::string _nomeempresa;
   std::string _apelidoempresa;
   std::string _cnpj; 
+  std::string _modeloempresa;
  
  public:
 
@@ -31,6 +32,9 @@ class PessoaJuridica : public Pessoa{
 
     bool confirma_cadastro (PessoaJuridica &juridico);
 
+    void modelo_negocio ();
+
+    std::string get_modelo_negocio ();
 
 };
 

@@ -33,29 +33,55 @@ void confere_nomes (std::string &nome){
 
 int main(){
 
-    std::string nomepessoa, nomeempresa, apelidoempresa, local, cnpj, cpf, opcao;
-    int confirmacao, selecionador;
+    std::string nomepessoa, nomeempresa, apelidoempresa, local, cnpj, cpf, opcao, selecionador;
+    int selecionador2;
+    bool valide=true;
 
+  while (valide){
+   
+    std::cout<<">>>>>>>>>>>>>>>>>>>>>>>>>>>> MENU <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< \n";
     std::cout<<"Olá cliente! \n";
-    std::cout<<"Deseja realizar qual tipo de contabilidade? \n";
-    std::cout<<"1- Contabilidade Jurídica. \n";
-    std::cout<<"2- Contabilidade Física. \n";
-    std::cout<<"Digite 1 para Contabilidade Jurídica ou 2 para Contabilidade Física: \n";   
-    while(true){
+    std::cout<<"O que você deseja fazer? \n";
+    std::cout<<"(1) - Cadastrar \n";
+    std::cout<<"(2) - Realizar contabilidade (cliente já deve ser cadastrado) \n";
+    std::cout<<"(3) - Checar análises estatísticas (cliente já deve ser cadastrado) \n";
+    std::cout<<"(4) - Sair do Menu \n";
+    while(true){  
       try{
-        std::cin>>opcao;
-        if(opcao != "1" && opcao != "2"){
-          throw std::invalid_argument ("Opção inválida!! Digite 1 para Contabilidade Jurídica ou 2 para Contabilidade Física:");
+        std::cin>>selecionador;
+        if(selecionador!="1" && selecionador!="2" && selecionador!="3" && selecionador!="4"){
+          throw std::invalid_argument ("Opção inválida!! Digite uma opção válida:");
         }
-
         break;
-
-      }catch(std::invalid_argument &e){
+       }catch(std::invalid_argument &e){
         std::cerr<<e.what()<<std::endl;
       }
     }
+    selecionador2=stoi(selecionador);
+    
 
-    if(opcao=="1"){
+    switch (selecionador2)
+    {
+    case (1):
+      std::cout<<std::endl;
+      std::cout<<"Qual é o tipo de pessoa? \n";
+      std::cout<<"1- Pessoa Jurídica. \n";
+      std::cout<<"2- Pessoa Física. \n";
+      std::cout<<"Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física: \n";   
+      while(true){
+       try{
+        std::cin>>opcao;
+        if(opcao != "1" && opcao != "2"){
+          throw std::invalid_argument ("Opção inválida!! Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física:");
+        }
+        break;
+       }catch(std::invalid_argument &e){
+        std::cerr<<e.what()<<std::endl;
+       }
+      }
+
+      //PESSOA JURIDICA
+      if(opcao=="1"){
 
         std::cout<<std::endl;
         std::cout<<"Bem-vindo, cliente! \n";
@@ -82,6 +108,7 @@ int main(){
             std::cerr<<e.what()<<std::endl;
           }
         }
+        
         if(opcao=="1"){
           local="MG";
         }
@@ -104,42 +131,12 @@ int main(){
         else{
           juridico.edicao_cadastro (juridico);
         }
+        juridico.modelo_negocio ();
         std::cout<<std::endl;
-        std::cout<<"Qual é o modelo jurídico da empresa? \n";
-        std::cout<<"(1)- Industrial \n"<<"(2)- Comercial \n"<<"(3)- Prestação de Serviço \n";
-        while(true){
-          try{
-            std::cin>>opcao;
-              if(opcao != "1" && opcao != "2" && opcao != "3"){
-                throw std::invalid_argument ("Opção inválida!! Digite uma opção válida: ");
-              }
-
-            break;
-          }catch(std::invalid_argument &e){
-            std::cerr<<e.what()<<std::endl;
-          }
-        }
-        if(opcao=="1"){
-          JuridicaIndustrial industria;
-          industria.set_caixa ();
-          std::cout<<industria.get_caixa ()<<std::endl;
-          industria.set_contasPagar ();
-          std::cout<<industria.get_contasPagar ()<<std::endl;
-          industria.set_contasReceber ();
-          std::cout<<industria.get_contasReceber ()<<std::endl;
-          industria._calculo_DRE ();
-          industria._calculo_fluxo_caixa ();
-        }
-        else if(opcao=="2"){
-          JuridicaComercial comercio;
-        }
-        else{
-          JuridicaPrestServi servico;
-        }
-        
-    }
-
-    else if(opcao=="2"){
+      }
+      
+      //PESSOA FISICA
+      else if(opcao=="2"){
 
         std::cout<<std::endl;
         std::cout<<"Bem-vindo, cliente! \n";
@@ -173,8 +170,7 @@ int main(){
         }
 
         Pessoa fisico (nomepessoa, local);
-        ContabilFisica conta;
-        std::cout<<"Digite o CPF do proprietario: \n";
+        std::cout<<"Digite seu CPF: \n";
         fisico.insere_cpf ( );
         std::cout<<std::endl;
         if(fisico.confirma_cadastro_fis (fisico) == true){
@@ -184,12 +180,73 @@ int main(){
           fisico.edicao_cadastro_fis (fisico);
         }
         fisico.tipo_pessoa (); 
+       }
+
+      break;
+    
+    case (2):
+      
+      //PARA LUIS:
+
+      //PARA CONFIRMAR O TIPO DE PESSOA
+
+      /*
+      std::cout<<"Qual é o tipo de pessoa? \n";
+      std::cout<<"1- Pessoa Jurídica. \n";
+      std::cout<<"2- Pessoa Física. \n";
+      std::cout<<"Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física: \n";   
+      while(true){
+       try{
+        std::cin>>opcao;
+        if(opcao != "1" && opcao != "2"){
+          throw std::invalid_argument ("Opção inválida!! Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física:");
+        }
+        break;
+       }catch(std::invalid_argument &e){
+        std::cerr<<e.what()<<std::endl;
+       }
+      }
+      */
+
+      //PARA CONTABILIDADE FISICA 
+      /*
         conta._calcula_inss(fisico);
         conta._calcula_deducao_dependente ();
         conta._base_calculos ();
         conta._calcula_imposto_renda ();
         std::cout<<conta.get_Imposto_Renda_Final ()<<std::endl;
-    }
+      */
+
+
+      //PARA CONTABILIDADE DO TIPO JURIDICO INDUSTRIAL 
+      /*
+          JuridicaIndustrial industria;
+          industria.set_caixa ();
+          std::cout<<industria.get_caixa ()<<std::endl;
+          industria.set_contasPagar ();
+          std::cout<<industria.get_contasPagar ()<<std::endl;
+          industria.set_contasReceber ();
+          std::cout<<industria.get_contasReceber ()<<std::endl;
+          industria._calculo_DRE ();
+          industria._calculo_fluxo_caixa ();
+       */   
+
+
+      break;
+    
+    case (3):
+
+    //ESTATISTICOS
+
+      break;    
+    
+    
+    default:
+      valide=false;
+      
+      break;
+   }
+  }  
 
  return 0;
 }
