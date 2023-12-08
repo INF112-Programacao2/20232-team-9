@@ -15,7 +15,20 @@ void ContabilJuridica::set_caixa(){
         std::cout << "Você deseja adicionar um valor ao caixa? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
-        std::cin >> valida;
+        while(true){
+          try {
+            std::cin >> valida;
+            if (std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                throw std::invalid_argument("Devem ser digitados apenas números!");
+            }
+            break;
+           }
+           catch (std::invalid_argument &e){
+                std::cerr << e.what() << std::endl;
+           }
+        }
         if(valida == 1){
             std::cout << "Digite o valor: ";
             std::cin >> valor;
@@ -25,7 +38,8 @@ void ContabilJuridica::set_caixa(){
             opcao = true;
         }
         else{
-            std::cout << "Opção inválida" << std::endl;
+            std::cout<<std::endl;
+            std::cout << "Opção inválida!" << std::endl;
         }
     }
     
@@ -41,7 +55,20 @@ void ContabilJuridica::set_contasPagar(){
         std::cout << "Você deseja adicionar informação à contas a pagar? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
-        std::cin >> valida;
+        while (true){
+            try{
+                std::cin >> valida;
+                if (std::cin.fail()){
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    throw std::invalid_argument("Devem ser digitados apenas números!");
+                }
+                break;
+            }
+            catch (std::invalid_argument &e){
+                std::cerr << e.what() << std::endl;
+            }
+        }
         if(valida == 1){
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
@@ -54,7 +81,8 @@ void ContabilJuridica::set_contasPagar(){
             opcao = true;
         }
         else{
-            std::cout << "Opção inválida" << std::endl;
+            std::cout<<std::endl;
+            std::cout << "Opção inválida!" << std::endl;
         }
     }
 }
@@ -70,7 +98,20 @@ void ContabilJuridica::set_contasReceber(){
         std::cout << "Você deseja adicionar informação à contas a receber? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
-        std::cin >> valida;
+        while (true){
+            try{
+                std::cin >> valida;
+                if (std::cin.fail()){
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    throw std::invalid_argument("Devem ser digitados apenas números!");
+                }
+                break;
+            }
+            catch (std::invalid_argument &e){
+                std::cerr << e.what() << std::endl;
+            }
+        }
         if(valida == 1){
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
@@ -83,7 +124,8 @@ void ContabilJuridica::set_contasReceber(){
             opcao = true;
         }
         else{
-            std::cout << "Opção inválida" << std::endl;
+            std::cout<<std::endl;
+            std::cout << "Opção inválida!" << std::endl;
         }
     }
 }
@@ -93,13 +135,25 @@ void ContabilJuridica::set_realizavelCurtoPrazo(){
     int valor;
     bool opcao = false;
     int valida;
-    while (!opcao)
-    {
+    while (!opcao){
         std::cout<<std::endl;
         std::cout << "Você deseja adicionar informação à realizável curto prazo? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
-        std::cin >> valida;
+        while (true){
+            try{
+                std::cin >> valida;
+                if (std::cin.fail()){
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    throw std::invalid_argument("Devem ser digitados apenas números!");
+                }
+                break;
+            }
+            catch (std::invalid_argument &e){
+                std::cerr << e.what() << std::endl;
+            }
+        }
         if(valida == 1){
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
@@ -112,7 +166,8 @@ void ContabilJuridica::set_realizavelCurtoPrazo(){
             opcao = true;
         }
         else{
-            std::cout << "Opção inválida" << std::endl;
+            std::cout<<std::endl;
+            std::cout << "Opção inválida!" << std::endl;
         }
     }
 }
@@ -128,7 +183,21 @@ void ContabilJuridica::set_realizavelLongoPrazo(){
         std::cout << "Você deseja adicionar informação à realizável longo prazo?" << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
-        std::cin >> valida;
+        while (true){
+            try{
+                std::cin >> valida;
+                if (std::cin.fail())
+                {
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    throw std::invalid_argument("Devem ser digitados apenas números!");
+                }
+                break;
+            }
+            catch (std::invalid_argument &e){
+                std::cerr << e.what() << std::endl;
+            }
+        }
         if(valida == 1){
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
@@ -141,7 +210,8 @@ void ContabilJuridica::set_realizavelLongoPrazo(){
             opcao = true;
         }
         else{
-            std::cout << "Opção inválida" << std::endl;
+            std::cout<<std::endl;
+            std::cout << "Opção inválida!" << std::endl;
         }
     }
 }
@@ -157,11 +227,25 @@ void ContabilJuridica::set_emprestimos(){
         std::cout << "Você deseja adicionar informação à emprestimos? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
-        std::cin >> valida;
+        while (true){
+            try{
+                std::cin >> valida;
+                if (std::cin.fail()){
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    throw std::invalid_argument("Devem ser digitados apenas números!");
+                }
+                break;
+            }
+            catch (std::invalid_argument &e)
+            {
+                std::cerr << e.what() << std::endl;
+            }
+        }
         if(valida == 1){
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
-            getline (std::cin,fonte);
+            getline (std::cin,fonte); 
             std::cout << "Digite o valor: ";
             std::cin >> valor;
             _emprestimos.push_back({fonte,valor});
@@ -170,7 +254,8 @@ void ContabilJuridica::set_emprestimos(){
             opcao = true;
         }
         else{
-            std::cout << "Opção inválida" << std::endl;
+            std::cout<<std::endl;
+            std::cout << "Opção inválida!" << std::endl;
         }
     }
 }
@@ -183,6 +268,7 @@ double ContabilJuridica::get_caixa(){
     for(int i = 0; i < _caixa.size(); i++){
         total += _caixa[i];
     }
+    std::cout << "Valor total de Caixa: ";
     return total;
 }
 

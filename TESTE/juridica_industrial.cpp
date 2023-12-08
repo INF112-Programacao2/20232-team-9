@@ -64,10 +64,25 @@ void JuridicaIndustrial::set_estoque(){
         std::cout << "Você deseja adicionar informação ao estoque? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
-        std::cin >> valida;
+        while (true){
+            try{
+                std::cin >> valida;
+                if (std::cin.fail())
+                {
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    throw std::invalid_argument("Devem ser digitados apenas números!");
+                }
+                break;
+            }
+            catch (std::invalid_argument &e)
+            {
+                std::cerr << e.what() << std::endl;
+            }
+        }   
         if(valida == 1){
             std::cin.ignore();
-            std::cout << "Digite o nome do produto: ";
+            std::cout << "Digite o nome do produto: ";  
             getline(std::cin, fonte);
             std::cout << "Digite o valor do produto: ";
             std::cin >> valor;
@@ -77,13 +92,14 @@ void JuridicaIndustrial::set_estoque(){
             opcao = true;
         }
         else{
-            std::cout << "Opção inválida" << std::endl;
+            std::cout<<std::endl;
+            std::cout << "Opção inválida!" << std::endl;
         }
     }
 }
 
 void JuridicaIndustrial::get_estoque(){ //valor do estoque
     for (int i = 0; i < _estoque.size(); i++){
-        std::cout <<"Fonte: " <<  _estoque[i].first << "Valor: " << _estoque[i].second << std::endl;
+        std::cout <<"Fonte: " <<  _estoque[i].first << std::endl << " Valor: " << _estoque[i].second << std::endl;
     }
 }
