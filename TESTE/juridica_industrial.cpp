@@ -11,7 +11,7 @@ void JuridicaIndustrial::_calculo_aliquotas_anexos(){
 
     // Todo tipo de Metal = Simples Nacional ANEXO II
     if ((JuridicaIndustrial::get_receita_bruta()/1000) < 180){
-        _result_simples_nacional = JuridicaIndustrial::get_receita_bruta() * 0.045;
+        _result_simples_nacional = (JuridicaIndustrial::get_receita_bruta()+_valor_estoque) * 0.045;
         // aliquota 4,5%
         // desconto = 0
     }
@@ -102,4 +102,11 @@ void JuridicaIndustrial::get_estoque(){ //valor do estoque
     for (int i = 0; i < _estoque.size(); i++){
         std::cout <<"Fonte: " <<  _estoque[i].first << std::endl << " Valor: " << _estoque[i].second << std::endl;
     }
+}
+
+double JuridicaIndustrial::get_valor_estoque(){
+    for(auto i : _estoque){
+        _valor_estoque += i.second;
+    }
+    return _valor_estoque;
 }
