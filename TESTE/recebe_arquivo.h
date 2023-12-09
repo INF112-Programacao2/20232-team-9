@@ -14,9 +14,9 @@
 class RecebeArquivo{
     public:
         void recebe_dados_fisico(ContabilFisica &dados, Pessoa &fisico);
-        void recebe_dados_industrial(JuridicaIndustrial &dados);
-        void recebe_dados_prestservico(JuridicaPrestServi &dados);
-        void recebe_dados_comercial(JuridicaComercial &dados);
+        void recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJuridica &juridico);
+        void recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJuridica &juridico);
+        void recebe_dados_comercial(JuridicaComercial &dados, PessoaJuridica &juridico);
 
 };
 

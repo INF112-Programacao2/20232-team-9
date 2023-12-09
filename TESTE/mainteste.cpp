@@ -54,6 +54,82 @@ double contabil_fisica(std::string cpf_informado)
   return -1;
 }
 
+void contabil_juridica(std::string cpf_informado){
+  std::fstream in("Pessoa_Juridica.csv", std::ios::in);
+  std::string cpf, nome;
+  if (!in.is_open())
+  {
+    std::cerr << "erro ao abrir arquivo!" << std::endl;
+  }
+  while (in.peek() != EOF || cpf_informado != cpf)
+  {
+
+    getline(in, cpf, ',');
+
+    if (cpf == cpf_informado)
+    {
+      std::string nome, local, tipo, cnpj, nome_empresa, apelido_empresa, modelo_negocio;
+
+      getline(in, nome, ',');
+      getline(in, local, ',');
+      getline(in, tipo, ',');
+      getline(in, cnpj, ',');
+      getline(in, nome_empresa, ',');
+      getline(in, apelido_empresa, ',');
+      getline(in, modelo_negocio, '\n');
+
+      PessoaJuridica pessoa(nome, nome_empresa, apelido_empresa, local);
+
+      pessoa.set_cpf(cpf);
+      pessoa.set_tipo_pessoa(tipo);
+      pessoa.set_cnpj(cnpj);
+      pessoa.set_modelo_negocio(modelo_negocio);
+      
+      if(pessoa.get_modelo_negocio() == "Industrial"){
+          JuridicaIndustrial industria;
+          industria.set_caixa();
+          std::cout<<industria.get_caixa ()<<std::endl;
+          industria.set_contasPagar ();
+          std::cout<<industria.get_contasPagar ()<<std::endl;
+          industria.set_contasReceber ();
+          std::cout<<industria.get_contasReceber ()<<std::endl;
+          industria._calculo_DRE ();
+          industria._calculo_fluxo_caixa ();
+      }
+      else if(pessoa.get_modelo_negocio() == "Comercial"){
+          JuridicaComercial comercio;
+          comercio.set_caixa();
+          std::cout<<comercio.get_caixa ()<<std::endl;
+          comercio.set_contasPagar ();
+          std::cout<<comercio.get_contasPagar ()<<std::endl;
+          comercio.set_contasReceber ();
+          std::cout<<comercio.get_contasReceber ()<<std::endl;
+          comercio._calculo_DRE ();
+          comercio._calculo_fluxo_caixa ();
+      }
+      else if(pessoa.get_modelo_negocio() == "Prestação de Serviço"){
+          JuridicaPrestServi prestservi;
+          prestservi.set_caixa();
+          std::cout<<prestservi.get_caixa ()<<std::endl;
+          prestservi.set_contasPagar ();
+          std::cout<<prestservi.get_contasPagar ()<<std::endl;
+          prestservi.set_contasReceber ();
+          std::cout<<prestservi.get_contasReceber ()<<std::endl;
+          prestservi._calculo_DRE ();
+          prestservi._calculo_fluxo_caixa ();
+          
+      }
+
+    }
+
+    else
+    {
+      getline(in, cpf, '\n');
+    }
+  }
+  in.close();
+}
+
 void confere_nomes(std::string &nome)
 {
 
@@ -209,6 +285,15 @@ int main()
           juridico.edicao_cadastro(juridico);
         }
         juridico.modelo_negocio();
+
+        std::fstream out("Pessoa_Juridica.csv", std::ios::out | std::ios::app);
+
+        out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << juridico.get_local() << "," << juridico.get_tipo_pessoa() 
+        << "," << juridico.get_cnpj() << "," << juridico.get_nomeempresa() << "," << juridico.get_apelidoempresa() << 
+        ","<< juridico.get_modelo_negocio() << std::endl;
+
+        out.close();
+
         std::cout << std::endl;
       }
 
@@ -316,6 +401,7 @@ int main()
 
       // PARA CONTABILIDADE DO TIPO JURIDICO INDUSTRIAL
       /*
+          contabil_juridica(cpf);
           JuridicaIndustrial industria;
           industria.set_caixa();
           std::cout<<industria.get_caixa ()<<std::endl;
