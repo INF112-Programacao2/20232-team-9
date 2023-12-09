@@ -48,7 +48,6 @@ double contabil_fisica(std::string cpf_informado)
     else
     {
       getline(in, cpf, '\n');
-      std::cout << cpf << std::endl;
     }
   }
   in.close();
