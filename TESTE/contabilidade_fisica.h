@@ -28,6 +28,7 @@ public:
     double get_aliquota();
     double get_imposto_dados();
     double get_Imposto_Renda_Final();
+    double get_salario_bruto();
 
     void _calcula_imposto_renda();
     void _calcula_inss(Pessoa &fisico);

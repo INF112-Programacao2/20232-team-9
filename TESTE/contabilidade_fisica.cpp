@@ -216,3 +216,7 @@ double ContabilFisica::get_imposto_dados(){ // retorna o valor do imposto de ren
     }
     return 0;
 }
+
+double ContabilFisica::get_salario_bruto(){ // retorna o valor do salário bruto
+    return _salario_bruto;
+}
