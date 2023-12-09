@@ -7,7 +7,7 @@
 #include "juridica_industrial.h"
 #include "juridica_prestservico.h"
 
-double contabil_fisica(std::string cpf_informado){
+double contabil(std::string cpf_informado){
     std::fstream in("Pessoa_Fisica.csv", std::ios::out);
     std::string cpf, nome;
     double deducao_dependente, inss, base_calculo, aliquota, imposto_renda;
@@ -27,8 +27,8 @@ double contabil_fisica(std::string cpf_informado){
             Pessoa p(nome, local);
 
             getline(in, tipo, '\n');
-            p.set_cpf(cpf);
-            p.set_tipo_pessoa(tipo);
+            //p.insere_cpf(cpf);
+            //p.set_tipo_pessoa(tipo);
 
 
 
@@ -232,17 +232,15 @@ int main(){
 
       //PARA CONFIRMAR O TIPO DE PESSOA
 
-      
-      int opcao;
+      /*
       std::cout<<"Qual é o tipo de pessoa? \n";
       std::cout<<"1- Pessoa Jurídica. \n";
       std::cout<<"2- Pessoa Física. \n";
-      std::cout<<"Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física: \n";
-      std::cin >> opcao;  
+      std::cout<<"Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física: \n";   
       while(true){
        try{
         std::cin>>opcao;
-        if(opcao != 1 && opcao != 2){
+        if(opcao != "1" && opcao != "2"){
           throw std::invalid_argument ("Opção inválida!! Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física:");
         }
         break;
@@ -250,12 +248,12 @@ int main(){
         std::cerr<<e.what()<<std::endl;
        }
       }
-      std::cin >> cpf;
-      switch(opcao){
-        case (1):
-          
-          std::cout<<contabil_fisica(cpf)<<std::endl;
-      }
+      */
+
+      //PARA CONTABILIDADE FISICA 
+      /*
+        std::cout<<contabil(cpf)<<std::endl;
+      */
 
 
       //PARA CONTABILIDADE DO TIPO JURIDICO INDUSTRIAL 
