@@ -10,7 +10,6 @@
 double contabil_fisica(std::string cpf_informado){
     std::fstream in("Pessoa_Fisica.csv", std::ios::in);
     std::string cpf, nome;
-    double deducao_dependente, inss, base_calculo, aliquota, imposto_renda;
     if (!in.is_open()){
         std::cerr <<"erro ao abrir arquivo!" <<std::endl;
     }
@@ -27,8 +26,8 @@ double contabil_fisica(std::string cpf_informado){
             Pessoa p(nome, local);
 
             getline(in, tipo, '\n');
-            //p.insere_cpf(cpf);
-            //p.set_tipo_pessoa(tipo);
+            p.set_cpf(cpf);
+            p.set_tipo_pessoa(tipo);
 
 
 
@@ -236,7 +235,6 @@ int main(){
       std::cout<<"Qual é o tipo de pessoa? \n";
       std::cout<<"1- Pessoa Jurídica. \n";
       std::cout<<"2- Pessoa Física. \n";
-      std::cout<<"Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física: \n";
       while(true){
        try{
         std::cin>>op;
@@ -253,7 +251,6 @@ int main(){
       std::cin >> cpf;
       switch(op){
         case (2):
-          
           std::cout<<contabil_fisica(cpf)<<std::endl;
       }
 
