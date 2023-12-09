@@ -37,6 +37,7 @@ class ContabilJuridica {
 		std::vector<int> _result_dre;
 		double _receita_bruta;
 		double _resultado_fluxo_caixa;
+		std::string _mes_contabil;
 
 
 
@@ -56,23 +57,35 @@ class ContabilJuridica {
 		//PASSIVO NÃO CIRCULANTE
 		void set_emprestimos(); // seta a lista e o valor dos emprestimos
 		void set_contasPagar(); // seta a lista e o valor das contas a pagar
+		
+		//MẼS DA CONTABILIDADE FEITA
+		void set_mes_contabil(); // seta o mês contábil
 
 		//GET
 
 		//ATIVO CIRCULANTE
 		double get_caixa(); // retorna o valor total do caixa
-		int get_estoque(); // retorna o valor total do estoque
 		double get_contasReceber(); // retorna o valor total das contas a receber
+		std::vector<std::pair<std::string, double>> get_contasReceber_dados(); // retorna a lista das contas a receber
 
 		//ATIVO NÃO CIRCULANTE
 		int get_realizavelLongoPrazo(); // retorna o valor total dos realizaveis a longo prazo
+		std::vector<std::pair<std::string, double>> get_realizavelLongoPrazo_dados(); // retorna a lista dos realizaveis a longo prazo
 
 		//PASSIVO CIRCULANTE
 		int get_realizavelCurtoPrazo(); // retorna o valor total dos realizaveis a curto prazo
+		std::vector<std::pair<std::string, double>> get_realizavelCurtoPrazo_dados(); // retorna a lista dos realizaveis a curto prazo
 
 		//PASSIVO NÃO CIRCULANTE
 		double get_emprestimos(); // retorna o valor total de emprestimos
+		std::vector<std::pair<std::string, double>> get_emprestimos_dados(); // retorna a lista dos emprestimos
 		double get_contasPagar(); // retorna o valor total de contas a pagar
+		std::vector<std::pair<std::string, double>> get_contasPagar_dados(); // retorna a lista das contas a pagar
+
+		//MẼS DA CONTABILIDADE FEITA
+		std::string get_mes_contabil(); // retorna o mês contábil
+
+
 
 		//METODOS
 		void _calculo_DRE(); // cálcula a Demonstração do Resultado do Exercício

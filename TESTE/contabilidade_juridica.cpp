@@ -261,64 +261,64 @@ void ContabilJuridica::set_emprestimos(){ //ADICIONA VALORES AOS EMPRÉSTIMOS
 }
 
 
-//GET
+//GETS
 
 double ContabilJuridica::get_caixa(){ //RETORNA O VALOR TOTAL DO CAIXA
     double total = 0;
     for(int i = 0; i < _caixa.size(); i++){
         total += _caixa[i];
     }
-    std::cout << "Valor total de Caixa: ";
+    //std::cout << "Valor total de Caixa: ";
     return total;
 }
 
 double ContabilJuridica::get_contasPagar(){ //RETORNA O VALOR TOTAL DAS CONTAS A PAGAR
     double total = 0;
     for(int i = 0; i < _contasPagar.size(); i++){
-        std::cout << _contasPagar[i].first << " : " << _contasPagar[i].second << std::endl; //IMPRIME A LISTA DE CONTAS A PAGAR
+        //std::cout << _contasPagar[i].first << " : " << _contasPagar[i].second << std::endl; //IMPRIME A LISTA DE CONTAS A PAGAR
         total += _contasPagar[i].second;
     }
-    std::cout << "Valor total de Contas a Pagar: ";
+    //std::cout << "Valor total de Contas a Pagar: ";
     return total; // RETORNA O VALOR TOTAL DAS CONTAS A PAGAR
 }
 
 double ContabilJuridica::get_contasReceber(){ //RETORNA O VALOR TOTAL DAS CONTAS A RECEBER
     double total = 0;
     for(int i = 0; i < _contasReceber.size(); i++){
-        std::cout << _contasReceber[i].first << " : " << _contasReceber[i].second << std::endl; //IMPRIME A LISTA DE CONTAS A RECEBER
+        //std::cout << _contasReceber[i].first << " : " << _contasReceber[i].second << std::endl; //IMPRIME A LISTA DE CONTAS A RECEBER
         total += _contasReceber[i].second;
     }
-    std::cout << "Valor total de Contas a Receber: ";
+    //std::cout << "Valor total de Contas a Receber: ";
     return total; // RETORNA O VALOR TOTAL DAS CONTAS A RECEBER
 }
 
 int ContabilJuridica::get_realizavelCurtoPrazo(){ //RETORNA O VALOR TOTAL DO REALIZÁVEL A CURTO PRAZO
     int total = 0;
     for(int i = 0; i < _realizavelCurtoPrazo.size(); i++){
-        std::cout << _realizavelCurtoPrazo[i].first << " : " << _realizavelCurtoPrazo[i].second << std::endl; //IMPRIME A LISTA DE REALIZÁVEL A CURTO PRAZO
+        //std::cout << _realizavelCurtoPrazo[i].first << " : " << _realizavelCurtoPrazo[i].second << std::endl; //IMPRIME A LISTA DE REALIZÁVEL A CURTO PRAZO
         total += _realizavelCurtoPrazo[i].second;
     }
-    std::cout << "Valor total de Realizável a Curto Prazo: ";
+    //std::cout << "Valor total de Realizável a Curto Prazo: ";
     return total; // RETORNA O VALOR TOTAL DO REALIZÁVEL A CURTO PRAZO
 }
 
 int ContabilJuridica::get_realizavelLongoPrazo(){ //RETORNA O VALOR TOTAL DO REALIZÁVEL A LONGO PRAZO
     int total = 0;
     for(int i = 0; i < _realizavelLongoPrazo.size(); i++){
-        std::cout << _realizavelLongoPrazo[i].first << " : " << _realizavelLongoPrazo[i].second << std::endl; //IMPRIME A LISTA DE REALIZÁVEL A LONGO PRAZO
+        //std::cout << _realizavelLongoPrazo[i].first << " : " << _realizavelLongoPrazo[i].second << std::endl; //IMPRIME A LISTA DE REALIZÁVEL A LONGO PRAZO
         total += _realizavelLongoPrazo[i].second;
     }
-    std::cout << "Valor total de Realizável a Longo Prazo: ";
+    //std::cout << "Valor total de Realizável a Longo Prazo: ";
     return total; // RETORNA O VALOR TOTAL DO REALIZÁVEL A LONGO PRAZO
 }
 
 double ContabilJuridica::get_emprestimos(){ //RETORNA O VALOR TOTAL DE EMPRÉSTIMOS
     double total = 0;
     for(int i = 0; i < _emprestimos.size(); i++){
-        std::cout << _emprestimos[i].first << " : " << _emprestimos[i].second << std::endl; //IMPRIME A LISTA DE EMPRÉSTIMOS
+        //std::cout << _emprestimos[i].first << " : " << _emprestimos[i].second << std::endl; //IMPRIME A LISTA DE EMPRÉSTIMOS
         total += _emprestimos[i].second;
     }
-    std::cout << "Valor total de Empréstimos: ";
+    //std::cout << "Valor total de Empréstimos: ";
     return total; // RETORNA O VALOR TOTAL DE EMPRÉSTIMOS
 }
 
@@ -402,3 +402,38 @@ double ContabilJuridica::get_receita_bruta(){ //RETORNA O VALOR DA RECEITA BRUTA
     }
     return _receita_bruta; //RETORNA O VALOR DA RECEITA BRUTA
 }
+
+void ContabilJuridica::set_mes_contabil(){
+    std::string mes;
+    std::cout << "Digite o mês contábil: ";
+    std::cin.ignore ();
+    getline (std::cin,mes);
+    _mes_contabil = mes;
+}
+
+std::string ContabilJuridica::get_mes_contabil(){
+    return _mes_contabil;
+}
+
+//GETS PARA O ARMAZENAMENTO DE DADOS
+
+std::vector<std::pair<std::string,double>> ContabilJuridica::get_contasReceber_dados(){
+    return std::vector<std::pair<std::string,double>>(_contasReceber);
+}
+
+std::vector<std::pair<std::string,double>> ContabilJuridica::get_contasPagar_dados(){
+    return std::vector<std::pair<std::string,double>>(_contasPagar);
+}
+
+std::vector<std::pair<std::string,double>> ContabilJuridica::get_realizavelCurtoPrazo_dados(){
+    return std::vector<std::pair<std::string,double>>(_realizavelCurtoPrazo);
+}
+
+std::vector<std::pair<std::string,double>> ContabilJuridica::get_realizavelLongoPrazo_dados(){
+    return std::vector<std::pair<std::string,double>>(_realizavelLongoPrazo);
+}
+
+std::vector<std::pair<std::string,double>> ContabilJuridica::get_emprestimos_dados(){
+    return std::vector<std::pair<std::string,double>>(_emprestimos);
+}
+
