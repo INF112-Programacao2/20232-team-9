@@ -156,7 +156,7 @@ void ContabilFisica::_calcula_imposto_renda() // cálculo do imposto de renda do
 
 double ContabilFisica::_calcula_aliquota(double base_calculo){ // cálculo da alíquota com base de cálculo
     if (_base_calculo < 2112){ // cálculo da alíquota para base de cálculo menor que 2112
-        return 0;
+        return _aliquota = 0;
     }
     else if (_base_calculo >= 2112.01 && _base_calculo < 2826.65) // cálculo da alíquota para base de cálculo entre 2112.01 e 2826.65
     {
