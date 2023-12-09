@@ -40,7 +40,9 @@ double contabil_fisica(std::string cpf_informado)
       conta._calcula_imposto_renda();
       RecebeArquivo r;
       r.recebe_dados_fisico(conta, pessoa);
+      in.close();
       return conta.get_Imposto_Renda_Final();
+
     }
 
     else
@@ -48,8 +50,8 @@ double contabil_fisica(std::string cpf_informado)
       getline(in, cpf, '\n');
       std::cout << cpf << std::endl;
     }
-    in.close();
   }
+  in.close();
   return -1;
 }
 
