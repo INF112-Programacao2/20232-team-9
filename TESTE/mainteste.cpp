@@ -267,6 +267,8 @@ int main()
         fisico.tipo_pessoa();
         std::cout << std::endl;
         std::cout << "Cadastro finalizado com sucesso!" << std::endl;
+        std::fstream arquivofisico("Pessoa_Fisica.csv", std::ios::out | std::ios::app);
+        arquivofisico << fisico.get_cpf() << "," << fisico.get_nomepessoa() << "," << fisico.get_local() << "," << fisico.get_tipo_pessoa() << std::endl;
       }
 
       break;
