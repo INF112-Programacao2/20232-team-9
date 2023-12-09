@@ -36,50 +36,52 @@ class ContabilJuridica {
 		std::vector<int> _despesas;
 		std::vector<int> _result_dre;
 		double _receita_bruta;
+		double _resultado_fluxo_caixa;
+
 
 
 	public:
 		//SET
 		
 		//ATIVO CIRCULANTE
-		void set_caixa();
-		void set_contasReceber();
+		void set_caixa(); // seta o valor do caixa
+		void set_contasReceber(); // seta a lista e o valor das contas a receber
 
 		//ATIVO NÃO CIRCULANTE
-		void set_realizavelLongoPrazo();
+		void set_realizavelLongoPrazo(); // seta a lista e o valor dos realizaveis a longo prazo
 
 		//PASSIVO CIRCULANTE
-		void set_realizavelCurtoPrazo();
+		void set_realizavelCurtoPrazo(); // seta a lista e o valor dos realizaveis a curto prazo
 
 		//PASSIVO NÃO CIRCULANTE
-		void set_emprestimos();
-		void set_contasPagar();
+		void set_emprestimos(); // seta a lista e o valor dos emprestimos
+		void set_contasPagar(); // seta a lista e o valor das contas a pagar
 
 		//GET
 
 		//ATIVO CIRCULANTE
-		double get_caixa();
-		int get_estoque();
-		double get_contasReceber();
+		double get_caixa(); // retorna o valor total do caixa
+		int get_estoque(); // retorna o valor total do estoque
+		double get_contasReceber(); // retorna o valor total das contas a receber
 
 		//ATIVO NÃO CIRCULANTE
-		int get_realizavelLongoPrazo();
+		int get_realizavelLongoPrazo(); // retorna o valor total dos realizaveis a longo prazo
 
 		//PASSIVO CIRCULANTE
-		int get_realizavelCurtoPrazo();
+		int get_realizavelCurtoPrazo(); // retorna o valor total dos realizaveis a curto prazo
 
 		//PASSIVO NÃO CIRCULANTE
-		double get_emprestimos();
-		double get_contasPagar();
+		double get_emprestimos(); // retorna o valor total de emprestimos
+		double get_contasPagar(); // retorna o valor total de contas a pagar
 
 		//METODOS
-		void _calculo_DRE();
-		void _calculo_fluxo_caixa();
-		void _resultado_balancete();
+		void _calculo_DRE(); // cálcula a Demonstração do Resultado do Exercício
+		void _calculo_fluxo_caixa(); // cálcula o fluxo de caixa
+		void _resultado_balancete(); // cálcula o balancete
 		/*void _calculo_aliquotas_localidade(PessoaJuridica &juridico);*/
-		double get_receita_bruta();
-		virtual void _calculo_aliquotas_anexos() = 0;
-		virtual double get_result_simples_nacional() = 0;
+		double get_receita_bruta(); // retorna o valor da receita bruta (contribui no cálculo do simples nacional)
+		virtual void _calculo_aliquotas_anexos() = 0; // cálcula as alíquotas de acordo com o anexo
+		virtual double get_result_simples_nacional() = 0; // retorna o valor a ser pago ou restituído
 		 
 };
 #endif

@@ -14,13 +14,13 @@
 
 // INSS
 
-void ContabilFisica::_calcula_inss(Pessoa &fisico)
+void ContabilFisica::_calcula_inss(Pessoa &fisico) // cálculo do inss do cliente pessoa física
 {   
     double salario;
     std::cout<<std::endl;
     std::cout << "Digite o seu salário: " << std::endl;
     while(true){
-     try{
+     try{ //tratamento de exceção para entradas inválidas
       std::cin >> salario;
       if(std::cin.fail()){
         std::cin.clear();
@@ -41,19 +41,22 @@ void ContabilFisica::_calcula_inss(Pessoa &fisico)
 
     // Para Empregado, Empregado Doméstico e Trabalhador Avulso:
 
-    if (fisico.get_tipo_pessoa()=="Empregado"){
+    if (fisico.get_tipo_pessoa()=="Empregado"){ // Separação de tipos de pessoa física, caso seja empregado
 
-        if (_salario_bruto <= 1320){
+        if (_salario_bruto <= 1320){ // cálculo do inss para empregado com salário bruto menor que salário mínimo
             _inss = _salario_bruto*0.075;
         }
-        else if (_salario_bruto >= 1320.01 && _salario_bruto <= 2571.29){
+        else if (_salario_bruto >= 1320.01 && _salario_bruto <= 2571.29){ // cálculo do inss para empregado com salário bruto entre salário mínimo e 2571.29
             _inss = ((_salario_bruto-1320)*0.09)+99;
         }
-        else if (_salario_bruto >= 2571.30 && salario <= 3856.94){
+        else if (_salario_bruto >= 2571.30 && salario <= 3856.94){ // cálculo do inss para empregado com salário bruto entre 2571.30 e 3856.94
             _inss = ((_salario_bruto-2571.29)*0.12)+(99+112.61);
         }
-        else if (_salario_bruto >= 3856.95 && salario <= 7507.49){
+        else if (_salario_bruto >= 3856.95 && salario <= 7507.49){ // cálculo do inss para empregado com salário bruto entre 3856.95 e o teto máximo
             _inss = ((_salario_bruto-3856.29)*0.14)+(99+112.61+154.28);
+        }
+        else{
+            _inss = (_salario_bruto*0.14)+713.10; // cálculo do inss para empregado com salário bruto acima do teto máximo
         }
     }
 
@@ -61,7 +64,7 @@ void ContabilFisica::_calcula_inss(Pessoa &fisico)
     else{
 
         // individual
-        if (_salario_bruto >= 1320  &&  fisico.get_tipo_pessoa()=="Contribuinte Individual"){
+        if (_salario_bruto >= 1320  &&  fisico.get_tipo_pessoa()=="Contribuinte Individual"){ // individual
             _inss = _salario_bruto*0.05;
             if(_inss > 66){
                 _inss = 66;
@@ -87,13 +90,13 @@ void ContabilFisica::_calcula_inss(Pessoa &fisico)
 
 //DEDUÇÃO POR DEPENDENTE
 
-void ContabilFisica::_calcula_deducao_dependente()
+void ContabilFisica::_calcula_deducao_dependente() // cálculo da dedução por dependente do cliente pessoa física
 {
     int dependentes;
     std::cout<<std::endl;
     std::cout << "Digite o número de dependentes: " << std::endl;
     while(true){
-     try{
+     try{ //tratamento de exceção para entradas inválidas
       std::cin >> dependentes;
       if(std::cin.fail()){
         std::cin.clear();
@@ -109,72 +112,71 @@ void ContabilFisica::_calcula_deducao_dependente()
         std::cerr<<e.what ()<<std::endl;
      }
     }
-    _deducao_dependente = dependentes * 189.59;
+    _deducao_dependente = dependentes * 189.59; // valor da dedução por dependente
 }
 
 
 // BASE DE CALCULO
 
-void ContabilFisica::_base_calculos()
+void ContabilFisica::_base_calculos() // cálculo da base de cálculo do cliente pessoa física
 {
-    _base_calculo = _salario_bruto - _inss - _deducao_dependente;
+    _base_calculo = _salario_bruto - _inss - _deducao_dependente; // cálculo da base de cálculo
 }
 
 
 
 // IMPOSTO DE RENDA
 
-void ContabilFisica::_calcula_imposto_renda(){
-    // utilizar salario para calcular o imposto de renda na base de calculo
+void ContabilFisica::_calcula_imposto_renda() // cálculo do imposto de renda do cliente pessoa física
+{
     double valor_aliquota;
-    if (_base_calculo < 2112){
+    if (_base_calculo < 2112){ // cálculo do imposto de renda para base de cálculo menor que 2112
         _imposto_renda_final = ContabilFisica::_calcula_aliquota(_base_calculo);
     }
-    else if (_base_calculo >= 2112.01 && _base_calculo < 2826.65){
-        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo);
+    else if (_base_calculo >= 2112.01 && _base_calculo < 2826.65){ // cálculo do imposto de renda para base de cálculo entre 2112.01 e 2826.65
+        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo); // cálculo da alíquota com chamada da função _calcula_aliquota
         _imposto_renda_final = valor_aliquota - 158.40; 
     }
-    else if (_base_calculo >= 2826.66 && _base_calculo < 3751.05){
-        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo);
+    else if (_base_calculo >= 2826.66 && _base_calculo < 3751.05){ // cálculo do imposto de renda para base de cálculo entre 2826.66 e 3751.05
+        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo); // cálculo da alíquota com chamada da função _calcula_aliquota
         _imposto_renda_final = valor_aliquota - 370.40;
     }
-    else if (_base_calculo >= 3751.06 && _base_calculo < 4664.68){
-        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo);
+    else if (_base_calculo >= 3751.06 && _base_calculo < 4664.68){ // cálculo do imposto de renda para base de cálculo entre 3751.06 e 4664.68
+        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo); // cálculo da alíquota com chamada da função _calcula_aliquota
         _imposto_renda_final = valor_aliquota - 651.53;
     }
     else{
-        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo);
+        valor_aliquota = ContabilFisica::_calcula_aliquota(_base_calculo); // cálculo do imposto de renda para base de cálculo acima de 4664.68
         _imposto_renda_final = valor_aliquota - 884.96;
     }
 }
 
-
 // ALIQUOTA
 
 
-double ContabilFisica::_calcula_aliquota(double base_calculo){
-    if (_base_calculo < 2112){
+double ContabilFisica::_calcula_aliquota(double base_calculo){ // cálculo da alíquota com base de cálculo
+    if (_base_calculo < 2112){ // cálculo da alíquota para base de cálculo menor que 2112
         return 0;
     }
-    else if (_base_calculo >= 2112.01 && _base_calculo < 2826.65)
+    else if (_base_calculo >= 2112.01 && _base_calculo < 2826.65) // cálculo da alíquota para base de cálculo entre 2112.01 e 2826.65
     {
         return _aliquota = (base_calculo*0.075);
     }
-    else if (_base_calculo >= 2826.66 && _base_calculo < 3751.05)
+    else if (_base_calculo >= 2826.66 && _base_calculo < 3751.05) // cálculo da alíquota para base de cálculo entre 2826.66 e 3751.05
     {
         return _aliquota = (base_calculo*0.15);
     }
-    else if (_base_calculo >= 3751.06 && _base_calculo < 4664.68)
+    else if (_base_calculo >= 3751.06 && _base_calculo < 4664.68) // cálculo da alíquota para base de cálculo entre 3751.06 e 4664.68
     {
         return _aliquota = (base_calculo*0.225);
     }
-    else{
-        return _aliquota = (base_calculo*0.275);
+    else{ // cálculo da alíquota para base de cálculo acima de 4664.68
+        return _aliquota = (base_calculo*0.275); 
     }
 }
 
 
-double ContabilFisica::get_Imposto_Renda_Final(){
+double ContabilFisica::get_Imposto_Renda_Final(){ // retorna o valor do imposto de renda a ser pago ou restituído
   std::cout<<std::endl;
     if(_imposto_renda_final < 0){
         std::cout << "Imposto de renda a restituir: ";
@@ -187,23 +189,23 @@ double ContabilFisica::get_Imposto_Renda_Final(){
     return 0;
 }
 
-double ContabilFisica::get_inss(){
+double ContabilFisica::get_inss(){ // retorna o valor do inss
     return _inss;
 }
 
-double ContabilFisica::get_deducao_dependente(){
+double ContabilFisica::get_deducao_dependente(){ // retorna o valor da dedução por dependente
     return _deducao_dependente;
 }
 
-double ContabilFisica::get_base_calculo(){
+double ContabilFisica::get_base_calculo(){ // retorna o valor da base de cálculo
     return _base_calculo;
 }
 
-double ContabilFisica::get_aliquota(){
+double ContabilFisica::get_aliquota(){ // retorna o valor da alíquota
     return _aliquota;
 }
 
-double ContabilFisica::get_imposto_dados(){
+double ContabilFisica::get_imposto_dados(){ // retorna o valor do imposto de renda a ser pago ou restituído
     if (_imposto_renda_final < 0)
     {
         return _imposto_renda_final * (-1);

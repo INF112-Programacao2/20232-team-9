@@ -6,11 +6,11 @@
 
 class JuridicaComercial : public ContabilJuridica{
 private:
-    double _result_simples_nacional;
+    double _result_simples_nacional; // RESULTADO DO SIMPLES NACIONAL
 
 public:
-    virtual void _calculo_aliquotas_anexos();
-    virtual double get_result_simples_nacional();
+    virtual void _calculo_aliquotas_anexos(); // cálcula as alíquotas de acordo com o anexo
+    virtual double get_result_simples_nacional(); // retorna o valor a ser pago ou restituído
 };
 #endif
 /*

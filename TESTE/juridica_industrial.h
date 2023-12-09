@@ -6,19 +6,18 @@
 
 class JuridicaIndustrial: public ContabilJuridica{
 private:
-    std::vector<std::pair<std::string, double>> _estoque;
-    double _result_simples_nacional;
-    double _valor_estoque;
+    std::vector<std::pair<std::string, double>> _estoque; // LISTA DE ESTOQUE
+    double _result_simples_nacional; // RESULTADO DO SIMPLES NACIONAL
+    double _valor_estoque; // VALOR DO ESTOQUE
 
 public:
     //SET   
-    void set_estoque(); 
+    void set_estoque();  // seta a lista e o valor do estoque
     //GET
-    void get_estoque();
-    double get_valor_estoque();
+    void get_estoque(); // retorna o valor total do estoque
     //METODOS
-    virtual void _calculo_aliquotas_anexos();
-    virtual double get_result_simples_nacional();
+    virtual void _calculo_aliquotas_anexos(); // cálcula as alíquotas de acordo com o anexo
+    virtual double get_result_simples_nacional(); // retorna o valor a ser pago ou restituído
 
 };
 #endif

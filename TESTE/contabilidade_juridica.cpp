@@ -6,17 +6,17 @@
 
 //SET
 
-void ContabilJuridica::set_caixa(){
+void ContabilJuridica::set_caixa(){ //ADICIONA VALORES AO CAIXA
     double valor;
     bool opcao = false;
     int valida;
-    while(!opcao){
+    while(!opcao){ //LOOP PARA ADICIONAR VÁRIOS VALORES AO CAIXA    
         std::cout<<std::endl;
         std::cout << "Você deseja adicionar um valor ao caixa? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
         while(true){
-          try {
+          try { // tratamento de exceções para entrada de dados
             std::cin >> valida;
             if (std::cin.fail()){
                 std::cin.clear();
@@ -29,15 +29,15 @@ void ContabilJuridica::set_caixa(){
                 std::cerr << e.what() << std::endl;
            }
         }
-        if(valida == 1){
+        if(valida == 1){ //CASO O USUÁRIO DESEJE ADICIONAR UM VALOR AO CAIXA
             std::cout << "Digite o valor: ";
             std::cin >> valor;
             _caixa.push_back(valor);
         }
-        else if(valida == 2){
+        else if(valida == 2){ // CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES AO CAIXA E ENCERRE A LISTA
             opcao = true;
         }
-        else{
+        else{ //CASO O USUÁRIO DIGITE UMA OPÇÃO INVÁLIDA
             std::cout<<std::endl;
             std::cout << "Opção inválida!" << std::endl;
         }
@@ -45,18 +45,18 @@ void ContabilJuridica::set_caixa(){
     
 }
 
-void ContabilJuridica::set_contasPagar(){
-    std::string fonte;
+void ContabilJuridica::set_contasPagar(){ //ADICIONA VALORES ÀS CONTAS A PAGAR
+    std::string fonte; 
     double valor;
     bool opcao = false;
     int valida;
-    while (!opcao){
+    while (!opcao){ //LOOP PARA ADICIONAR VÁRIOS VALORES ÀS CONTAS A PAGAR
         std::cout<<std::endl;
         std::cout << "Você deseja adicionar informação à contas a pagar? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
         while (true){
-            try{
+            try{ //tratamento de exceções para entrada de dados
                 std::cin >> valida;
                 if (std::cin.fail()){
                     std::cin.clear();
@@ -69,37 +69,37 @@ void ContabilJuridica::set_contasPagar(){
                 std::cerr << e.what() << std::endl;
             }
         }
-        if(valida == 1){
-            std::cin.ignore ();
+        if(valida == 1){ //CASO O USUÁRIO DESEJE ADICIONAR UM VALOR ÀS CONTAS A PAGAR
+            std::cin.ignore (); 
             std::cout << "Digite a fonte: ";
             getline (std::cin,fonte);
             std::cout << "Digite o valor: ";
             std::cin >> valor;
             _contasPagar.push_back({fonte,valor});
         }
-        else if(valida == 2){
+        else if(valida == 2){ //CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES ÀS CONTAS A PAGAR E ENCERRE A LISTA
             opcao = true;
         }
-        else{
+        else{ //CASO O USUÁRIO DIGITE UMA OPÇÃO INVÁLIDA
             std::cout<<std::endl;
             std::cout << "Opção inválida!" << std::endl;
         }
     }
 }
 
-void ContabilJuridica::set_contasReceber(){
+void ContabilJuridica::set_contasReceber(){ //ADICIONA VALORES ÀS CONTAS A RECEBER
     std::string fonte;
     double valor;
     bool opcao = false;
     int valida;
-    while (!opcao)
+    while (!opcao) //LOOP PARA ADICIONAR VÁRIOS VALORES ÀS CONTAS A RECEBER
     {
         std::cout<<std::endl;
         std::cout << "Você deseja adicionar informação à contas a receber? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
         while (true){
-            try{
+            try{ //tratamento de exceções para entrada de dados
                 std::cin >> valida;
                 if (std::cin.fail()){
                     std::cin.clear();
@@ -112,7 +112,7 @@ void ContabilJuridica::set_contasReceber(){
                 std::cerr << e.what() << std::endl;
             }
         }
-        if(valida == 1){
+        if(valida == 1){ //CASO O USUÁRIO DESEJE ADICIONAR UM VALOR ÀS CONTAS A RECEBER
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
             getline (std::cin,fonte);
@@ -120,28 +120,28 @@ void ContabilJuridica::set_contasReceber(){
             std::cin >> valor;
             _contasReceber.push_back({fonte,valor});
         }
-        else if(valida == 2){
+        else if(valida == 2){ //CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES ÀS CONTAS A RECEBER E ENCERRE A LISTA
             opcao = true;
         }
-        else{
+        else{ //CASO O USUÁRIO DIGITE UMA OPÇÃO INVÁLIDA
             std::cout<<std::endl;
             std::cout << "Opção inválida!" << std::endl;
         }
     }
 }
 
-void ContabilJuridica::set_realizavelCurtoPrazo(){
+void ContabilJuridica::set_realizavelCurtoPrazo(){ //ADICIONA VALORES AO REALIZÁVEL A CURTO PRAZO
     std::string fonte;
     int valor;
     bool opcao = false;
     int valida;
-    while (!opcao){
+    while (!opcao){ //LOOP PARA ADICIONAR VÁRIOS VALORES AO REALIZÁVEL A CURTO PRAZO
         std::cout<<std::endl;
         std::cout << "Você deseja adicionar informação à realizável curto prazo? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
         while (true){
-            try{
+            try{ //tratamento de exceções para entrada de dados
                 std::cin >> valida;
                 if (std::cin.fail()){
                     std::cin.clear();
@@ -154,7 +154,7 @@ void ContabilJuridica::set_realizavelCurtoPrazo(){
                 std::cerr << e.what() << std::endl;
             }
         }
-        if(valida == 1){
+        if(valida == 1){ //CASO O USUÁRIO DESEJE ADICIONAR UM VALOR AO REALIZÁVEL A CURTO PRAZO
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
             getline (std::cin,fonte);
@@ -162,29 +162,29 @@ void ContabilJuridica::set_realizavelCurtoPrazo(){
             std::cin >> valor;
             _realizavelCurtoPrazo.push_back({fonte,valor});
         }
-        else if(valida == 2){
+        else if(valida == 2){ //CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES AO REALIZÁVEL A CURTO PRAZO E ENCERRE A LISTA
             opcao = true;
         }
-        else{
+        else{ //CASO O USUÁRIO DIGITE UMA OPÇÃO INVÁLIDA
             std::cout<<std::endl;
             std::cout << "Opção inválida!" << std::endl;
         }
     }
 }
 
-void ContabilJuridica::set_realizavelLongoPrazo(){
+void ContabilJuridica::set_realizavelLongoPrazo(){ //ADICIONA VALORES AO REALIZÁVEL A LONGO PRAZO
     std::string fonte;
     int valor;
     bool opcao = false;
     int valida;
-    while (!opcao)
+    while (!opcao) //LOOP PARA ADICIONAR VÁRIOS VALORES AO REALIZÁVEL A LONGO PRAZO
     {
         std::cout<<std::endl;
         std::cout << "Você deseja adicionar informação à realizável longo prazo?" << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
         while (true){
-            try{
+            try{ //tratamento de exceções para entrada de dados
                 std::cin >> valida;
                 if (std::cin.fail())
                 {
@@ -198,7 +198,7 @@ void ContabilJuridica::set_realizavelLongoPrazo(){
                 std::cerr << e.what() << std::endl;
             }
         }
-        if(valida == 1){
+        if(valida == 1){ //CASO O USUÁRIO DESEJE ADICIONAR UM VALOR AO REALIZÁVEL A LONGO PRAZO
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
             getline (std::cin,fonte);
@@ -206,29 +206,29 @@ void ContabilJuridica::set_realizavelLongoPrazo(){
             std::cin >> valor;
             _realizavelLongoPrazo.push_back({fonte,valor});
         }
-        else if(valida == 2){
+        else if(valida == 2){ //CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES AO REALIZÁVEL A LONGO PRAZO E ENCERRE A LISTA
             opcao = true;
         }
-        else{
+        else{ //CASO O USUÁRIO DIGITE UMA OPÇÃO INVÁLIDA
             std::cout<<std::endl;
             std::cout << "Opção inválida!" << std::endl;
         }
     }
 }
 
-void ContabilJuridica::set_emprestimos(){
+void ContabilJuridica::set_emprestimos(){ //ADICIONA VALORES AOS EMPRÉSTIMOS
     std::string fonte;
     double valor;
     bool opcao = false;
     int valida;
-    while (!opcao)
+    while (!opcao) //LOOP PARA ADICIONAR VÁRIOS VALORES AOS EMPRÉSTIMOS
     {
         std::cout<<std::endl;
         std::cout << "Você deseja adicionar informação à emprestimos? " << std::endl;
         std::cout << "(1) - Sim" << std::endl;
         std::cout << "(2) - Não" << std::endl;
         while (true){
-            try{
+            try{ //tratamento de exceções para entrada de dados
                 std::cin >> valida;
                 if (std::cin.fail()){
                     std::cin.clear();
@@ -242,7 +242,7 @@ void ContabilJuridica::set_emprestimos(){
                 std::cerr << e.what() << std::endl;
             }
         }
-        if(valida == 1){
+        if(valida == 1){ //CASO O USUÁRIO DESEJE ADICIONAR UM VALOR AOS EMPRÉSTIMOS
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
             getline (std::cin,fonte); 
@@ -250,10 +250,10 @@ void ContabilJuridica::set_emprestimos(){
             std::cin >> valor;
             _emprestimos.push_back({fonte,valor});
         }
-        else if(valida == 2){
+        else if(valida == 2){ //CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES AOS EMPRÉSTIMOS E ENCERRE A LISTA
             opcao = true;
         }
-        else{
+        else{ //CASO O USUÁRIO DIGITE UMA OPÇÃO INVÁLIDA
             std::cout<<std::endl;
             std::cout << "Opção inválida!" << std::endl;
         }
@@ -263,7 +263,7 @@ void ContabilJuridica::set_emprestimos(){
 
 //GET
 
-double ContabilJuridica::get_caixa(){
+double ContabilJuridica::get_caixa(){ //RETORNA O VALOR TOTAL DO CAIXA
     double total = 0;
     for(int i = 0; i < _caixa.size(); i++){
         total += _caixa[i];
@@ -272,63 +272,63 @@ double ContabilJuridica::get_caixa(){
     return total;
 }
 
-double ContabilJuridica::get_contasPagar(){
+double ContabilJuridica::get_contasPagar(){ //RETORNA O VALOR TOTAL DAS CONTAS A PAGAR
     double total = 0;
     for(int i = 0; i < _contasPagar.size(); i++){
-        std::cout << _contasPagar[i].first << " : " << _contasPagar[i].second << std::endl;
+        std::cout << _contasPagar[i].first << " : " << _contasPagar[i].second << std::endl; //IMPRIME A LISTA DE CONTAS A PAGAR
         total += _contasPagar[i].second;
     }
     std::cout << "Valor total de Contas a Pagar: ";
-    return total;
+    return total; // RETORNA O VALOR TOTAL DAS CONTAS A PAGAR
 }
 
-double ContabilJuridica::get_contasReceber(){
+double ContabilJuridica::get_contasReceber(){ //RETORNA O VALOR TOTAL DAS CONTAS A RECEBER
     double total = 0;
     for(int i = 0; i < _contasReceber.size(); i++){
-        std::cout << _contasReceber[i].first << " : " << _contasReceber[i].second << std::endl;
+        std::cout << _contasReceber[i].first << " : " << _contasReceber[i].second << std::endl; //IMPRIME A LISTA DE CONTAS A RECEBER
         total += _contasReceber[i].second;
     }
     std::cout << "Valor total de Contas a Receber: ";
-    return total;
+    return total; // RETORNA O VALOR TOTAL DAS CONTAS A RECEBER
 }
 
-int ContabilJuridica::get_realizavelCurtoPrazo(){
+int ContabilJuridica::get_realizavelCurtoPrazo(){ //RETORNA O VALOR TOTAL DO REALIZÁVEL A CURTO PRAZO
     int total = 0;
     for(int i = 0; i < _realizavelCurtoPrazo.size(); i++){
-        std::cout << _realizavelCurtoPrazo[i].first << " : " << _realizavelCurtoPrazo[i].second << std::endl;
+        std::cout << _realizavelCurtoPrazo[i].first << " : " << _realizavelCurtoPrazo[i].second << std::endl; //IMPRIME A LISTA DE REALIZÁVEL A CURTO PRAZO
         total += _realizavelCurtoPrazo[i].second;
     }
     std::cout << "Valor total de Realizável a Curto Prazo: ";
-    return total;
+    return total; // RETORNA O VALOR TOTAL DO REALIZÁVEL A CURTO PRAZO
 }
 
-int ContabilJuridica::get_realizavelLongoPrazo(){
+int ContabilJuridica::get_realizavelLongoPrazo(){ //RETORNA O VALOR TOTAL DO REALIZÁVEL A LONGO PRAZO
     int total = 0;
     for(int i = 0; i < _realizavelLongoPrazo.size(); i++){
-        std::cout << _realizavelLongoPrazo[i].first << " : " << _realizavelLongoPrazo[i].second << std::endl;
+        std::cout << _realizavelLongoPrazo[i].first << " : " << _realizavelLongoPrazo[i].second << std::endl; //IMPRIME A LISTA DE REALIZÁVEL A LONGO PRAZO
         total += _realizavelLongoPrazo[i].second;
     }
     std::cout << "Valor total de Realizável a Longo Prazo: ";
-    return total;
+    return total; // RETORNA O VALOR TOTAL DO REALIZÁVEL A LONGO PRAZO
 }
 
-double ContabilJuridica::get_emprestimos(){
+double ContabilJuridica::get_emprestimos(){ //RETORNA O VALOR TOTAL DE EMPRÉSTIMOS
     double total = 0;
     for(int i = 0; i < _emprestimos.size(); i++){
-        std::cout << _emprestimos[i].first << " : " << _emprestimos[i].second << std::endl;
+        std::cout << _emprestimos[i].first << " : " << _emprestimos[i].second << std::endl; //IMPRIME A LISTA DE EMPRÉSTIMOS
         total += _emprestimos[i].second;
     }
     std::cout << "Valor total de Empréstimos: ";
-    return total;
+    return total; // RETORNA O VALOR TOTAL DE EMPRÉSTIMOS
 }
 
 //METODOS
 
-void ContabilJuridica::_calculo_DRE(){
+void ContabilJuridica::_calculo_DRE(){ //CÁLCULO DA DEMONSTRAÇÃO DO RESULTADO DO EXERCÍCIO
     double receita = 0;
     double despesa = 0;
     double lucro = 0;
-    for(int i = 0; i < _contasReceber.size(); i++){
+    for(int i = 0; i < _contasReceber.size(); i++){ 
         receita += _contasReceber[i].second; //CÁLCULO DAS RECEITAS
     }
     for(int i = 0; i < _contasPagar.size(); i++){
@@ -348,19 +348,20 @@ void ContabilJuridica::_calculo_DRE(){
     }
 }
 
-void ContabilJuridica::_calculo_fluxo_caixa(){
+void ContabilJuridica::_calculo_fluxo_caixa(){ //CÁLCULO DO FLUXO DE CAIXA
     double caixa = 0;
-    for(int i=0; i<_caixa.size(); i++){
+    for(int i=0; i<_caixa.size(); i++){ //CÁLCULO DO CAIXA
         caixa+=_caixa[i];
     }
-    for(int i = 0; i < _result_dre.size(); i++){
+    for(int i = 0; i < _result_dre.size(); i++){ //CÁLCULO DO FLUXO DE CAIXA
         caixa += _result_dre[i];
     }
-    std::cout << "Resultado do fluxo de caixa: " << caixa << std::endl;
+    _resultado_fluxo_caixa = caixa;
+    std::cout << "Resultado do fluxo de caixa: " << _resultado_fluxo_caixa << std::endl; //IMPRIME O RESULTADO DO FLUXO DE CAIXA
 }
 
-void ContabilJuridica::_resultado_balancete(){
-    double ativo = 0;
+void ContabilJuridica::_resultado_balancete(){ //CÁLCULO DO BALANCETE
+    double ativo = 0; 
     double passivo = 0;
     ativo = get_caixa() + get_contasReceber() + get_realizavelLongoPrazo(); //CÁLCULO DO ATIVO
     passivo = get_contasPagar() + get_emprestimos() + get_realizavelCurtoPrazo(); // CÁLCULO DO PASSIVO
@@ -395,9 +396,9 @@ void ContabilJuridica::_resultado_balancete(){
     }
 }*/
 
-double ContabilJuridica::get_receita_bruta(){
+double ContabilJuridica::get_receita_bruta(){ //RETORNA O VALOR DA RECEITA BRUTA
     for(int i = 0; i < _receitas.size(); i++){
-        _receita_bruta += _receitas[i];
+        _receita_bruta += _receitas[i]; //CÁLCULO DA RECEITA BRUTA
     }
-    return _receita_bruta;
+    return _receita_bruta; //RETORNA O VALOR DA RECEITA BRUTA
 }
