@@ -27,8 +27,8 @@ double contabil(std::string cpf_informado){
             Pessoa p(nome, local);
 
             getline(in, tipo, '\n');
-            //p.insere_cpf(cpf);
-            //p.set_tipo_pessoa(tipo);
+            p.set_cpf(cpf);
+            p.set_tipo_pessoa(tipo);
 
 
 
