@@ -4,8 +4,14 @@
 #include <bits/stdc++.h>
 #include "recebe_arquivo.h"
 #include "pessoa.h"
+#include "pessoajuridica.h"
+#include "contabilidade_fisica.h"
+#include "contabilidade_juridica.h"
+#include "juridica_comercial.h"
+#include "juridica_industrial.h"
+#include "juridica_prestservico.h"
 
-void recebe_dados_fisico(ContabilFisica &dados, Pessoa &fisico){
+void RecebeArquivo::recebe_dados_fisico(ContabilFisica &dados, Pessoa &fisico){
     std::fstream out("Usuarios_Fisico.csv", std::ios::out | std::ios::app);
     out << fisico.get_cpf() << "," << fisico.get_nomepessoa() << std::endl;
     out << "Salario" << "," << dados.get_salario_bruto() << std::endl;
@@ -17,6 +23,6 @@ void recebe_dados_fisico(ContabilFisica &dados, Pessoa &fisico){
     out.close();
 }
 
-void recebe_dados_industrial(JuridicaIndustrial &dados){
+void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados){
     
 }
