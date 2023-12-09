@@ -8,6 +8,7 @@
 void recebe_dados_fisico(ContabilFisica &dados, Pessoa &fisico){
     std::fstream out("Usuarios_Fisico.csv", std::ios::out | std::ios::app);
     out << fisico.get_cpf() << "," << fisico.get_nomepessoa() << std::endl;
+    out << "Salario" << "," << dados.get_salario_bruto() << std::endl;
     out << "INSS" << "," << dados.get_inss() << std::endl;
     out << "Dependente" << "," << dados.get_deducao_dependente() <<std::endl;
     out << "Base" << "," << dados.get_base_calculo() << std::endl;

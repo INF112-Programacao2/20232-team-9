@@ -6,6 +6,7 @@
 #include "juridica_comercial.h"
 #include "juridica_industrial.h"
 #include "juridica_prestservico.h"
+#include "recebe_arquivo.h"
 
 double contabil_fisica(std::string cpf_informado)
 {
@@ -27,16 +28,18 @@ double contabil_fisica(std::string cpf_informado)
 
       getline(in, nome, ',');
       getline(in, local, ',');
-      Pessoa p(nome, local);
+      Pessoa pessoa(nome, local);
 
       getline(in, tipo, '\n');
-      p.set_cpf(cpf);
-      p.set_tipo_pessoa(tipo);
-
-      conta._calcula_inss(p);
+      pessoa.set_cpf(cpf);
+      pessoa.set_tipo_pessoa(tipo);
+      
+      conta._calcula_inss(pessoa);
       conta._calcula_deducao_dependente();
       conta._base_calculos();
       conta._calcula_imposto_renda();
+      RecebeArquivo r;
+      r.recebe_dados_fisico(conta, pessoa);
       return conta.get_Imposto_Renda_Final();
     }
 
