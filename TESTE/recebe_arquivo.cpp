@@ -86,7 +86,6 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << std::endl;
 
     out.close();
 }
@@ -148,7 +147,6 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << std::endl;
 
     out.close();
 }
@@ -209,137 +207,153 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << std::endl;
 
     out.close();
 }
 
-double retorna_receita_bruta(std::string cpf_informado){
+double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
     std::fstream in("Pessoa_Juridica.csv", std::ios::in);
     std::string cpf, nome;
     double receita_bruta = 0.0;
     if (!in.is_open()){
         std::cerr << "erro ao abrir arquivo!" << std::endl;
     }
-
-    while (in.peek() != EOF || cpf_informado != cpf)
+    while (in.peek() != EOF)
   {
+      std::cout << "Passei aqui" << std::endl;  
+      std::cout << "cpf_informado: " << cpf_informado << std::endl;
 
-    getline(in, cpf, ',');
+      getline(in, cpf, ',');
+        std::cout << "cpf: " << cpf << std::endl;
+      if (cpf == cpf_informado)
+      {
+          std::string nome, local, tipo, cnpj, nome_empresa, apelido_empresa, modelo_negocio;
 
-    if (cpf == cpf_informado)
-    {
-      std::string nome, local, tipo, cnpj, nome_empresa, apelido_empresa, modelo_negocio;
+          getline(in, nome, ',');
+          getline(in, local, ',');
+          getline(in, tipo, ',');
+          getline(in, cnpj, ',');
+          getline(in, nome_empresa, ',');
+          getline(in, apelido_empresa, ',');
+          getline(in, modelo_negocio, '\n');
 
-      getline(in, nome, ',');
-      getline(in, local, ',');
-      getline(in, tipo, ',');
-      getline(in, cnpj, ',');
-      getline(in, nome_empresa, ',');
-      getline(in, apelido_empresa, ',');
-      getline(in, modelo_negocio, '\n');
+          PessoaJuridica pessoa(nome, nome_empresa, apelido_empresa, local);
 
-      PessoaJuridica pessoa(nome, nome_empresa, apelido_empresa, local);
+          pessoa.set_cpf(cpf);
+          pessoa.set_tipo_pessoa(tipo);
+          pessoa.set_cnpj(cnpj);
+          pessoa.set_modelo_negocio(modelo_negocio);
+          std::cout << "Modelo de negocio: " << pessoa.get_modelo_negocio() << std::endl;
 
-      pessoa.set_cpf(cpf);
-      pessoa.set_tipo_pessoa(tipo);
-      pessoa.set_cnpj(cnpj);
-      pessoa.set_modelo_negocio(modelo_negocio);
+          RecebeArquivo r;
 
-      RecebeArquivo r;
-      
-      
-      if(pessoa.get_modelo_negocio() == "Industrial"){
-            JuridicaIndustrial industria;
-            std::fstream ent("Usuarios_Juridico_Industrial.csv", std::ios::in | std::ios::app);
-            std::string cpf2, aux;
-            while(ent.peek() != EOF){
-                getline(ent, cpf2, ',');
-                if(cpf_informado == cpf2){
-                    getline(ent, aux, '\n');
-                    getline(ent, aux, '\n');
-                    getline(ent, aux, ',');
-                    getline(ent, aux, '\n');
-                    receita_bruta += atof(aux.c_str());
-                }
-                else{
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                }
-            }
-            return receita_bruta;
-      }
-      else if(pessoa.get_modelo_negocio() == "Comercial"){
-            JuridicaComercial comercio;
-            std::fstream ent("Usuarios_Juridico_Comercial.csv", std::ios::in | std::ios::app);
-            std::string cpf2, aux;
-            while(ent.peek() != EOF){
-                getline(ent, cpf2, ',');
-                if(cpf_informado == cpf2){
-                    getline(ent, aux, '\n');
-                    getline(ent, aux, '\n');
-                    getline(ent, aux, ',');
-                    getline(ent, aux, '\n');
-                    receita_bruta += atof(aux.c_str());
-                }
-                else{
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                }
-            }
-            return receita_bruta;
-      }
-      else if(pessoa.get_modelo_negocio() == "Prestação de Serviço"){
-            
-            JuridicaPrestServi prestservi;
+          if (pessoa.get_modelo_negocio() == "Industrial")
+          {
+              JuridicaIndustrial industria;
+              std::fstream ent("Usuarios_Juridico_Industrial.csv", std::ios::in | std::ios::app);
+              std::string cpf2, aux;
+              while (ent.peek() != EOF)
+              {
+                  getline(ent, cpf2, ',');
+                  if (cpf_informado == cpf2)
+                  {
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, ',');
+                      getline(ent, aux, '\n');
+                      receita_bruta += atof(aux.c_str());
+                  }
+                  else
+                  {
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                  }
+              }
+              std::cout << "1" << std::endl;
+              return receita_bruta;
+          }
+          else if (pessoa.get_modelo_negocio() == "Comercial")
+          {
+              JuridicaComercial comercio;
+              std::fstream ent("Usuarios_Juridico_Comercial.csv", std::ios::in | std::ios::app);
+              std::string cpf2, aux;
+              while (ent.peek() != EOF)
+              {
+                  getline(ent, cpf2, ',');
+                  if (cpf_informado == cpf2)
+                  {
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, ',');
+                      getline(ent, aux, '\n');
+                      receita_bruta += atof(aux.c_str());
+                  }
+                  else
+                  {
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                  }
+              }
+              std::cout << "2" << std::endl;
+              return receita_bruta;
+          }
+          else if (pessoa.get_modelo_negocio() == "Prestação de Serviço")
+          {
 
-            std::fstream ent("Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::in | std::ios::app);
-            std::string cpf2, aux;
-            while(ent.peek() != EOF){
-                getline(ent, cpf2, ',');
-                if(cpf_informado == cpf2){
-                    getline(ent, aux, '\n');
-                    getline(ent, aux, '\n');
-                    getline(ent, aux, ',');
-                    getline(ent, aux, '\n');
-                    receita_bruta += atof(aux.c_str());
-                }
-                else{
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                    getline(ent, cpf2, '\n');
-                }
-            }
-            return receita_bruta;
-        }
+              JuridicaPrestServi prestservi;
+
+              std::fstream ent("Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::in | std::ios::app);
+              std::string cpf2, aux;
+              while (ent.peek() != EOF)
+              {
+                  getline(ent, cpf2, ',');
+                  if (cpf_informado == cpf2)
+                  {
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, ',');
+                      getline(ent, aux, '\n');
+                      receita_bruta += atof(aux.c_str());
+                  }
+                  else
+                  {
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                  }
+              }
+              std::cout << "3" << std::endl;
+              return receita_bruta;
+          }
 
     }
     else{
         getline(in, cpf, '\n');
     }
-    return receita_bruta;
   }
+  std::cout << "4" << std::endl;
+  return receita_bruta;
 }
