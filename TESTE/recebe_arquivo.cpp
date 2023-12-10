@@ -30,14 +30,9 @@ void RecebeArquivo::recebe_dados_fisico(ContabilFisica &dados, Pessoa &fisico)
     out.close();
 }
 
-<<<<<<< HEAD
-void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJuridica &juridico){
-    std::vector<std::pair <std::string, double>> aux;
-=======
 void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJuridica &juridico)
 {
     std::vector<std::pair<std::string, double>> aux;
->>>>>>> 4061feb8ef111e1b5cc8de45ec59e64a4cfe9e36
     aux = dados.get_contasPagar_dados();
     std::fstream out("Usuarios_Juridico_Industrial.csv", std::ios::out | std::ios::app);
     out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << std::endl;
