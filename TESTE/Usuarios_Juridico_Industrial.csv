@@ -1,6 +1,10 @@
-15262524656,Nicolas
-Contas a pagar,Dentista,300,Aluguel,700,
-Contas a receber,salario,700,
+15262524656,Nicolas,1
+Caixa,300
+Receita,700
+Lucro,0
+Despesa,700
+Contas a pagar,Dentista,300,Aluguel,400,
+Contas a receber,Salrio,700,
 Realizavel a curto prazo,
 Realizavel a longo prazo,
 Emprestimos,

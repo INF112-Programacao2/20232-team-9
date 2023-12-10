@@ -105,3 +105,4 @@ void JuridicaIndustrial::get_estoque(){ //valor do estoque
     }
     std::cout << "Valor total do estoque: " << _valor_estoque << std::endl; // valor total do estoque
 }
+
