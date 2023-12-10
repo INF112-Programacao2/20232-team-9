@@ -38,6 +38,7 @@ class ContabilJuridica {
 		double _receita_bruta;
 		double _resultado_fluxo_caixa;
 		std::string _mes_contabil;
+		double _lucro;
 
 
 
@@ -85,14 +86,15 @@ class ContabilJuridica {
 		//MẼS DA CONTABILIDADE FEITA
 		std::string get_mes_contabil(); // retorna o mês contábil
 
-
+		//GETS DE RECEITA E DESPESA
+		double get_despesa(); // retorna o valor total das despesas
+		double get_lucro(); // retorna o valor total do lucro
+		double get_receita_bruta(); // retorna o valor da receita bruta (contribui no cálculo do simples nacional)
 
 		//METODOS
 		void _calculo_DRE(); // cálcula a Demonstração do Resultado do Exercício
 		void _calculo_fluxo_caixa(); // cálcula o fluxo de caixa
 		void _resultado_balancete(); // cálcula o balancete
-		/*void _calculo_aliquotas_localidade(PessoaJuridica &juridico);*/
-		double get_receita_bruta(); // retorna o valor da receita bruta (contribui no cálculo do simples nacional)
 		virtual void _calculo_aliquotas_anexos() = 0; // cálcula as alíquotas de acordo com o anexo
 		virtual double get_result_simples_nacional() = 0; // retorna o valor a ser pago ou restituído
 		 

@@ -327,7 +327,6 @@ double ContabilJuridica::get_emprestimos(){ //RETORNA O VALOR TOTAL DE EMPRÉSTI
 void ContabilJuridica::_calculo_DRE(){ //CÁLCULO DA DEMONSTRAÇÃO DO RESULTADO DO EXERCÍCIO
     double receita = 0;
     double despesa = 0;
-    double lucro = 0;
     for(int i = 0; i < _contasReceber.size(); i++){ 
         receita += _contasReceber[i].second; //CÁLCULO DAS RECEITAS
     }
@@ -336,15 +335,15 @@ void ContabilJuridica::_calculo_DRE(){ //CÁLCULO DA DEMONSTRAÇÃO DO RESULTADO
     }
     _receitas.push_back(receita);
     _despesas.push_back(despesa);
-    lucro = receita - despesa; //CÁCULO DO LUCRO OU PREJUÍZO
-    _result_dre.push_back(lucro);
+    _lucro = receita - despesa; //CÁCULO DO LUCRO OU PREJUÍZO
+    _result_dre.push_back(_lucro);
     std::cout << "Receita: " << receita << std::endl;
     std::cout << "Despesa: " << despesa << std::endl;
-    if(lucro>=0){
-        std::cout << "Lucro: " << lucro << std::endl;
+    if(_lucro>=0){
+        std::cout << "Lucro: " << _lucro << std::endl;
     }
     else{
-        std::cout << "Despesa: " << lucro << std::endl;
+        std::cout << "Despesa: " << _lucro << std::endl;
     }
 }
 
@@ -435,5 +434,17 @@ std::vector<std::pair<std::string,double>> ContabilJuridica::get_realizavelLongo
 
 std::vector<std::pair<std::string,double>> ContabilJuridica::get_emprestimos_dados(){
     return std::vector<std::pair<std::string,double>>(_emprestimos);
+}
+
+double ContabilJuridica::get_despesa(){
+    double despesa = 0;
+    for(int i = 0; i < _despesas.size(); i++){
+        despesa += _despesas[i];
+    }
+    return despesa;
+}
+
+double ContabilJuridica::get_lucro(){
+    return _lucro;
 }
 
