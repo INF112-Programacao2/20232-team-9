@@ -35,4 +35,115 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
     out << std::endl;
     out.close();
 
+    aux = dados.get_contasReceber_dados();
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+
+    aux = dados.get_realizavelCurtoPrazo_dados();
+    
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+    aux = dados.get_realizavelLongoPrazo_dados();
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+    aux = dados.get_emprestimos_dados();
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
 }
+
+void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJuridica &juridico){
+    std::vector<std::pair <std::string, double>> aux;
+    aux = dados.get_contasPagar_dados();
+    std::fstream out("Usuarios_Juridico_Comercial.csv", std::ios::out | std::ios::app);
+    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << std::endl;
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+    aux = dados.get_contasReceber_dados();
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+
+    aux = dados.get_realizavelCurtoPrazo_dados();
+    
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+    aux = dados.get_realizavelLongoPrazo_dados();
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+    aux = dados.get_emprestimos_dados();
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+}
+
+void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJuridica &juridico){
+    std::vector<std::pair <std::string, double>> aux;
+    aux = dados.get_contasPagar_dados();
+    std::fstream out("Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::out | std::ios::app);
+    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << std::endl;
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+    aux = dados.get_contasReceber_dados();
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+
+    aux = dados.get_realizavelCurtoPrazo_dados();
+    
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+    aux = dados.get_realizavelLongoPrazo_dados();
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+
+    aux = dados.get_emprestimos_dados();
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+    out << std::endl;
+}
+
