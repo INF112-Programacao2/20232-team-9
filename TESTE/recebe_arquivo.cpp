@@ -86,7 +86,6 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << std::endl;
 
     out.close();
 }
@@ -148,7 +147,6 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << std::endl;
 
     out.close();
 }
@@ -209,7 +207,6 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << std::endl;
 
     out.close();
 }
@@ -222,9 +219,9 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
         std::cerr << "erro ao abrir arquivo!" << std::endl;
     }
 
-    while (in.peek() != EOF || cpf_informado != cpf)
+    while (in.peek() != EOF)
   {
-
+    std::cout << "CPF: " << cpf_informado << std::endl;
     getline(in, cpf, ',');
 
     if (cpf == cpf_informado)
@@ -263,7 +260,6 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
                     receita_bruta += atof(aux.c_str());
                 }
             }
-          return receita_bruta;
       }
       else if(pessoa.get_modelo_negocio() == "Comercial"){
             JuridicaComercial comercio;
@@ -279,27 +275,29 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
                     receita_bruta += atof(aux.c_str());
                 }
             }
-          return receita_bruta;
       }
-      else if(pessoa.get_modelo_negocio() == "Prestação de Serviço"){
-            
-            JuridicaPrestServi prestservi;
+      else if (pessoa.get_modelo_negocio() == "Prestação de Serviço")
+      {
 
-            std::fstream ent("Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::in | std::ios::app);
-            std::string cpf2, aux;
-            while(ent.peek() != EOF){
-                getline(ent, cpf2, ',');
-                if(cpf_informado == cpf2){
-                    getline(ent, aux, '\n');
-                    getline(ent, aux, '\n');
-                    getline(ent, aux, ',');
-                    getline(ent, aux, '\n');
-                    receita_bruta += atof(aux.c_str());
-                }
-            }
-            return receita_bruta;
+          JuridicaPrestServi prestservi;
+
+          std::fstream ent("Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::in | std::ios::app);
+          std::string cpf2, aux;
+          std::cout << "Passei aqui!!!!!!!!!!!!!!!!!!" << std::endl;
+          while (ent.peek() != EOF)
+          {
+              getline(ent, cpf2, ',');
+              std::cout << "Entrei aqui --------" << std::endl;
+              if (cpf_informado == cpf2)
+              {
+                  getline(ent, aux, '\n');
+                  getline(ent, aux, '\n');
+                  getline(ent, aux, ',');
+                  getline(ent, aux, '\n');
+                  receita_bruta += atof(aux.c_str());
+              }
+          }
       }
-
     }
     return receita_bruta;
   }
