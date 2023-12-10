@@ -213,3 +213,71 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
 
     out.close();
 }
+
+double retorna_receita_bruta(std::string cpf_informado){
+    std::fstream in("Pessoa_Juridica.csv", std::ios::in);
+    std::string cpf, nome;
+    if (!in.is_open()){
+        std::cerr << "erro ao abrir arquivo!" << std::endl;
+    }
+
+    while (in.peek() != EOF || cpf_informado != cpf)
+  {
+
+    getline(in, cpf, ',');
+
+    if (cpf == cpf_informado)
+    {
+      std::string nome, local, tipo, cnpj, nome_empresa, apelido_empresa, modelo_negocio;
+
+      getline(in, nome, ',');
+      getline(in, local, ',');
+      getline(in, tipo, ',');
+      getline(in, cnpj, ',');
+      getline(in, nome_empresa, ',');
+      getline(in, apelido_empresa, ',');
+      getline(in, modelo_negocio, '\n');
+
+      PessoaJuridica pessoa(nome, nome_empresa, apelido_empresa, local);
+
+      pessoa.set_cpf(cpf);
+      pessoa.set_tipo_pessoa(tipo);
+      pessoa.set_cnpj(cnpj);
+      pessoa.set_modelo_negocio(modelo_negocio);
+
+      RecebeArquivo r;
+      
+      if(pessoa.get_modelo_negocio() == "Industrial"){
+          JuridicaIndustrial industria;
+          double receita_bruta;
+          return receita_bruta;
+      }
+      else if(pessoa.get_modelo_negocio() == "Comercial"){
+          JuridicaComercial comercio;
+          double receita_bruta;
+          return receita_bruta;
+      }
+      else if(pessoa.get_modelo_negocio() == "Prestação de Serviço"){
+            
+            JuridicaPrestServi prestservi;
+            double receita_bruta = 0.0;
+
+            std::fstream ent("Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::in | std::ios::app);
+            std::string cpf2, aux;
+            while(ent.peek() != EOF){
+                getline(ent, cpf2, ',');
+                if(cpf_informado == cpf2){
+                    getline(ent, aux, '\n');
+                    getline(ent, aux, '\n');
+                    getline(ent, aux, ',');
+                    getline(ent, aux, '\n');
+                    receita_bruta += atof(aux.c_str());
+                }
+            }
+            return receita_bruta;
+      }
+
+    }
+    return -1;
+  }
+}

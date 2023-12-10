@@ -17,7 +17,7 @@ class RecebeArquivo{
         void recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJuridica &juridico);
         void recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJuridica &juridico);
         void recebe_dados_comercial(JuridicaComercial &dados, PessoaJuridica &juridico);
-
+        double retorna_receita_bruta(std::string cpf);
 };
 
 #endif
