@@ -35,7 +35,7 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
     std::vector<std::pair<std::string, double>> aux;
     aux = dados.get_contasPagar_dados();
     std::fstream out("Usuarios_Juridico_Industrial.csv", std::ios::out | std::ios::app);
-    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << std::endl;
+    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil()<<std::endl;
 
     out << "Contas a pagar" << ",";
     for (int i = 0; i < aux.size(); i++)
@@ -88,7 +88,7 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     std::vector<std::pair<std::string, double>> aux;
     aux = dados.get_contasPagar_dados();
     std::fstream out("Usuarios_Juridico_Comercial.csv", std::ios::out | std::ios::app);
-    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << std::endl;
+    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," <<dados.get_mes_contabil()<<std::endl;
 
     out << "Contas a pagar" << ",";
     for (int i = 0; i < aux.size(); i++)
@@ -142,7 +142,7 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     std::vector<std::pair<std::string, double>> aux;
     aux = dados.get_contasPagar_dados();
     std::fstream out("Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::out | std::ios::app);
-    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << std::endl;
+    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil()<< std::endl;
 
     out << "Contas a pagar" << ",";
     for (int i = 0; i < aux.size(); i++)

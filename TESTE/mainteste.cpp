@@ -89,6 +89,7 @@ void contabil_juridica(std::string cpf_informado){
       
       if(pessoa.get_modelo_negocio() == "Industrial"){
           JuridicaIndustrial industria;
+          industria.set_mes_contabil();
           industria.set_caixa();
           std::cout<<industria.get_caixa ()<<std::endl;
           industria.set_contasPagar ();
@@ -102,6 +103,7 @@ void contabil_juridica(std::string cpf_informado){
       }
       else if(pessoa.get_modelo_negocio() == "Comercial"){
           JuridicaComercial comercio;
+          comercio.set_mes_contabil();
           comercio.set_caixa();
           std::cout<<comercio.get_caixa ()<<std::endl;
           comercio.set_contasPagar ();
@@ -115,6 +117,7 @@ void contabil_juridica(std::string cpf_informado){
       }
       else if(pessoa.get_modelo_negocio() == "Prestação de Serviço"){
           JuridicaPrestServi prestservi;
+          prestservi.set_mes_contabil();
           prestservi.set_caixa();
           std::cout<<prestservi.get_caixa ()<<std::endl;
           prestservi.set_contasPagar ();
