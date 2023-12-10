@@ -68,6 +68,7 @@ void contabil_juridica(std::string cpf_informado){
 
     if (cpf == cpf_informado)
     {
+      std::cout << "Entrei aqui " << std::endl;
       std::string nome, local, tipo, cnpj, nome_empresa, apelido_empresa, modelo_negocio;
 
       getline(in, nome, ',');
@@ -97,6 +98,7 @@ void contabil_juridica(std::string cpf_informado){
           industria._calculo_fluxo_caixa ();
       }
       else if(pessoa.get_modelo_negocio() == "Comercial"){
+          std::cout << "Passei aqui!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
           JuridicaComercial comercio;
           comercio.set_caixa();
           std::cout<<comercio.get_caixa ()<<std::endl;
