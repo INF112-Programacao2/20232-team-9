@@ -127,6 +127,7 @@ void contabil_juridica(std::string cpf_informado){
           prestservi._calculo_DRE ();
           prestservi._calculo_fluxo_caixa ();
           r.recebe_dados_prestservico(prestservi, pessoa);
+          std::cout << r.retorna_receita_bruta(cpf) << std::endl;
           return;
       }
 

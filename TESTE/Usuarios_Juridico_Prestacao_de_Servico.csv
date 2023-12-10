@@ -1,0 +1,30 @@
+12345678998,Ceci,1
+Caixa,300
+Receita,1200
+Lucro,900
+Despesa,300
+Contas a pagar,dentista,300,
+Contas a receber,salario,700,mesada,500,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,2
+Caixa,0
+Receita,2400
+Lucro,900
+Despesa,300
+Contas a pagar,dentista,300,
+Contas a receber,salario,700,mesada,500,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,3
+Caixa,0
+Receita,3500
+Lucro,1100
+Despesa,0
+Contas a pagar,
+Contas a receber,salario,600,mesada,500,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
