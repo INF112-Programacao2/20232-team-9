@@ -98,6 +98,7 @@ void contabil_juridica(std::string cpf_informado){
           industria._calculo_DRE ();
           industria._calculo_fluxo_caixa ();
           r.recebe_dados_industrial(industria, pessoa);
+          return;
       }
       else if(pessoa.get_modelo_negocio() == "Comercial"){
           JuridicaComercial comercio;
@@ -110,6 +111,7 @@ void contabil_juridica(std::string cpf_informado){
           comercio._calculo_DRE ();
           comercio._calculo_fluxo_caixa ();
           r.recebe_dados_comercial(comercio, pessoa);
+          return;
       }
       else if(pessoa.get_modelo_negocio() == "Prestação de Serviço"){
           JuridicaPrestServi prestservi;
@@ -122,6 +124,7 @@ void contabil_juridica(std::string cpf_informado){
           prestservi._calculo_DRE ();
           prestservi._calculo_fluxo_caixa ();
           r.recebe_dados_prestservico(prestservi, pessoa);
+          return;
       }
 
     }
@@ -132,6 +135,7 @@ void contabil_juridica(std::string cpf_informado){
     }
   }
   in.close();
+  return;
 }
 
 void confere_nomes(std::string &nome)
