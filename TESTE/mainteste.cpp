@@ -395,14 +395,17 @@ int main()
       std::cin >> cpf;
       switch (op)
       {
+      case(1):
+        contabil_juridica(cpf);
+        break;
       case (2):
         std::cout << contabil_fisica(cpf) << std::endl;
+        break;
       }
 
       // PARA CONTABILIDADE DO TIPO JURIDICO INDUSTRIAL
-      /*
-          contabil_juridica(cpf);
-          JuridicaIndustrial industria;
+      
+      /*  JuridicaIndustrial industria;
           industria.set_caixa();
           std::cout<<industria.get_caixa ()<<std::endl;
           industria.set_contasPagar ();
