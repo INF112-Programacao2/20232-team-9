@@ -41,6 +41,10 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
 
     out << "Receita" << "," << dados.get_receita_bruta() << std::endl;
 
+    out << "Lucro" << "," << dados.get_lucro() << std::endl;
+
+    out << "Despesa" << "," << dados.get_despesa() << std::endl;
+
     out << "Contas a pagar" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
@@ -97,6 +101,10 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
 
     out << "Receita" << "," << dados.get_receita_bruta() << std::endl;
+
+    out << "Lucro" << "," << dados.get_lucro() << std::endl;
+
+    out << "Despesa" << "," << dados.get_despesa() << std::endl;
 
     out << "Contas a pagar" << ",";
     for (int i = 0; i < aux.size(); i++)
@@ -155,6 +163,10 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
 
     out << "Receita" << "," << dados.get_receita_bruta() << std::endl;
+
+    out << "Lucro" << "," << dados.get_lucro() << std::endl;
+
+    out << "Despesa" << "," << dados.get_despesa() << std::endl;
 
     out << "Contas a pagar" << ",";
     for (int i = 0; i < aux.size(); i++)
