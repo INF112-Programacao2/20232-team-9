@@ -277,8 +277,6 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
                       getline(ent, cpf2, '\n');
                   }
               }
-              std::cout << "1" << std::endl;
-              return receita_bruta;
           }
           else if (pessoa.get_modelo_negocio() == "Comercial")
           {
@@ -310,8 +308,6 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
                       getline(ent, cpf2, '\n');
                   }
               }
-              std::cout << "2" << std::endl;
-              return receita_bruta;
           }
           else if (pessoa.get_modelo_negocio() == "Prestação de Serviço")
           {
@@ -345,8 +341,6 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
                       getline(ent, cpf2, '\n');
                   }
               }
-              std::cout << "3" << std::endl;
-              return receita_bruta;
           }
 
     }
