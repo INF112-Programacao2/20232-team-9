@@ -39,6 +39,8 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
 
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
 
+    out << "Receita" << "," << dados.get_receita_bruta() << std::endl;
+
     out << "Contas a pagar" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
@@ -93,6 +95,8 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," <<dados.get_mes_contabil()<<std::endl;
     
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
+
+    out << "Receita" << "," << dados.get_receita_bruta() << std::endl;
 
     out << "Contas a pagar" << ",";
     for (int i = 0; i < aux.size(); i++)
@@ -149,6 +153,8 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil()<< std::endl;
 
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
+
+    out << "Receita" << "," << dados.get_receita_bruta() << std::endl;
 
     out << "Contas a pagar" << ",";
     for (int i = 0; i < aux.size(); i++)
