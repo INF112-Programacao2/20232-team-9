@@ -214,7 +214,7 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     out.close();
 }
 
-double retorna_receita_bruta(std::string cpf_informado){
+double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
     std::fstream in("Pessoa_Juridica.csv", std::ios::in);
     std::string cpf, nome;
     double receita_bruta = 0.0;
