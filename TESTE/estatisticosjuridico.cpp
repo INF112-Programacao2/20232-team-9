@@ -11,7 +11,6 @@
 void EstatisticosJuridico::dados_mensal(){
     std::string cpf, mes;
     int mod;
-    std::fstream in;
 
     std::cout << "Informe o CPF: ";
     std::cin >> cpf;
@@ -36,9 +35,13 @@ void EstatisticosJuridico::dados_mensal(){
     else if(mod == 3){
         std::fstream in("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
     }
+    else{
+        std::fstream in;
+    }
 
     std::cout << mod << std::endl;
-    if(!in.is_open()){
+
+    if(in.is_open()){
         std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
         return;
     }
