@@ -18,9 +18,9 @@ void EstatisticosJuridico::dados_mensal(){
     std::cout << std::endl << "Informe o mes: ";
     std::cin >> mes;
 
-    std::cout << std::endl << "Informe o modelo" << std::endl;
+    std::cout << std::endl << "Informe o Modelo de Negócio:" << std::endl;
     std::cout << "(1) - Industrial" << std::endl;
-    std::cout << "(2) -  Comercial" << std::endl;
+    std::cout << "(2) - Comercial" << std::endl;
     std::cout << "(3) - Prestação de Serviço" << std::endl;
     std::cin >> mod;
 
@@ -30,6 +30,7 @@ void EstatisticosJuridico::dados_mensal(){
         std::fstream in("Usuarios_Juridico_Industrial.csv", std::ios::in);
     }
     else if(mod == 2){
+        std::cout << "Entrei aqui" << std::endl;
         std::fstream in("Usuarios_Juridico_Comercial.csv", std::ios::in);
     }
     else if(mod == 3){
