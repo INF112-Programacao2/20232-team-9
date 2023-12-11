@@ -239,8 +239,8 @@ void confere_nomes(std::string &nome)
 int main()
 {
 
-  std::string nomepessoa, nomeempresa, apelidoempresa, local, cnpj, cpf, opcao, selecionador;
-  int selecionador2;
+  std::string nomepessoa, nomeempresa, apelidoempresa, local, cnpj, cpf, opcao, selecionador, op;
+  int selecionador2, option;
   bool valide = true;
 
   while (valide)
@@ -442,11 +442,6 @@ int main()
 
     case (2):
 
-      // PARA LUIS:
-
-      // PARA CONFIRMAR O TIPO DE PESSOA
-
-      int op;
       std::cout << "Qual é o tipo de pessoa? \n";
       std::cout << "1- Pessoa Jurídica. \n";
       std::cout << "2- Pessoa Física. \n";
@@ -455,7 +450,7 @@ int main()
         try
         {
           std::cin >> op;
-          if (op != 1 && op != 2)
+          if (op != "1" && op != "2")
           {
             throw std::invalid_argument("Opção inválida!! Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física:");
           }
@@ -467,9 +462,10 @@ int main()
         }
       }
 
-      std::cout << "Digite seu cpf: ";
+      option = stoi (op);
+      std::cout << "Digite seu CPF: ";
       std::cin >> cpf;
-      switch (op)
+      switch (option)
       {
       case(1):
         contabil_juridica(cpf);
@@ -479,24 +475,45 @@ int main()
         break;
       }
 
-      // PARA CONTABILIDADE DO TIPO JURIDICO INDUSTRIAL
-      
-      /*  JuridicaIndustrial industria;
-          industria.set_caixa();
-          std::cout<<industria.get_caixa ()<<std::endl;
-          industria.set_contasPagar ();
-          std::cout<<industria.get_contasPagar ()<<std::endl;
-          industria.set_contasReceber ();
-          std::cout<<industria.get_contasReceber ()<<std::endl;
-          industria._calculo_DRE ();
-          industria._calculo_fluxo_caixa ();
-       */
-
       break;
 
     case (3):
 
       // ESTATISTICOS
+
+      std::cout << "Qual é o tipo de pessoa? \n";
+      std::cout << "1- Pessoa Jurídica. \n";
+      std::cout << "2- Pessoa Física. \n";
+      while (true)
+      {
+        try
+        {
+          std::cin >> op;
+          if (op != "1" && op != "2")
+          {
+            throw std::invalid_argument("Opção inválida!! Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física:");
+          }
+          break;
+        }
+        catch (std::invalid_argument &e)
+        {
+          std::cerr << e.what() << std::endl;
+        }
+      }
+
+      option = stoi (op);
+      std::cout << "Digite seu CPF: ";
+      std::cin >> cpf;
+
+      switch (option)
+      {
+      case(1):
+       //contabil_juridica(cpf); ESTATÍSTICO JURÍDICO 
+        break;
+      case (2):
+       //std::cout << contabil_fisica(cpf) << std::endl; ESTATISCO FISICO
+        break;
+      }
 
       break;
 
