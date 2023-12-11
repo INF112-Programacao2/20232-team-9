@@ -10,7 +10,7 @@
 
 double contabil_fisica(std::string cpf_informado)
 {
-  std::fstream in("Pessoa_Fisica.csv", std::ios::in);
+  std::fstream in("data/Pessoa_Fisica.csv", std::ios::in);
   std::string cpf, nome;
   if (!in.is_open())
   {
@@ -56,7 +56,7 @@ double contabil_fisica(std::string cpf_informado)
 
 void contabil_juridica(std::string cpf_informado){
   int _tipo_contabilidade;
-  std::fstream in("Pessoa_Juridica.csv", std::ios::in);
+  std::fstream in("data/Pessoa_Juridica.csv", std::ios::in);
   std::string cpf, nome;
   std::cout << "Qual Tipo de Contabilidade deseja fazer:" << std::endl;
   std::cout << "(1) - Balanço Mensal" << std::endl;
