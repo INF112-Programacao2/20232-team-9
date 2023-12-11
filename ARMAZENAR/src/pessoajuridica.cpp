@@ -229,14 +229,6 @@ void PessoaJuridica::set_apelidoempresa (std::string apelidoempresa){
 
 }
 
-void PessoaJuridica::set_cnpj(std::string cnpj){
-  _cnpj = cnpj;
-}
-
-void PessoaJuridica::set_modelo_negocio(std::string modelo_empresa){
-  _modeloempresa = modelo_empresa;
-}
-
 void PessoaJuridica::modelo_negocio (){
   std::string opcao;
 

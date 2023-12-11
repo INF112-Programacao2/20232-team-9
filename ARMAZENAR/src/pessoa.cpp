@@ -1,28 +1,28 @@
 #include <iostream>
 #include <cstring>
-#include "pessoajuridica.h"
 #include "pessoa.h"
 
 
-PessoaJuridica::PessoaJuridica(std::string nomepessoa, std::string nomeempresa, std::string apelidoempresa, std::string local):
+Pessoa::Pessoa (std::string nomepessoa, std::string local):
 
-Pessoa (nomepessoa, local), _nomeempresa (nomeempresa), _apelidoempresa (apelidoempresa) {}
+_nomepessoa(nomepessoa), _local(local) {}
 
 
-void PessoaJuridica::insere_cnpj ( ){
 
+void Pessoa::insere_cpf ( ) {
+   
     while (true){
      try{ 
-      std::cin>>_cnpj;
+      std::cin>>_cpf;
 
-        if(_cnpj.size()<14 || _cnpj.size()>14){
-          throw std::out_of_range ("CNPJ Inválido!! Digite um novo CNPJ com tamanho válido:");
+        if(_cpf.size()<11 || _cpf.size()>11){
+          throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido:");
         }
 
         else{
-          for(int i=0; _cnpj[i] != '\0'; i++){
-              if (!isdigit (_cnpj[i])){
-                throw std::invalid_argument ("CNPJ Inválido!! Digite um novo CNPJ apenas com números:");
+          for(int i=0; _cpf[i] != '\0'; i++){
+              if (!isdigit (_cpf[i])){
+                throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números:");
                 break;
               }
           }
@@ -38,11 +38,10 @@ void PessoaJuridica::insere_cnpj ( ){
      }    
 
   }
+
 }
 
-
-
-void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){
+void Pessoa::edicao_cadastro_fis (Pessoa &fisico){
     std::string opcao;
     bool averigua=false;
     int selecionador;
@@ -51,16 +50,13 @@ void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){
             std::cout<<std::endl;
             std::cout<<"Qual dado deseja alterar? \n";
             std::cout<<"1- Nome do proprietário (DIGITE 1) \n";
-            std::cout<<"2- Nome da empresa (DIGITE 2) \n";
-            std::cout<<"3- Apelido da empresa (DIGITE 3) \n";
-            std::cout<<"4- Localidade (DIGITE 4) \n";
-            std::cout<<"5- CNPJ (DIGITE 5) \n";
-            std::cout<<"6- CPF (DIGITE 6) \n";
+            std::cout<<"2- Localidade (DIGITE 2) \n";
+            std::cout<<"3- CPF (DIGITE 3) \n";
             while(true){
               try{
                 std::cin>>opcao;
 
-                if(opcao != "1" && opcao != "2" && opcao != "3" && opcao != "4" && opcao != "5" && opcao !="6"){
+                if(opcao != "1" && opcao != "2" && opcao != "3"){
                  throw std::invalid_argument ("Opção inválida!! Digite uma opção válida:");
                 }
                 else{
@@ -76,7 +72,7 @@ void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){
             switch (selecionador){
                 case (1):
                 
-                  std::cout<<"Digite o novo nome do proprietário: \n";
+                  std::cout<<"Digite o novo nome que deseja cadastrar: \n";
                   while(true){
                     try{
                       std::cin.ignore ();
@@ -98,23 +94,9 @@ void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){
                   }
                   break;
 
-                case (2):
+                case(2):
 
-                  std::cout<<"Digite o novo nome da empresa: \n";
-                  std::cin.ignore ();
-                  getline (std::cin, _nomeempresa); 
-                  break;
-
-                case (3):
-
-                  std::cout<<"Digite o novo apelido da empresa: \n";
-                  std::cin.ignore ();
-                  getline (std::cin, _apelidoempresa); 
-                  break;
-
-                case(4):
-
-                  std::cout<<"Digite o número correpondente ao novo estado em que a empresa encontra-se localizada: \n";
+                  std::cout<<"Digite o número correpondente ao novo estado de residência: \n";
                   std::cout<<"(1)- MG \n"<<"(2)- SP \n"<<"(3)- RJ \n";
                   while(true){
                     try{
@@ -139,18 +121,14 @@ void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){
                   }
                   break;
 
-                case(5): 
+                case(3): 
 
-                  std::cout<<"Digite o novo CNPJ: \n"; 
-                  juridico.insere_cnpj ( );
-                  break;
-
-                default:
                   std::cout<<"Digite o novo CPF: \n";
-                  juridico.insere_cpf ( );
+                  fisico.insere_cpf ( );
                   break;  
+
             }
-                averigua=juridico.confirma_cadastro (juridico);
+                averigua=fisico.confirma_cadastro_fis (fisico);
 
                 if(averigua==true){
                   std::cout<<"Cadastro realizado com sucesso! Obrigado!! \n";
@@ -160,14 +138,12 @@ void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){
 
 
 
-bool PessoaJuridica::confirma_cadastro (PessoaJuridica &juridico){
+bool Pessoa::confirma_cadastro_fis (Pessoa &fisico){
   
   std::string opcao;
 
     std::cout<<std::endl;
-    std::cout<<"NOME: "<<juridico.get_nomepessoa()<<" | CNPJ: "<<juridico.get_cnpj()<<" | CPF: "<<juridico.get_cpf()
-    <<" | NOME EMPRESA: "<<juridico.get_nomeempresa()<<" | APELIDO EMPRESA: "<<juridico.get_apelidoempresa()<<
-    " | LOCALIDADE: "<<juridico.get_local();
+    std::cout<<"NOME: "<<fisico.get_nomepessoa()<<" | CPF: "<<fisico.get_cpf()<<" | LOCALIDADE: "<<fisico.get_local();
     std::cout<<std::endl;
     std::cout<<"Você confirma os dados inseridos no cadastro? \n";
     std::cout<<"1- Sim. \n";
@@ -195,82 +171,72 @@ bool PessoaJuridica::confirma_cadastro (PessoaJuridica &juridico){
 
 }
 
-
-std::string PessoaJuridica::get_nomeempresa (){
-
-    return _nomeempresa;
-
-}
-
-
-std::string PessoaJuridica::get_apelidoempresa(){
-
-    return _apelidoempresa;
-
-}
-
-
-std::string PessoaJuridica::get_cnpj(){
-
-    return _cnpj;
-
-}
-
-
-void PessoaJuridica::set_nomeempresa (std::string nomeempresa){
-
-    _nomeempresa = nomeempresa;
-
-}
-
-void PessoaJuridica::set_apelidoempresa (std::string apelidoempresa){
-
-    _apelidoempresa = apelidoempresa;
-
-}
-
-void PessoaJuridica::set_cnpj(std::string cnpj){
-  _cnpj = cnpj;
-}
-
-void PessoaJuridica::set_modelo_negocio(std::string modelo_empresa){
-  _modeloempresa = modelo_empresa;
-}
-
-void PessoaJuridica::modelo_negocio (){
-  std::string opcao;
-
-  std::cout<<"Qual é o modelo jurídico da empresa? \n";
-  std::cout<<"(1)- Industrial \n"<<"(2)- Comercial \n"<<"(3)- Prestação de Serviço \n";
-    while(true){
-      try{
-        std::cin>>opcao;
-        if(opcao != "1" && opcao != "2" && opcao != "3"){
-          throw std::invalid_argument ("Opção inválida!! Digite uma opção válida: ");
-        }
-
-         break;
-        }catch(std::invalid_argument &e){
-          std::cerr<<e.what()<<std::endl;
-      }
+void Pessoa::tipo_pessoa (){
+ std::string opcao;
+  std::cout<<std::endl;
+  std::cout<<"Digite o número correspondente ao tipo de pessoa física ao qual se enquadra: \n";
+  std::cout<<"(1) - Empregado. \n"<<"(2) - Contribuinte Individual. \n"<<"(3) - Contribuinte Facultativo. \n"<<"(4) - Microempreendedor \n";
+  while(true){
+   try{
+     std::cin>>opcao;
+     if(opcao != "1" && opcao != "2" && opcao != "3" && opcao != "4"){
+       throw std::invalid_argument ("Opção inválida!! Digite uma opção válida: ");
+     }
+       break;
+    }catch(std::invalid_argument &e){
+      std::cerr<<e.what()<<std::endl;
     }
-
-  if(opcao=="1"){
-    _modeloempresa="Industrial";
-  } 
-  else if(opcao=="2"){
-    _modeloempresa="Comercial";
-  } 
-  else{
-    _modeloempresa="Prestação de Serviço";
   }
+  if(opcao=="1"){
+    _tipo_pessoa="Empregado";
+  }
+  else if(opcao=="2"){
+    _tipo_pessoa="Contribuinte Individual";
+  }
+  else if(opcao=="3"){
+    _tipo_pessoa="Contribuinte Facultativo";
+  }
+  else{
+    _tipo_pessoa="Microempreendedor";
+  }
+}
+
+std::string Pessoa::get_nomepessoa (){
+
+    return _nomepessoa;
 
 }
 
 
-std::string PessoaJuridica::get_modelo_negocio (){
+std::string Pessoa::get_cpf(){
 
-  return _modeloempresa;
+    return _cpf;
 
 }
 
+
+std::string Pessoa::get_local(){
+
+    return _local;
+
+}
+
+std::string Pessoa::get_tipo_pessoa (){
+
+    return _tipo_pessoa;
+
+}
+
+
+void Pessoa::set_nomepessoa (std::string nomepessoa){
+
+    _nomepessoa = nomepessoa;
+
+}
+
+
+void Pessoa::set_local (std::string local){
+
+    _local = local;
+
+}

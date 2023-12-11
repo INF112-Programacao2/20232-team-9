@@ -261,14 +261,14 @@ void ContabilJuridica::set_emprestimos(){ //ADICIONA VALORES AOS EMPRÉSTIMOS
 }
 
 
-//GETS
+//GET
 
 double ContabilJuridica::get_caixa(){ //RETORNA O VALOR TOTAL DO CAIXA
     double total = 0;
     for(int i = 0; i < _caixa.size(); i++){
         total += _caixa[i];
     }
-    //std::cout << "Valor total de Caixa: ";
+    std::cout << "Valor total de Caixa: ";
     return total;
 }
 
@@ -327,23 +327,24 @@ double ContabilJuridica::get_emprestimos(){ //RETORNA O VALOR TOTAL DE EMPRÉSTI
 void ContabilJuridica::_calculo_DRE(){ //CÁLCULO DA DEMONSTRAÇÃO DO RESULTADO DO EXERCÍCIO
     double receita = 0;
     double despesa = 0;
+    double lucro = 0;
     for(int i = 0; i < _contasReceber.size(); i++){ 
         receita += _contasReceber[i].second; //CÁLCULO DAS RECEITAS
     }
     for(int i = 0; i < _contasPagar.size(); i++){
         despesa += _contasPagar[i].second; //CÁLCULO DAS DESPESAS
     }
-    _receita_bruta = receita;
-    _despesa = despesa;
-    _lucro = receita - despesa; //CÁCULO DO LUCRO OU PREJUÍZO
-    _result_dre.push_back(_lucro);
+    _receitas.push_back(receita);
+    _despesas.push_back(despesa);
+    lucro = receita - despesa; //CÁCULO DO LUCRO OU PREJUÍZO
+    _result_dre.push_back(lucro);
     std::cout << "Receita: " << receita << std::endl;
     std::cout << "Despesa: " << despesa << std::endl;
-    if(_lucro>=0){
-        std::cout << "Lucro: " << _lucro << std::endl;
+    if(lucro>=0){
+        std::cout << "Lucro: " << lucro << std::endl;
     }
     else{
-        std::cout << "Despesa: " << _lucro << std::endl;
+        std::cout << "Despesa: " << lucro << std::endl;
     }
 }
 
@@ -396,78 +397,8 @@ void ContabilJuridica::_resultado_balancete(){ //CÁLCULO DO BALANCETE
 }*/
 
 double ContabilJuridica::get_receita_bruta(){ //RETORNA O VALOR DA RECEITA BRUTA
+    for(int i = 0; i < _receitas.size(); i++){
+        _receita_bruta += _receitas[i]; //CÁLCULO DA RECEITA BRUTA
+    }
     return _receita_bruta; //RETORNA O VALOR DA RECEITA BRUTA
 }
-
-void ContabilJuridica::set_mes_contabil(){
-    std::string mes;
-    std::cout << "Digite o mês contábil: ";
-    std::cin.ignore ();
-    getline (std::cin,mes);
-    _mes_contabil = mes;
-}
-
-std::string ContabilJuridica::get_mes_contabil(){
-    return _mes_contabil;
-}
-
-//GETS PARA O ARMAZENAMENTO DE DADOS
-
-std::vector<std::pair<std::string,double>> ContabilJuridica::get_contasReceber_dados(){
-    return std::vector<std::pair<std::string,double>>(_contasReceber);
-}
-
-std::vector<std::pair<std::string,double>> ContabilJuridica::get_contasPagar_dados(){
-    return std::vector<std::pair<std::string,double>>(_contasPagar);
-}
-
-std::vector<std::pair<std::string,double>> ContabilJuridica::get_realizavelCurtoPrazo_dados(){
-    return std::vector<std::pair<std::string,double>>(_realizavelCurtoPrazo);
-}
-
-std::vector<std::pair<std::string,double>> ContabilJuridica::get_realizavelLongoPrazo_dados(){
-    return std::vector<std::pair<std::string,double>>(_realizavelLongoPrazo);
-}
-
-std::vector<std::pair<std::string,double>> ContabilJuridica::get_emprestimos_dados(){
-    return std::vector<std::pair<std::string,double>>(_emprestimos);
-}
-
-double ContabilJuridica::get_despesa(){
-    return _despesa;
-}
-
-double ContabilJuridica::get_lucro(){
-    return _lucro;
-}
-
-void ContabilJuridica::set_ano_contabil(){
-    std::cout << "Qual o ano da aplicação da Contabilidade?" << std::endl;
-    while (true)
-    {
-        try
-        { // tratamento de exceção para entradas inválidas
-            std::cin >> _ano_contabil;
-            if (std::cin.fail())
-            {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                throw std::invalid_argument("Devem ser digitados apenas números! Digite um ano válido(entre 2010 e 2150): ");
-            }
-            else if (_ano_contabil < 2010 || _ano_contabil > 2150)
-            {
-                throw std::invalid_argument("O ano contábil deve ser um ano válido(entre 2010 e 2150)! Digite novamente: ");
-            }
-            break;
-        }
-        catch (std::invalid_argument &e)
-        {
-            std::cerr << e.what() << std::endl;
-        }
-    }
-}
-
-int ContabilJuridica::get_ano_contabil(){
-    return _ano_contabil;
-}
-

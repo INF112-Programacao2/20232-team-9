@@ -3,49 +3,43 @@
 #include "pessoajuridica.h"
 #include "contabilidade_juridica.h"
 #include "juridica_industrial.h" 
-#include "recebe_arquivo.h"
 
-void JuridicaIndustrial::_calculo_aliquotas_anexos(std::string cpf){
+void JuridicaIndustrial::_calculo_aliquotas_anexos(){
     // INDUSTRIA*
-    RecebeArquivo receita;
 
     // Metalurgia**
 
     // Todo tipo de Metal = Simples Nacional ANEXO II
-    if ((receita.retorna_receita_bruta(cpf)/1000) <= 180){ //verifica se a receita bruta é menor que 180 mil
-        _result_simples_nacional = (receita.retorna_receita_bruta(cpf)) * 0.045; //calcula o valor a ser pago
+    if ((JuridicaIndustrial::get_receita_bruta()/1000) < 180){ //verifica se a receita bruta é menor que 180 mil
+        _result_simples_nacional = (JuridicaIndustrial::get_receita_bruta()+_valor_estoque) * 0.045; //calcula o valor a ser pago
         // aliquota 4,5%
         // desconto = 0
     }
-    else if (180 < (receita.retorna_receita_bruta(cpf)/1000) <= 360){ //verifica se a receita bruta é menor que 360 mil
-        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.078) - 5940; //calcula o valor a ser pago
+    if (180 < (JuridicaIndustrial::get_receita_bruta()/1000) < 360){ //verifica se a receita bruta é menor que 360 mil
+        _result_simples_nacional = (JuridicaIndustrial::get_receita_bruta() * 0.078) - 5940; //calcula o valor a ser pago
         // aliquota 7,8%
         // desconto = 5940
     }
-    else if (360 < (receita.retorna_receita_bruta(cpf)/1000) <= 720){ //verifica se a receita bruta é menor que 720 mil
-        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.1) - 13860; //calcula o valor a ser pago
+    if (360 < (JuridicaIndustrial::get_receita_bruta()/1000) < 720){ //verifica se a receita bruta é menor que 720 mil
+        _result_simples_nacional = (JuridicaIndustrial::get_receita_bruta() * 0.1) - 13860; //calcula o valor a ser pago
         // aliquota 10%
         // desconto = 13860
     }
-    else if (720 < (receita.retorna_receita_bruta(cpf)/1000) <= 1800){ //verifica se a receita bruta é menor que 1.8 milhões
-        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.112) - 22500; //calcula o valor a ser pago
+    if (720 < (JuridicaIndustrial::get_receita_bruta()/1000) < 1800){ //verifica se a receita bruta é menor que 1.8 milhões
+        _result_simples_nacional = (JuridicaIndustrial::get_receita_bruta() * 0.112) - 22500; //calcula o valor a ser pago
         // aliquota 11,2%
         // desconto = 22500
-    }   
-    else if (1800 < (receita.retorna_receita_bruta(cpf)/1000) <= 3600){ //verifica se a receita bruta é menor que 3.6 milhões
-        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.147) - 85500; //calcula o valor a ser pago
+    }
+    if (1800 < (JuridicaIndustrial::get_receita_bruta()/1000) < 3600){ //verifica se a receita bruta é menor que 3.6 milhões
+        _result_simples_nacional = (JuridicaIndustrial::get_receita_bruta() * 0.147) - 85500; //calcula o valor a ser pago
         // aliquota 14,7%
         // desconto = 85500
     }
-    else if (3600 < (receita.retorna_receita_bruta(cpf)/1000) <= 4800){ //verifica se a receita bruta é menor que 4.8 milhões
-        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.3) - 720000; //calcula o valor a ser pago
+    if (3600 < (JuridicaIndustrial::get_receita_bruta()/1000) < 4800){ //verifica se a receita bruta é menor que 4.8 milhões
+        _result_simples_nacional = (JuridicaIndustrial::get_receita_bruta() * 0.3) - 720000; //calcula o valor a ser pago
         // aliquota 30%
         // desconto = 720000
     }
-    else 
-        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.3) - 720000; //calcula o valor a ser pago
-        // aliquota 30%
-        // desconto = 720000
 }
 
 double JuridicaIndustrial::get_result_simples_nacional(){ //retorna o valor a ser pago ou restituído
@@ -53,7 +47,7 @@ double JuridicaIndustrial::get_result_simples_nacional(){ //retorna o valor a se
         std::cout << "A sua empresa não obteve faturamento." << std::endl;
         return _result_simples_nacional = 0;
     }
-    else if(_result_simples_nacional >= 0){ //verifica se o valor é maior que 0
+    else if(_result_simples_nacional > 0){ //verifica se o valor é maior que 0
         std::cout << "Valor a restituir: " << std::endl;
         return _result_simples_nacional;
     }
@@ -104,16 +98,10 @@ void JuridicaIndustrial::set_estoque(){ // ADICIONA PRODUTOS E VALORES AO ESTOQU
     }
 }
 
-double JuridicaIndustrial::get_estoque(){ //valor do estoque
+void JuridicaIndustrial::get_estoque(){ //valor do estoque
     for (int i = 0; i < _estoque.size(); i++){
-        std::cout <<"Fonte: " <<  _estoque[i].first << std::endl << "Valor: " << _estoque[i].second << std::endl; // lista os produtos e valores do estoque
+        std::cout <<"Fonte: " <<  _estoque[i].first << std::endl << " Valor: " << _estoque[i].second << std::endl; // lista os produtos e valores do estoque
         _valor_estoque += _estoque[i].second;
     }
-    std::cout << "Valor total do estoque: ";
-    return  _valor_estoque; // valor total do estoque
-}
-
-std::vector<std::pair<std::string, double>> JuridicaIndustrial::get_estoque_dados()
-{
-    return std::vector<std::pair<std::string, double>>(_estoque);
+    std::cout << "Valor total do estoque: " << _valor_estoque << std::endl; // valor total do estoque
 }

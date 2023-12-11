@@ -156,7 +156,7 @@ void ContabilFisica::_calcula_imposto_renda() // cálculo do imposto de renda do
 
 double ContabilFisica::_calcula_aliquota(double base_calculo){ // cálculo da alíquota com base de cálculo
     if (_base_calculo < 2112){ // cálculo da alíquota para base de cálculo menor que 2112
-        return _aliquota = 0;
+        return 0;
     }
     else if (_base_calculo >= 2112.01 && _base_calculo < 2826.65) // cálculo da alíquota para base de cálculo entre 2112.01 e 2826.65
     {
@@ -215,38 +215,4 @@ double ContabilFisica::get_imposto_dados(){ // retorna o valor do imposto de ren
         return _imposto_renda_final;
     }
     return 0;
-}
-
-double ContabilFisica::get_salario_bruto(){ // retorna o valor do salário bruto
-    return _salario_bruto;
-}
-
-void ContabilFisica::set_ano_contabil(){
-    std::cout << "Qual o ano da aplicação do imposto de renda?" << std::endl;
-    while (true)
-    {
-        try
-        { // tratamento de exceção para entradas inválidas
-            std::cin >> _ano_contabil;
-            if (std::cin.fail())
-            {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                throw std::invalid_argument("Devem ser digitados apenas números! Digite um ano válido(entre 2010 e 2150): ");
-            }
-            else if (_ano_contabil < 2010 || _ano_contabil > 2150)
-            {
-                throw std::invalid_argument("O ano contábil deve ser um ano válido(entre 2010 e 2150)! Digite novamente: ");
-            }
-            break;
-        }
-        catch (std::invalid_argument &e)
-        {
-            std::cerr << e.what() << std::endl;
-        }
-    }
-}
-
-int ContabilFisica::get_ano_contabil(){
-    return _ano_contabil;
 }
