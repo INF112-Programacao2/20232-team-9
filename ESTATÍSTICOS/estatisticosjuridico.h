@@ -17,13 +17,10 @@ public:
 
 
     //METODOS
-    void calcula_media_mensal();
-    void calcula_media_trimestral();
-    void calcula_media_semestral();
-    void calcula_media_anual();
-
-
-
+    void calcula_media_mensal(); //INFORMA OS DADOS DO BALANCETE DE DETERMINADO MÊS
+    void calcula_media_trimestral(); //INFORMA OS DADOS E COMPARA RECEITAS E LUCRO DO BALANCETE DE DETERMINADO TRIMESTRE
+    void calcula_media_semestral(); // INFORMA OS DADOS E COMPARA RECEITAS E LUCRO DO BALANCETE DE DETERMINADO SEMESTRE
+    void calcula_media_anual();     // INFORMA OS DADOS, COMPARA RECEITAS E LUCRO DO BALANCETE DE DETERMINADO ANO, E INFORMA O VALOR A RESTITUIR DO SIMPLES NACIONAL
 };
 
 //Porcentagem de crescimento

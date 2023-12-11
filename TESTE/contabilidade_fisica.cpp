@@ -220,3 +220,33 @@ double ContabilFisica::get_imposto_dados(){ // retorna o valor do imposto de ren
 double ContabilFisica::get_salario_bruto(){ // retorna o valor do salário bruto
     return _salario_bruto;
 }
+
+void ContabilFisica::set_ano_contabil(){
+    std::cout << "Qual o ano da aplicação do imposto de renda?" << std::endl;
+    while (true)
+    {
+        try
+        { // tratamento de exceção para entradas inválidas
+            std::cin >> _ano_contabil;
+            if (std::cin.fail())
+            {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                throw std::invalid_argument("Devem ser digitados apenas números! Digite um ano válido(entre 2010 e 2150): ");
+            }
+            else if (_ano_contabil < 2010 || _ano_contabil > 2150)
+            {
+                throw std::invalid_argument("O ano contábil deve ser um ano válido(entre 2010 e 2150)! Digite novamente: ");
+            }
+            break;
+        }
+        catch (std::invalid_argument &e)
+        {
+            std::cerr << e.what() << std::endl;
+        }
+    }
+}
+
+int ContabilFisica::get_ano_contabil(){
+    return _ano_contabil;
+}
