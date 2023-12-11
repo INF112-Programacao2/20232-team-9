@@ -9,7 +9,8 @@
 #include "estatisticosjuridico.h"
 
 void EstatisticosJuridico::dados_mensal(){
-    std::string cpf, mes, mod;
+    std::string cpf, mes;
+    int mod;
     std::fstream in;
 
     std::cout << "Informe o CPF: ";
@@ -18,25 +19,30 @@ void EstatisticosJuridico::dados_mensal(){
     std::cout << std::endl << "Informe o mes: ";
     std::cin >> mes;
 
-    std::cout << std::endl << "Informe o modelo: ";
+    std::cout << std::endl << "Informe o modelo" << std::endl;
+    std::cout << "(1) - Industrial" << std::endl;
+    std::cout << "(2) -  Comercial" << std::endl;
+    std::cout << "(3) - Prestação de Serviço" << std::endl;
     std::cin >> mod;
 
     std::cout << std::endl;
 
-    if(mod == "Industrial"){
+    if(mod == 1){
         std::fstream in("Usuarios_Juridico_Industrial.csv", std::ios::in);
     }
-    else if(mod == "Comercio"){
+    else if(mod == 2){
         std::fstream in("Usuarios_Juridico_Comercial.csv", std::ios::in);
     }
-    else if(mod == "Prestação de Serviço"){
+    else if(mod == 3){
         std::fstream in("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
     }
 
+    std::cout << mod << std::endl;
     if(!in.is_open()){
         std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
         return;
     }
+
 
     std::string aux1, aux2;
 
