@@ -64,7 +64,7 @@ void EstatisticosJuridico::dados_mensal(){
                 in.close();
                 return;
             }
-            for(int i = 0; i < 10; i++) getline(in, aux1, '\n');
+            for(int i = 0; i < 9; i++) getline(in, aux1, '\n');
         }
         
     }
@@ -108,7 +108,7 @@ void EstatisticosJuridico::dados_mensal(){
                 
             }
         }
-        for(int i = 0; i < 9; i++) getline(in, aux1, '\n');  
+        for(int i = 0; i < 8; i++) getline(in, aux1, '\n');  
     }
     else if(mod == 3){
         std::fstream in("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
