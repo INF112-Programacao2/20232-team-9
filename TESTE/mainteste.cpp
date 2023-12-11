@@ -7,6 +7,7 @@
 #include "juridica_industrial.h"
 #include "juridica_prestservico.h"
 #include "recebe_arquivo.h"
+#include "estatisticosfisico.h"
 
 double contabil_fisica(std::string cpf_informado)
 {
@@ -513,7 +514,8 @@ int main()
        //contabil_juridica(cpf); ESTATÍSTICO JURÍDICO 
         break;
       case (2):
-       //std::cout << contabil_fisica(cpf) << std::endl; ESTATISCO FISICO
+        EstatisticosFisico e;
+        e.imposto_renda_anual_fisico();  
         break;
       }
 
