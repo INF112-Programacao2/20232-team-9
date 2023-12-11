@@ -8,6 +8,7 @@
 #include "juridica_prestservico.h"
 #include "recebe_arquivo.h"
 #include "estatisticosfisico.h"
+#include "estatisticosjuridico.h"
 
 double contabil_fisica(std::string cpf_informado)
 {
@@ -539,8 +540,12 @@ int main()
       option = stoi (op);
       switch (option)
       {
-      case(1):
-       //contabil_juridica(cpf); ESTATÍSTICO JURÍDICO 
+      case(1):{
+        EstatisticosJuridico e;
+        e.dados_mensal();
+        break;
+      }
+
         break;
       case (2):{
         EstatisticosFisico e;

@@ -27,13 +27,13 @@ void EstatisticosJuridico::dados_mensal(){
 
     std::cout << std::endl;
 
-    if(mod == 1){
+    if(mod == "Industrial"){
         std::fstream in("Usuarios_Juridico_Industrial.csv", std::ios::in);
     }
-    else if(mod == 2){
+    else if(mod == "Comercio"){
         std::fstream in("Usuarios_Juridico_Comercial.csv", std::ios::in);
     }
-    else if(mod == 3){
+    else if(mod == "Prestação de Serviço"){
         std::fstream in("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
     }
 
