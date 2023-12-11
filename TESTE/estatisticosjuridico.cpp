@@ -43,7 +43,7 @@ void EstatisticosJuridico::dados_mensal(){
 
     std::cout << mod << std::endl;
 
-    if(!in.is_open()){
+    if(in.is_open()){
         std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
         return;
     }
@@ -52,9 +52,6 @@ void EstatisticosJuridico::dados_mensal(){
     std::string aux1, aux2;
     getline(in, aux1, '\n');
     std::cout << "Passei aqui: " << aux1 << std::endl;
-
-    getline(in, aux1, ',');
-    std::cout << aux1 << std::endl;
 
     while(in.peek() != EOF){
         std::cout << "ENTROU" << std::endl;
