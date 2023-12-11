@@ -9,24 +9,70 @@
 #include "estatisticosjuridico.h"
 
 void EstatisticosJuridico::dados_mensal(){
-    std::string cpf, mes;
-    int mod;
+    std::string cpf, mes, mod;
 
-    std::cout << "Informe o CPF: ";
-    std::cin >> cpf;
+    std::cout << "Digite seu CPF: ";
+    while (true){
+     try{ 
+      std::cin>>cpf;
+
+        if(cpf.size()<11 || cpf.size()>11){
+          throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido:");
+        }
+
+        else{
+          for(int i=0; cpf[i] != '\0'; i++){
+              if (!isdigit (cpf[i])){
+                throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números:");
+                break;
+              }
+          }
+        }
+
+        break;
+
+     }catch (std::invalid_argument &e){
+        std::cerr<<e.what()<<std::endl;
+
+     }catch (std::out_of_range &e2){
+        std::cerr<<e2.what()<<std::endl;
+     }    
+    }
 
     std::cout << std::endl << "Informe o mes: ";
-    std::cin >> mes;
+     while (true){
+     try
+     {
+      std::cin>>mes;
+      if(mes != "1" && mes != "2" && mes != "3" && mes != "4" && mes != "5" && mes != "6" && mes != "7" && mes != "8" && mes != "9" && mes != "10" && mes != "11" && mes != "11"){
+        throw std::invalid_argument ("O mês digitado não existe! Digite um mês válido (1 à 12): ");
+      }
 
-    std::cout << std::endl << "Informe o Modelo de Negócio:" << std::endl;
-    std::cout << "(1) - Industrial" << std::endl;
-    std::cout << "(2) - Comercial" << std::endl;
-    std::cout << "(3) - Prestação de Serviço" << std::endl;
-    std::cin >> mod;
+      break;
+     }
+     catch(const std::invalid_argument& e)
+     {
+        std::cerr << e.what() << '\n';
+     }
+    }
+    std::cout<<std::endl;
+    std::cout<<"Qual é o modelo jurídico da empresa? \n";
+    std::cout<<"(1)- Industrial \n"<<"(2)- Comercial \n"<<"(3)- Prestação de Serviço \n";
+    while(true){
+      try{
+        std::cin>>mod;
+        if(mod != "1" && mod != "2" && mod != "3"){
+          throw std::invalid_argument ("Opção inválida!! Digite uma opção válida: ");
+        }
 
+         break;
+        }catch(std::invalid_argument &e){
+          std::cerr<<e.what()<<std::endl;
+      }
+    }
     std::cout << std::endl;
 
-    if(mod == 1){
+    if(mod == "1"){
         std::fstream in("Usuarios_Juridico_Industrial.csv", std::ios::in);
         if (!in.is_open())
         {
@@ -67,7 +113,7 @@ void EstatisticosJuridico::dados_mensal(){
         }
         
     }
-    else if(mod == 2){
+    else if(mod == "2"){
         std::fstream in("Usuarios_Juridico_Comercial.csv", std::ios::in);
         if (!in.is_open())
         {
@@ -109,7 +155,7 @@ void EstatisticosJuridico::dados_mensal(){
         }
         for(int i = 0; i < 8; i++) getline(in, aux1, '\n');  
     }
-    else if(mod == 3){
+    else if(mod == "3"){
         std::fstream in("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
         if (!in.is_open())
         {
