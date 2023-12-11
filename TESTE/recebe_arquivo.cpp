@@ -270,8 +270,7 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
                       getline(ent, aux, '\n');
                       getline(ent, aux, ',');
                       getline(ent, aux, '\n');
-                      receita_bruta += atof(aux.c_str());   
-                      std::cout << "Valor: " << atof(aux.c_str()) << std::endl;
+                      receita_bruta += atof(aux.c_str());
                       getline(ent, aux, '\n');
                       getline(ent, aux, '\n');
                       getline(ent, aux, '\n');
