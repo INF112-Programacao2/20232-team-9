@@ -13,7 +13,6 @@ void JuridicaIndustrial::_calculo_aliquotas_anexos(std::string cpf){
 
     // Todo tipo de Metal = Simples Nacional ANEXO II
     if ((receita.retorna_receita_bruta(cpf)/1000) <= 180){ //verifica se a receita bruta é menor que 180 mil
-        std::cout << "Valor da receita: " << receita.retorna_receita_bruta(cpf) << std::endl;
         _result_simples_nacional = (receita.retorna_receita_bruta(cpf)) * 0.045; //calcula o valor a ser pago
         // aliquota 4,5%
         // desconto = 0
@@ -43,6 +42,10 @@ void JuridicaIndustrial::_calculo_aliquotas_anexos(std::string cpf){
         // aliquota 30%
         // desconto = 720000
     }
+    else 
+        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.3) - 720000; //calcula o valor a ser pago
+        // aliquota 30%
+        // desconto = 720000
 }
 
 double JuridicaIndustrial::get_result_simples_nacional(){ //retorna o valor a ser pago ou restituído

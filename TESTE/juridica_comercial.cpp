@@ -39,6 +39,10 @@ void JuridicaComercial::_calculo_aliquotas_anexos(std::string cpf){ // cálcula 
         // aliquota 19%
         // desconto = 378000
     }
+    else 
+        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.19) - 378000; //calcula o valor a ser pago
+        // aliquota 19%
+        // desconto = 378000
 }
 
 double JuridicaComercial::get_result_simples_nacional(){ // retorna o valor a ser pago ou restituído

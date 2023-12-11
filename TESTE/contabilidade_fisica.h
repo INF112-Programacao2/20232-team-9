@@ -18,9 +18,13 @@ private:
     double _aliquota;
     bool _empregado, _individual, _facultativo, _mei, _contribuinte;
     double _imposto_renda_final;
+    int _ano_contabil;
 
 
 public:
+    //SET
+    void set_ano_contabil();
+
     //GETS
     double get_inss();
     double get_deducao_dependente();
@@ -29,6 +33,7 @@ public:
     double get_imposto_dados();
     double get_Imposto_Renda_Final();
     double get_salario_bruto();
+    int get_ano_contabil();
 
     void _calcula_imposto_renda();
     void _calcula_inss(Pessoa &fisico);

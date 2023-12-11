@@ -37,6 +37,10 @@ class Pessoa{
 
     std::string get_tipo_pessoa ();
 
+    void set_cpf (std::string cpf);
+
+    void set_tipo_pessoa (std::string tipo_pessoa);
+
 };
 
 #endif

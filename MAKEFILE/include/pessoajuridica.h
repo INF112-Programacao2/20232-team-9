@@ -26,6 +26,10 @@ class PessoaJuridica : public Pessoa{
 
     void set_apelidoempresa (std::string apelidoempresa);
 
+    void set_cnpj(std::string cnpj);
+
+    void set_modelo_negocio(std::string modelo_negocio);
+
     void insere_cnpj ( );
 
     void edicao_cadastro (PessoaJuridica &juridico); 

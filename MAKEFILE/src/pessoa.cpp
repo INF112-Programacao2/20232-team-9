@@ -240,3 +240,15 @@ void Pessoa::set_local (std::string local){
     _local = local;
 
 }
+
+void Pessoa::set_cpf (std::string cpf){
+
+    _cpf = cpf;
+
+}
+
+void Pessoa::set_tipo_pessoa (std::string tipo_pessoa){
+
+    _tipo_pessoa = tipo_pessoa;
+
+}

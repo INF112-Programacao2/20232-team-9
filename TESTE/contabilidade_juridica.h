@@ -37,6 +37,7 @@ class ContabilJuridica {
 		double _despesa;
 		double _resultado_fluxo_caixa;
 		std::string _mes_contabil;
+		int _ano_contabil;
 		double _lucro;
 
 
@@ -58,8 +59,9 @@ class ContabilJuridica {
 		void set_emprestimos(); // seta a lista e o valor dos emprestimos
 		void set_contasPagar(); // seta a lista e o valor das contas a pagar
 		
-		//MẼS DA CONTABILIDADE FEITA
+		//MẼS E ANO DA CONTABILIDADE FEITA
 		void set_mes_contabil(); // seta o mês contábil
+		void set_ano_contabil(); // seta o ano contábil
 
 		//GET
 
@@ -82,8 +84,9 @@ class ContabilJuridica {
 		double get_contasPagar(); // retorna o valor total de contas a pagar
 		std::vector<std::pair<std::string, double>> get_contasPagar_dados(); // retorna a lista das contas a pagar
 
-		//MẼS DA CONTABILIDADE FEITA
+		//MẼS E ANO DA CONTABILIDADE FEITA
 		std::string get_mes_contabil(); // retorna o mês contábil
+		int get_ano_contabil(); // retorna o ano contábil
 
 		//GETS DE RECEITA E DESPESA
 		double get_despesa(); // retorna o valor total das despesas

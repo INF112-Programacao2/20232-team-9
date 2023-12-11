@@ -14,9 +14,10 @@ public:
     //SET   
     void set_estoque();  // seta a lista e o valor do estoque
     //GET
-    void get_estoque(); // retorna o valor total do estoque
+    double get_estoque(); // retorna o valor total do estoque
+    std::vector<std::pair<std::string, double>> get_estoque_dados(); // retorna a lista de estoque
     //METODOS
-    virtual void _calculo_aliquotas_anexos(); // cálcula as alíquotas de acordo com o anexo
+    virtual void _calculo_aliquotas_anexos(std::string cpf); // cálcula as alíquotas de acordo com o anexo
     virtual double get_result_simples_nacional(); // retorna o valor a ser pago ou restituído
 
 };
