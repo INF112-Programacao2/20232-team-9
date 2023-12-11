@@ -470,7 +470,36 @@ int main()
 
       option = stoi (op);
       std::cout << "Digite seu CPF: ";
-      std::cin >> cpf;
+      while (true){
+        try{ 
+          std::cin>>cpf;
+
+          if(cpf.size()<11 || cpf.size()>11){
+            throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido:");
+          }
+
+          else{
+            for(int i=0; cpf[i] != '\0'; i++){
+                if (!isdigit (cpf[i])){
+                  throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números:");
+                  break;
+               }
+              }
+          }
+
+         break;
+
+        }catch (std::invalid_argument &e){
+         std::cerr<<e.what()<<std::endl;
+
+        }catch (std::out_of_range &e2){
+         std::cerr<<e2.what()<<std::endl;
+        }    
+
+       }
+
+      std::cout<<std::endl;
+      
       switch (option)
       {
       case(1):
