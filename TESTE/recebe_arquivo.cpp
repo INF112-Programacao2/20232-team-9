@@ -48,7 +48,7 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
     out << "Contas a pagar:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -57,7 +57,7 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
     out << "Contas a receber:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -66,7 +66,7 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
     out << "Realizavel a curto prazo:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -75,7 +75,7 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
     out << "Realizavel a longo prazo:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ",," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -84,7 +84,7 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
 
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
 
     out << std::endl;
@@ -93,7 +93,7 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
     out << "Estoque:" << ",";
 
     for(int i = 0; i < aux.size(); i++){
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
 
     
@@ -120,7 +120,7 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     for (int i = 0; i < aux.size(); i++)
     {
         std::cout << "Fonte: " << aux[i].first << " Valor: " << aux[i].second << std::endl;
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -129,7 +129,7 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     out << "Contas a receber:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -138,7 +138,7 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     out << "Realizavel a curto prazo:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -147,7 +147,7 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     out << "Realizavel a longo prazo:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -156,7 +156,7 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     out << "Emprestimos:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out<<std::endl;
 
@@ -180,7 +180,7 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     out << "Contas a pagar:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -189,7 +189,7 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     out << "Contas a receber:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -198,7 +198,7 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     out << "Realizavel a curto prazo:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -207,7 +207,7 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     out << "Realizavel a longo prazo:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out << std::endl;
 
@@ -216,7 +216,7 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     out << "Emprestimos:" << ",";
     for (int i = 0; i < aux.size(); i++)
     {
-        out << aux[i].first << "," << aux[i].second << ",";
+        out << aux[i].first << ":," << aux[i].second << ";,";
     }
     out<<std::endl;
 

@@ -469,7 +469,7 @@ void ContabilJuridica::set_ano_contabil(){
             }
             else if (_ano_contabil < 2010 || _ano_contabil > 2150)
             {
-                throw std::invalid_argument("O ano contábil deve ser um ano válido(entre 2010 e 2150)! Digite novamente: ");
+                   throw std::invalid_argument("O ano contábil deve ser um ano válido(entre 2010 e 2150)! Digite novamente: ");
             }
             break;
         }
