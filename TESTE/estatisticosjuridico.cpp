@@ -33,6 +33,7 @@ void EstatisticosJuridico::dados_mensal(){
     }
     else if(mod == 2){
         in.close();
+        std::cout << "Entrei aqui" << std::endl;
         std::fstream in("Usuarios_Juridico_Comercial.csv", std::ios::in);
     }
     else if(mod == 3){
@@ -49,8 +50,11 @@ void EstatisticosJuridico::dados_mensal(){
 
 
     std::string aux1, aux2;
+    getline(in, aux1, '\n');
+    std::cout << "Passei aqui: " << aux1 << std::endl;
 
     while(in.peek() != EOF){
+        std::cout << "ENTROU" << std::endl;
         
         getline(in, aux1, ',');
         getline(in, aux2, ',');
