@@ -364,6 +364,8 @@ int main()
         {
           juridico.edicao_cadastro(juridico);
         }
+
+        std::cout<<std::endl;
         juridico.modelo_negocio();
 
         std::fstream out("Pessoa_Juridica.csv", std::ios::out | std::ios::app);
@@ -435,8 +437,7 @@ int main()
           fisico.edicao_cadastro_fis(fisico);
         }
         fisico.tipo_pessoa();
-        std::cout << std::endl;
-        std::cout << "Cadastro finalizado com sucesso!" << std::endl;
+        std::cout<<std::endl;
         std::fstream arquivofisico("Pessoa_Fisica.csv", std::ios::out | std::ios::app);
         arquivofisico << fisico.get_cpf() << "," << fisico.get_nomepessoa() << "," << fisico.get_local() << "," << fisico.get_tipo_pessoa() << std::endl;
         arquivofisico.close();
@@ -446,6 +447,7 @@ int main()
 
     case (2):
 
+      std::cout<<std::endl;
       std::cout << "Qual é o tipo de pessoa? \n";
       std::cout << "1- Pessoa Jurídica. \n";
       std::cout << "2- Pessoa Física. \n";
