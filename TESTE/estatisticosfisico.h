@@ -1,6 +1,6 @@
 #ifndef ESTATISTICOSFISICO_H
 #define ESTATISTICOSFISICO_H
-
+#include <bits/stdc++.h>
 #include "pessoa.h"
 #include "contabilidade_fisica.h"
 #include "recebe_arquivo.h"

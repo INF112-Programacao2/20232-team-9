@@ -1,14 +1,12 @@
-#ifndef ESTATISTICOSFISICO_H
-#define ESTATISTICOSFISICO_H
 #include <iostream>
 #include <bits/stdc++.h>
 #include "pessoa.h"
 #include "contabilidade_fisica.h"
 #include "recebe_arquivo.h"
+#include "estatisticosfisico.h"
 
-class EstatisticoFisico {
 
-void EstatisticoFisico::imposto_renda_anual_fisico (){ 
+void EstatisticosFisico::imposto_renda_anual_fisico(){ 
     std::string cpf, ano;
     
     std::cout << "Digite seu CPF: ";
@@ -42,6 +40,3 @@ void EstatisticoFisico::imposto_renda_anual_fisico (){
 
 }
 
-
-};
-#endif

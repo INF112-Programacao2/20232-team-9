@@ -1,21 +1,7 @@
-15262524656,Nicolas
-Salario,2500
-INSS,205.2
-Dependente,189.59
-Base,2105.21
-Aliquota,6.95273e-310
-Imposto de Renda,0
-13579246832,Hugo
-Salario,5000
-INSS,66
+15262524656,Nicolas,2023
+Salario,7500
+INSS,876.009
 Dependente,379.18
-Base,4554.82
-Aliquota,1024.83
-Imposto de Renda,373.304
-15262524656,Nicolas
-Salario,2500
-INSS,205.2
-Dependente,189.59
-Base,2105.21
-Aliquota,0
-Imposto de Renda,0
+Base,6244.81
+Aliquota,1717.32
+Imposto de Renda,832.363

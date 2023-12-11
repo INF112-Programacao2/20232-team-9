@@ -11,7 +11,7 @@
 
 double contabil_fisica(std::string cpf_informado)
 {
-  std::fstream in("data/Pessoa_Fisica.csv", std::ios::in);
+  std::fstream in("Pessoa_Fisica.csv", std::ios::in);
   std::string cpf, nome;
   if (!in.is_open())
   {
@@ -58,7 +58,7 @@ double contabil_fisica(std::string cpf_informado)
 
 void contabil_juridica(std::string cpf_informado){
   int _tipo_contabilidade;
-  std::fstream in("data/Pessoa_Juridica.csv", std::ios::in);
+  std::fstream in("Pessoa_Juridica.csv", std::ios::in);
   std::string cpf, nome;
   std::cout << "Qual Tipo de Contabilidade deseja fazer:" << std::endl;
   std::cout << "(1) - Balanço Mensal" << std::endl;
@@ -243,7 +243,6 @@ void confere_nomes(std::string &nome)
 
 int main()
 {
-
   std::string nomepessoa, nomeempresa, apelidoempresa, local, cnpj, cpf, opcao, selecionador, op;
   int selecionador2, option;
   bool valide = true;
@@ -507,19 +506,19 @@ int main()
       }
 
       option = stoi (op);
-
       switch (option)
       {
       case(1):
        //contabil_juridica(cpf); ESTATÍSTICO JURÍDICO 
         break;
-      case (2):
+      case (2):{
         EstatisticosFisico e;
-        e.imposto_renda_anual_fisico();  
+        e.imposto_renda_anual_fisico();
         break;
+        }  
+        
       }
-
-      break;
+    
 
     default:
       valide = false;
