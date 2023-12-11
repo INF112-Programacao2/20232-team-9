@@ -10,7 +10,7 @@
 
 void EstatisticosJuridico::dados_mensal(){
     std::string cpf, mes;
-    std::fstream in;
+    std::fstream *in;
     int mod;
 
     std::cout << "Informe o CPF: ";
@@ -28,53 +28,47 @@ void EstatisticosJuridico::dados_mensal(){
     std::cout << std::endl;
 
     if(mod == 1){
-        in.close();
-        std::fstream in("Usuarios_Juridico_Industrial.csv", std::ios::in);
+        std::fstream in2("Usuarios_Juridico_Industrial.csv", std::ios::in);
+        in = &in2;
     }
     else if(mod == 2){
-        in.close();
-        std::cout << "Entrei aqui" << std::endl;
-        std::fstream in("Usuarios_Juridico_Comercial.csv", std::ios::in);
+        std::fstream in2("Usuarios_Juridico_Comercial.csv", std::ios::in);
+        in = &in2;
     }
     else if(mod == 3){
-        in.close();
-        std::fstream in("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
+        std::fstream in2("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
+        in = &in2;
     }
 
-    std::cout << mod << std::endl;
-
-    if(in.is_open()){
+    if(!(*in).is_open()){
         std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
         return;
     }
 
-
     std::string aux1, aux2;
-    getline(in, aux1, '\n');
-    std::cout << "Passei aqui: " << aux1 << std::endl;
 
-    while(in.peek() != EOF){
-        std::cout << "ENTROU" << std::endl;
+    while((*in).peek() != EOF){
         
-        getline(in, aux1, ',');
-        getline(in, aux2, ',');
-        getline(in, aux2, ',');
+        getline(*in, aux1, ',');
+        getline(*in, aux2, ',');
+        getline(*in, aux2, ',');
 
         if(aux1 == cpf && aux2 == mes){
             
-            getline(in, aux1, '\n');
+            getline(*in, aux1, '\n');
 
             for(int i = 0; i < 9; i++){
                 while(aux1 != "//"){
-                    getline(in, aux1, ',');
+                    getline(*in, aux1, ',');
                     if(aux1 != "//"){
-                        getline(in, aux2, ',');
+                        getline(*in, aux2, ',');
                         std::cout << aux1 << aux2;
                     }
                     
                 }
             }
-            in.close();
+            (*in).close();
+            delete in;
             break;
         }
     }
