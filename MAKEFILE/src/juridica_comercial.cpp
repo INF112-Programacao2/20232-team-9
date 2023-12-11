@@ -8,7 +8,7 @@
 
 void JuridicaComercial::_calculo_aliquotas_anexos(std::string cpf){ // cálcula as alíquotas de acordo com o anexo
     RecebeArquivo receita;
-    std::cout << "Receita dentro do calculo: " << receita.retorna_receita_bruta(cpf) << std::endl;
+    std::cout << "Valor Total da Receita Bruta: " << receita.retorna_receita_bruta(cpf) << std::endl;
 
     if ((receita.retorna_receita_bruta(cpf)/1000) <=180){ //verifica se a receita bruta é menor que 180 mil
         _result_simples_nacional = receita.retorna_receita_bruta(cpf) * 0.04; // calcula o valor a ser pago
@@ -40,6 +40,10 @@ void JuridicaComercial::_calculo_aliquotas_anexos(std::string cpf){ // cálcula 
         // aliquota 19%
         // desconto = 378000
     }
+    else 
+        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.19) - 378000; //calcula o valor a ser pago
+        // aliquota 19%
+        // desconto = 378000
 }
 
 double JuridicaComercial::get_result_simples_nacional(){ // retorna o valor a ser pago ou restituído

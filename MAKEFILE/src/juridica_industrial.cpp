@@ -8,7 +8,7 @@
 void JuridicaIndustrial::_calculo_aliquotas_anexos(std::string cpf){
     // INDUSTRIA*
     RecebeArquivo receita;
-    std::cout << "Receita dentro do calculo: " << receita.retorna_receita_bruta(cpf) << std::endl;
+    std::cout << "Valor Total da Receita Bruta: " << receita.retorna_receita_bruta(cpf) << std::endl;
 
     // Metalurgia**
 
@@ -43,11 +43,15 @@ void JuridicaIndustrial::_calculo_aliquotas_anexos(std::string cpf){
         // aliquota 30%
         // desconto = 720000
     }
+    else 
+        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.3) - 720000; //calcula o valor a ser pago
+        // aliquota 30%
+        // desconto = 720000
 }
 
 double JuridicaIndustrial::get_result_simples_nacional(){ //retorna o valor a ser pago ou restituído
     if(_result_simples_nacional < 0){ //verifica se o valor é menor que 0
-        std::cout << "A sua empresa não obteve faturamento. ";
+        std::cout << "A sua empresa não obteve faturamento." << std::endl;
         return _result_simples_nacional = 0;
     }
     else if(_result_simples_nacional >= 0){ //verifica se o valor é maior que 0
@@ -87,8 +91,30 @@ void JuridicaIndustrial::set_estoque(){ // ADICIONA PRODUTOS E VALORES AO ESTOQU
             std::cin.ignore();
             std::cout << "Digite o nome do produto: ";  
             getline(std::cin, fonte);
-            std::cout << "Digite o valor do produto: ";
-            std::cin >> valor;
+            while (true)
+            {
+                std::cout << "Digite o valor do produto: ";
+                try
+                { // TRATAMENTO DE ERRO PARA ENTRADA DE DADOS
+                    std::cin >> valor;
+                    if (std::cin.fail())
+                    {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        throw std::invalid_argument("Devem ser digitados apenas números!");
+                    }
+                    if (valor < 0)
+                    {
+                        std::cout << "O valor não pode ser negativo!" << std::endl;
+                    }
+                    else
+                        break;
+                }
+                catch (std::invalid_argument &e)
+                {
+                    std::cerr << e.what() << std::endl;
+                }
+            }
             _estoque.push_back({fonte, valor});
         }
         else if(valida == 2){ // CASO O USUÁRIO NÃO QUEIRA ADICIONAR PRODUTOS E VALORES AO ESTOQUE E ENCERRE A LISTA
@@ -105,9 +131,6 @@ double JuridicaIndustrial::get_estoque(){ //valor do estoque
     for (int i = 0; i < _estoque.size(); i++){
         std::cout <<"Fonte: " <<  _estoque[i].first << std::endl << "Valor: " << _estoque[i].second << std::endl; // lista os produtos e valores do estoque
         _valor_estoque += _estoque[i].second;
-    }
-    if(_estoque.empty()){
-        _valor_estoque = 0;
     }
     std::cout << "Valor total do estoque: ";
     return  _valor_estoque; // valor total do estoque

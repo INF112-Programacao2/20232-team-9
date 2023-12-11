@@ -8,16 +8,17 @@
 #include "juridica_prestservico.h"
 #include "recebe_arquivo.h"
 #include "estatisticosfisico.h"
+#include "estatisticosjuridico.h"
 
-double contabil_fisica(std::string cpf_informado)
+void contabil_fisica(std::string cpf_informado)
 {
-  std::fstream in("Pessoa_Fisica.csv", std::ios::in);
+  std::fstream in("data/Pessoa_Fisica.csv", std::ios::in);
   std::string cpf, nome;
   if (!in.is_open())
   {
     std::cerr << "erro ao abrir arquivo!" << std::endl;
   }
-  while (in.peek() != EOF || cpf_informado != cpf)
+  while (in.peek() != EOF && cpf_informado != cpf)
   {
 
     getline(in, cpf, ',');
@@ -43,7 +44,8 @@ double contabil_fisica(std::string cpf_informado)
       RecebeArquivo r;
       r.recebe_dados_fisico(conta, pessoa);
       in.close();
-      return conta.get_Imposto_Renda_Final();
+      std::cout<<conta.get_Imposto_Renda_Final()<<std::endl;
+      return;
 
     }
 
@@ -52,29 +54,54 @@ double contabil_fisica(std::string cpf_informado)
       getline(in, cpf, '\n');
     }
   }
+  std::cout<<"O CPF informado não está cadastrado no sistema!! \n";
   in.close();
-  return -1;
+  return;
 }
 
 void contabil_juridica(std::string cpf_informado){
   int _tipo_contabilidade;
-  std::fstream in("Pessoa_Juridica.csv", std::ios::in);
+  std::fstream in("data/Pessoa_Juridica.csv", std::ios::in);
   std::string cpf, nome;
-  std::cout << "Qual Tipo de Contabilidade deseja fazer:" << std::endl;
-  std::cout << "(1) - Balanço Mensal" << std::endl;
-  std::cout << "(2) - Contabilidade Simples Nacional" << std::endl;
-  std::cin >> _tipo_contabilidade;
+
   if (!in.is_open())
   {
     std::cerr << "erro ao abrir arquivo!" << std::endl;
   }
-  while (in.peek() != EOF || cpf_informado != cpf)
+  while (in.peek() != EOF && cpf_informado != cpf)
   {
 
     getline(in, cpf, ',');
 
     if (cpf == cpf_informado)
     {
+      while (true)
+      {
+        std::cout << "Qual Tipo de Contabilidade deseja fazer:" << std::endl;
+        std::cout << "(1) - Balanço Mensal" << std::endl;
+        std::cout << "(2) - Contabilidade Simples Nacional" << std::endl;
+        try
+        { // tratamento de exceções para entrada de dados
+          std::cin >> _tipo_contabilidade;
+          if (std::cin.fail())
+          {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            throw std::invalid_argument("Devem ser digitados apenas números!");
+          }
+          else if (_tipo_contabilidade < 1 || _tipo_contabilidade > 2)
+          {
+            throw std::invalid_argument("Opção inválida! Digite novamente:");
+          }
+
+          break;
+        }
+        catch (std::invalid_argument &e)
+        {
+          std::cerr << e.what() << std::endl;
+        }
+      }
+
       std::string nome, local, tipo, cnpj, nome_empresa, apelido_empresa, modelo_negocio;
 
       getline(in, nome, ',');
@@ -84,6 +111,8 @@ void contabil_juridica(std::string cpf_informado){
       getline(in, nome_empresa, ',');
       getline(in, apelido_empresa, ',');
       getline(in, modelo_negocio, '\n');
+      //Para evitar que modelo de negócio "pegue" caracteres indesejados no csv que atrapalhem a comparação no momento da conferência do modelo de negócio no switch case:
+      modelo_negocio.erase(std::remove_if(modelo_negocio.begin(), modelo_negocio.end(), ::isspace), modelo_negocio.end()); 
 
       PessoaJuridica pessoa(nome, nome_empresa, apelido_empresa, local);
 
@@ -92,11 +121,11 @@ void contabil_juridica(std::string cpf_informado){
       pessoa.set_cnpj(cnpj);
       pessoa.set_modelo_negocio(modelo_negocio);
 
-      RecebeArquivo r;
+      RecebeArquivo r;  
 
       switch (_tipo_contabilidade)
       {
-      case 1:
+      case (1):
         if (pessoa.get_modelo_negocio() == "Industrial")
         {
           JuridicaIndustrial industria;
@@ -146,7 +175,7 @@ void contabil_juridica(std::string cpf_informado){
           in.close();
           return;
         }
-        else if (pessoa.get_modelo_negocio() == "Prestação de Serviço")
+        else if (pessoa.get_modelo_negocio() == "PrestaçãodeServiço")
         {
           JuridicaPrestServi prestservi;
           prestservi.set_mes_contabil();
@@ -171,7 +200,7 @@ void contabil_juridica(std::string cpf_informado){
         }
 
         break;
-      case 2:
+      case (2):
         if (pessoa.get_modelo_negocio() == "Industrial")
         {
           JuridicaIndustrial industria;
@@ -188,7 +217,7 @@ void contabil_juridica(std::string cpf_informado){
           in.close();
           return;
         }
-        else if (pessoa.get_modelo_negocio() == "Prestação de Serviço")
+        else if (pessoa.get_modelo_negocio() == "PrestaçãodeServiço")
         {
           JuridicaPrestServi prestservi;
           prestservi._calculo_aliquotas_anexos(cpf);
@@ -207,6 +236,7 @@ void contabil_juridica(std::string cpf_informado){
       getline(in, cpf, '\n');
     }
   }
+  std::cout<<"O CPF informado não está cadastrado no sistema!! \n";
   in.close();
   return;
 }
@@ -256,7 +286,7 @@ int main()
     std::cout << "(1) - Cadastrar \n";
     std::cout << "(2) - Realizar contabilidade (cliente já deve ser cadastrado) \n";
     std::cout << "(3) - Checar análises estatísticas (cliente já deve ser cadastrado) \n";
-    std::cout << "(4) - Sair do Menu \n";
+    std::cout << "(4) - Fechar programa \n";
     while (true)
     {
       try
@@ -368,7 +398,7 @@ int main()
         std::cout<<std::endl;
         juridico.modelo_negocio();
 
-        std::fstream out("Pessoa_Juridica.csv", std::ios::out | std::ios::app);
+        std::fstream out("data/Pessoa_Juridica.csv", std::ios::out | std::ios::app);
 
         out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << juridico.get_local() << "," << juridico.get_tipo_pessoa() 
         << "," << juridico.get_cnpj() << "," << juridico.get_nomeempresa() << "," << juridico.get_apelidoempresa() << 
@@ -438,7 +468,7 @@ int main()
         }
         fisico.tipo_pessoa();
         std::cout<<std::endl;
-        std::fstream arquivofisico("Pessoa_Fisica.csv", std::ios::out | std::ios::app);
+        std::fstream arquivofisico("data/Pessoa_Fisica.csv", std::ios::out | std::ios::app);
         arquivofisico << fisico.get_cpf() << "," << fisico.get_nomepessoa() << "," << fisico.get_local() << "," << fisico.get_tipo_pessoa() << std::endl;
         arquivofisico.close();
       }
@@ -504,9 +534,11 @@ int main()
       {
       case(1):
         contabil_juridica(cpf);
+        std::cout<<std::endl;
         break;
       case (2):
-        std::cout << contabil_fisica(cpf) << std::endl;
+        contabil_fisica(cpf);
+        std::cout<<std::endl;
         break;
       }
 
@@ -539,8 +571,12 @@ int main()
       option = stoi (op);
       switch (option)
       {
-      case(1):
-       //contabil_juridica(cpf); ESTATÍSTICO JURÍDICO 
+      case(1):{
+        EstatisticosJuridico e;
+        e.dados_mensal();
+        break;
+      }
+
         break;
       case (2):{
         EstatisticosFisico e;
@@ -549,7 +585,8 @@ int main()
         }  
         
       }
-    
+      std::cout << std::endl;
+      break;
 
     default:
       valide = false;

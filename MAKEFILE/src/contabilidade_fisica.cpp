@@ -190,19 +190,39 @@ double ContabilFisica::get_Imposto_Renda_Final(){ // retorna o valor do imposto 
 }
 
 double ContabilFisica::get_inss(){ // retorna o valor do inss
-    return _inss;
+    if(_inss < 0){
+        return 0;
+    }
+    else{
+        return _inss;
+    }
 }
 
 double ContabilFisica::get_deducao_dependente(){ // retorna o valor da dedução por dependente
-    return _deducao_dependente;
+    if(_deducao_dependente < 0){
+        return 0;
+    }
+    else{
+        return _deducao_dependente;
+    }
 }
 
 double ContabilFisica::get_base_calculo(){ // retorna o valor da base de cálculo
-    return _base_calculo;
+    if(_base_calculo < 0){
+        return 0;
+    }
+    else{
+        return _base_calculo;
+    }
 }
 
 double ContabilFisica::get_aliquota(){ // retorna o valor da alíquota
-    return _aliquota;
+    if(_aliquota < 0){
+        return 0;
+    }
+    else{
+        return _aliquota;
+    }
 }
 
 double ContabilFisica::get_imposto_dados(){ // retorna o valor do imposto de renda a ser pago ou restituído
@@ -218,7 +238,12 @@ double ContabilFisica::get_imposto_dados(){ // retorna o valor do imposto de ren
 }
 
 double ContabilFisica::get_salario_bruto(){ // retorna o valor do salário bruto
-    return _salario_bruto;
+    if(_salario_bruto < 0){
+        return 0;
+    }
+    else{
+        return _salario_bruto;
+    }
 }
 
 void ContabilFisica::set_ano_contabil(){

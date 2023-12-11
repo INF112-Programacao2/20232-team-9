@@ -30,8 +30,30 @@ void ContabilJuridica::set_caixa(){ //ADICIONA VALORES AO CAIXA
            }
         }
         if(valida == 1){ //CASO O USUÁRIO DESEJE ADICIONAR UM VALOR AO CAIXA
-            std::cout << "Digite o valor: ";
-            std::cin >> valor;
+            while (true)
+            {
+                std::cout << "Digite o valor: ";
+                try
+                { // tratamento de exceções para entrada de dados
+                    std::cin >> valor;
+                    if (std::cin.fail())
+                    {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        throw std::invalid_argument("Devem ser digitados apenas números!");
+                    }
+                    if (valor < 0)
+                    {
+                        std::cout << "O valor não pode ser negativo!" << std::endl;
+                    }
+                    else
+                        break;
+                }
+                catch (std::invalid_argument &e)
+                {
+                    std::cerr << e.what() << std::endl;
+                }
+            }
             _caixa.push_back(valor);
         }
         else if(valida == 2){ // CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES AO CAIXA E ENCERRE A LISTA
@@ -73,8 +95,30 @@ void ContabilJuridica::set_contasPagar(){ //ADICIONA VALORES ÀS CONTAS A PAGAR
             std::cin.ignore (); 
             std::cout << "Digite a fonte: ";
             getline (std::cin,fonte);
-            std::cout << "Digite o valor: ";
-            std::cin >> valor;
+            while (true)
+            {
+                std::cout << "Digite o valor: ";
+                try
+                { // tratamento de exceções para entrada de dados
+                    std::cin >> valor;
+                    if (std::cin.fail())
+                    {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        throw std::invalid_argument("Devem ser digitados apenas números!");
+                    }
+                    if (valor < 0)
+                    {
+                        std::cout << "O valor não pode ser negativo!" << std::endl;
+                    }
+                    else
+                        break;
+                }
+                catch (std::invalid_argument &e)
+                {
+                    std::cerr << e.what() << std::endl;
+                }
+            }
             _contasPagar.push_back({fonte,valor});
         }
         else if(valida == 2){ //CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES ÀS CONTAS A PAGAR E ENCERRE A LISTA
@@ -106,7 +150,12 @@ void ContabilJuridica::set_contasReceber(){ //ADICIONA VALORES ÀS CONTAS A RECE
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     throw std::invalid_argument("Devem ser digitados apenas números!");
                 }
-                break;
+                if (valor < 0)
+                {
+                    std::cout << "O valor não pode ser negativo!" << std::endl;
+                }
+                else
+                    break;
             }
             catch (std::invalid_argument &e){
                 std::cerr << e.what() << std::endl;
@@ -116,8 +165,30 @@ void ContabilJuridica::set_contasReceber(){ //ADICIONA VALORES ÀS CONTAS A RECE
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
             getline (std::cin,fonte);
-            std::cout << "Digite o valor: ";
-            std::cin >> valor;
+            while (true)
+            {
+                std::cout << "Digite o valor: ";
+                try
+                { // tratamento de exceções para entrada de dados
+                    std::cin >> valor;
+                    if (std::cin.fail())
+                    {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        throw std::invalid_argument("Devem ser digitados apenas números!");
+                    }
+                    if (valor < 0)
+                    {
+                        std::cout << "O valor não pode ser negativo!" << std::endl;
+                    }
+                    else
+                        break;
+                }
+                catch (std::invalid_argument &e)
+                {
+                    std::cerr << e.what() << std::endl;
+                }
+            }
             _contasReceber.push_back({fonte,valor});
         }
         else if(valida == 2){ //CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES ÀS CONTAS A RECEBER E ENCERRE A LISTA
@@ -148,7 +219,12 @@ void ContabilJuridica::set_realizavelCurtoPrazo(){ //ADICIONA VALORES AO REALIZ�
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     throw std::invalid_argument("Devem ser digitados apenas números!");
                 }
-                break;
+                if (valida < 0)
+                {
+                    std::cout << "O valor não pode ser negativo!" << std::endl;
+                }
+                else
+                    break;
             }
             catch (std::invalid_argument &e){
                 std::cerr << e.what() << std::endl;
@@ -158,8 +234,30 @@ void ContabilJuridica::set_realizavelCurtoPrazo(){ //ADICIONA VALORES AO REALIZ�
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
             getline (std::cin,fonte);
-            std::cout << "Digite o valor: ";
-            std::cin >> valor;
+            while (true)
+            {
+                std::cout << "Digite o valor: ";
+                try
+                { // tratamento de exceções para entrada de dados
+                    std::cin >> valor;
+                    if (std::cin.fail())
+                    {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        throw std::invalid_argument("Devem ser digitados apenas números!");
+                    }
+                    if (valor < 0)
+                    {
+                        std::cout << "O valor não pode ser negativo!" << std::endl;
+                    }
+                    else
+                        break;
+                }
+                catch (std::invalid_argument &e)
+                {
+                    std::cerr << e.what() << std::endl;
+                }
+            }
             _realizavelCurtoPrazo.push_back({fonte,valor});
         }
         else if(valida == 2){ //CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES AO REALIZÁVEL A CURTO PRAZO E ENCERRE A LISTA
@@ -202,8 +300,25 @@ void ContabilJuridica::set_realizavelLongoPrazo(){ //ADICIONA VALORES AO REALIZ�
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
             getline (std::cin,fonte);
-            std::cout << "Digite o valor: ";
-            std::cin >> valor;
+            while (true)
+            {
+                std::cout << "Digite o valor: ";
+                try
+                { // tratamento de exceções para entrada de dados
+                    std::cin >> valor;
+                    if (std::cin.fail())
+                    {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        throw std::invalid_argument("Devem ser digitados apenas números!");
+                    }
+                    break;
+                }
+                catch (std::invalid_argument &e)
+                {
+                    std::cerr << e.what() << std::endl;
+                }
+            }
             _realizavelLongoPrazo.push_back({fonte,valor});
         }
         else if(valida == 2){ //CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES AO REALIZÁVEL A LONGO PRAZO E ENCERRE A LISTA
@@ -246,8 +361,25 @@ void ContabilJuridica::set_emprestimos(){ //ADICIONA VALORES AOS EMPRÉSTIMOS
             std::cin.ignore ();
             std::cout << "Digite a fonte: ";
             getline (std::cin,fonte); 
-            std::cout << "Digite o valor: ";
-            std::cin >> valor;
+            while (true)
+            {
+                std::cout << "Digite o valor: ";
+                try
+                { // tratamento de exceções para entrada de dados
+                    std::cin >> valor;
+                    if (std::cin.fail())
+                    {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        throw std::invalid_argument("Devem ser digitados apenas números!");
+                    }
+                    break;
+                }
+                catch (std::invalid_argument &e)
+                {
+                    std::cerr << e.what() << std::endl;
+                }
+            }
             _emprestimos.push_back({fonte,valor});
         }
         else if(valida == 2){ //CASO O USUÁRIO NÃO DESEJE ADICIONAR MAIS VALORES AOS EMPRÉSTIMOS E ENCERRE A LISTA
@@ -268,7 +400,7 @@ double ContabilJuridica::get_caixa(){ //RETORNA O VALOR TOTAL DO CAIXA
     for(int i = 0; i < _caixa.size(); i++){
         total += _caixa[i];
     }
-    std::cout << "Valor total de Caixa: ";
+    //std::cout << "Valor total de Caixa: ";
     return total;
 }
 
@@ -469,7 +601,7 @@ void ContabilJuridica::set_ano_contabil(){
             }
             else if (_ano_contabil < 2010 || _ano_contabil > 2150)
             {
-                throw std::invalid_argument("O ano contábil deve ser um ano válido(entre 2010 e 2150)! Digite novamente: ");
+                   throw std::invalid_argument("O ano contábil deve ser um ano válido(entre 2010 e 2150)! Digite novamente: ");
             }
             break;
         }

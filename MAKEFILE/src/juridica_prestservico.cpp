@@ -8,7 +8,7 @@
 void JuridicaPrestServi::_calculo_aliquotas_anexos(std::string cpf){
     // SERVIÇO
     RecebeArquivo receita;
-    std::cout << "Receita dentro do calculo: " << receita.retorna_receita_bruta(cpf) << std::endl;
+    std::cout << "Valor Total da Receita Bruta: " << receita.retorna_receita_bruta(cpf) << std::endl;
 
     // Serviços de limpeza, vigigilância, obras, contrução de imóveis, etc**.
 
@@ -43,6 +43,10 @@ void JuridicaPrestServi::_calculo_aliquotas_anexos(std::string cpf){
         // aliquota 33%
         // desconto = 828000
     }
+    else 
+        _result_simples_nacional = (receita.retorna_receita_bruta(cpf) * 0.33) - 828000; //calcula o valor a ser pago
+        // aliquota 33%
+        // desconto = 828000
 }
 
 double JuridicaPrestServi::get_result_simples_nacional(){ //retorna o valor a ser pago ou restituído
