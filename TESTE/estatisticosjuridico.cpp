@@ -28,7 +28,6 @@ void EstatisticosJuridico::dados_mensal(){
 
     if(mod == 1){
         std::fstream in("Usuarios_Juridico_Industrial.csv", std::ios::in);
-        std::string cpf, mes;
         if (!in.is_open())
         {
             std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
@@ -64,7 +63,7 @@ void EstatisticosJuridico::dados_mensal(){
                 in.close();
                 return;
             }
-            for(int i = 0; i < 9; i++) getline(in, aux1, '\n');
+            for(int i = 0; i < 11; i++) getline(in, aux1, '\n');
         }
         
     }
