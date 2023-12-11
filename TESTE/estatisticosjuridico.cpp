@@ -61,7 +61,7 @@ void EstatisticosJuridico::dados_mensal(){
                     }
                     std::cout << std::endl;
                 }
-                for(int i = 0; i < 9; i++) getline(in, aux1, '\n');
+                for(int i = 0; i < 10; i++) getline(in, aux1, '\n');
             }
         }
         in.close();
