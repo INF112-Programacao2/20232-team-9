@@ -59,14 +59,13 @@ void EstatisticosJuridico::dados_mensal(){
                             std::cout << aux1[j];
                         }
                     }
-                    for(int i = 0; i < 9; i++) getline(in, aux1, '\n');
                     std::cout << std::endl;
                 }
-                in.close();
-                return;
+                for(int i = 0; i < 9; i++) getline(in, aux1, '\n');
             }
         }
-        
+        in.close();
+        return;
     }
     else if(mod == 2){
         std::fstream in("Usuarios_Juridico_Comercial.csv", std::ios::in);
@@ -103,10 +102,12 @@ void EstatisticosJuridico::dados_mensal(){
                     }
                     std::cout << std::endl;
                 }
-                in.close();
-                return;
+                for(int i = 0; i < 9; i++) getline(in, aux1, '\n');
+                
             }
         }
+        in.close();
+        return;
         
     }
     else if(mod == 3){
