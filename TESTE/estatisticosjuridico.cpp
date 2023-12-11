@@ -88,33 +88,15 @@ void EstatisticosJuridico::dados_mensal(){
                 }
                 for(int i = 0; i < 5;i++){
                     getline(in, aux1, '\n');
+                    std::cout << aux1 << std::endl;
                     for(int j = 0; j < aux1.size(); j++){
                         if(aux1[j] == ',') std::cout << " ";
                         else{
-                            std::cout << aux1[j];
+                            
                         }
                     }
+                    std::cout << std::endl;
                 }
-                //getline(in, aux2, ',');
-                //getline(in, aux2, '\n');
-                //std::cout << aux2 << ": ";
-                /*for(int i = 0; i < 5;i++){
-                    if(i < 1){
-                        getline(in, aux2, ',');
-                        getline(in, aux2, '\n');
-                    }
-                    std::cout << "AQUI: " << aux1 << ": ";
-                    if(i>=1){
-                        while (aux1 != "//"){
-                            getline(in, aux1, ',');
-                            if (aux1 == "//"){
-                                getline(in, aux1, '\n');
-                                std::cout << aux1;
-                            }
-                        }
-                    }
-                    getline(in, aux1, '\n');
-                }*/
                 in.close();
                 return;
             }
