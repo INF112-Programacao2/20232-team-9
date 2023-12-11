@@ -10,6 +10,7 @@
 
 void EstatisticosJuridico::dados_mensal(){
     std::string cpf, mes;
+    std::fstream in;
     int mod;
 
     std::cout << "Informe o CPF: ";
@@ -27,17 +28,16 @@ void EstatisticosJuridico::dados_mensal(){
     std::cout << std::endl;
 
     if(mod == 1){
+        in.close();
         std::fstream in("Usuarios_Juridico_Industrial.csv", std::ios::in);
     }
     else if(mod == 2){
-        std::cout << "Entrei aqui" << std::endl;
+        in.close();
         std::fstream in("Usuarios_Juridico_Comercial.csv", std::ios::in);
     }
     else if(mod == 3){
+        in.close();
         std::fstream in("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
-    }
-    else{
-        std::fstream in;
     }
 
     std::cout << mod << std::endl;
@@ -70,6 +70,7 @@ void EstatisticosJuridico::dados_mensal(){
                     
                 }
             }
+            in.close();
             break;
         }
     }
