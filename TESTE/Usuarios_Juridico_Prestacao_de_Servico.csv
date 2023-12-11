@@ -1,30 +1,120 @@
 12345678998,Ceci,1
-Caixa,300
-Receita,1200
-Lucro,900
-Despesa,300
-Contas a pagar,dentista,300,
-Contas a receber,salario,700,mesada,500,
+Caixa,0
+Receita,15000
+Lucro,1200
+Despesa,0
+Contas a pagar,
+Contas a receber,salario,700,mesa,500,
 Realizavel a curto prazo,
 Realizavel a longo prazo,
 Emprestimos,
 12345678998,Ceci,2
 Caixa,0
-Receita,2400
-Lucro,900
-Despesa,300
-Contas a pagar,dentista,300,
+Receita,15000
+Lucro,1200
+Despesa,0
+Contas a pagar,
 Contas a receber,salario,700,mesada,500,
 Realizavel a curto prazo,
 Realizavel a longo prazo,
 Emprestimos,
 12345678998,Ceci,3
 Caixa,0
-Receita,3500
-Lucro,1100
+Receita,15000
+Lucro,1200
 Despesa,0
 Contas a pagar,
-Contas a receber,salario,600,mesada,500,
+Contas a receber,salario,700,mesada,500,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,4
+Caixa,0
+Receita,15000
+Lucro,1200
+Despesa,0
+Contas a pagar,
+Contas a receber,salario,700,mesada,500,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,5
+Caixa,0
+Receita,15000
+Lucro,15000
+Despesa,0
+Contas a pagar,
+Contas a receber,teste,15000,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,6
+Caixa,0
+Receita,15000
+Lucro,15000
+Despesa,0
+Contas a pagar,
+Contas a receber,teste,15000,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,7
+Caixa,0
+Receita,15000
+Lucro,15000
+Despesa,0
+Contas a pagar,
+Contas a receber,teste,15000,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,8
+Caixa,0
+Receita,15000
+Lucro,15000
+Despesa,0
+Contas a pagar,
+Contas a receber,teste,15000,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,9
+Caixa,0
+Receita,15000
+Lucro,15000
+Despesa,0
+Contas a pagar,
+Contas a receber,teste,15000,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,10
+Caixa,0
+Receita,15000
+Lucro,15000
+Despesa,0
+Contas a pagar,
+Contas a receber,teste,15000,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,11
+Caixa,0
+Receita,15000
+Lucro,15000
+Despesa,0
+Contas a pagar,
+Contas a receber,teste,15000,
+Realizavel a curto prazo,
+Realizavel a longo prazo,
+Emprestimos,
+12345678998,Ceci,12
+Caixa,0
+Receita,15000
+Lucro,15000
+Despesa,0
+Contas a pagar,
+Contas a receber,teste,15000,
 Realizavel a curto prazo,
 Realizavel a longo prazo,
 Emprestimos,

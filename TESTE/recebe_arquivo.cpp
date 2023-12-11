@@ -87,6 +87,17 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
         out << aux[i].first << "," << aux[i].second << ",";
     }
 
+    out << std::endl;
+
+    aux = dados.get_estoque_dados();
+    out << "Estoque" << ",";
+
+    for(int i = 0; i < aux.size(); i++){
+        out << aux[i].first << "," << aux[i].second << ",";
+    }
+
+    
+    out<<std::endl;
     out.close();
 }
 
@@ -147,6 +158,7 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
+    out<<std::endl;
 
     out.close();
 }
@@ -207,6 +219,7 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
+    out<<std::endl;
 
     out.close();
 }
@@ -220,11 +233,8 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
     }
     while (in.peek() != EOF)
   {
-      std::cout << "Passei aqui" << std::endl;  
-      std::cout << "cpf_informado: " << cpf_informado << std::endl;
 
       getline(in, cpf, ',');
-        std::cout << "cpf: " << cpf << std::endl;
       if (cpf == cpf_informado)
       {
           std::string nome, local, tipo, cnpj, nome_empresa, apelido_empresa, modelo_negocio;
@@ -243,7 +253,6 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
           pessoa.set_tipo_pessoa(tipo);
           pessoa.set_cnpj(cnpj);
           pessoa.set_modelo_negocio(modelo_negocio);
-          std::cout << "Modelo de negocio: " << pessoa.get_modelo_negocio() << std::endl;
 
           RecebeArquivo r;
 
@@ -261,10 +270,20 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
                       getline(ent, aux, '\n');
                       getline(ent, aux, ',');
                       getline(ent, aux, '\n');
-                      receita_bruta += atof(aux.c_str());
+                      receita_bruta += atof(aux.c_str());   
+                      std::cout << "Valor: " << atof(aux.c_str()) << std::endl;
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, '\n');
+                      getline(ent, aux, '\n');
                   }
                   else
                   {
+                      getline(ent, cpf2, '\n');
                       getline(ent, cpf2, '\n');
                       getline(ent, cpf2, '\n');
                       getline(ent, cpf2, '\n');
@@ -293,6 +312,13 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
                       getline(ent, aux, ',');
                       getline(ent, aux, '\n');
                       receita_bruta += atof(aux.c_str());
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
                   }
                   else
                   {
@@ -326,6 +352,13 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
                       getline(ent, aux, ',');
                       getline(ent, aux, '\n');
                       receita_bruta += atof(aux.c_str());
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
+                      getline(ent, cpf2, '\n');
                   }
                   else
                   {
@@ -348,6 +381,5 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
         getline(in, cpf, '\n');
     }
   }
-  std::cout << "4" << std::endl;
   return receita_bruta;
 }

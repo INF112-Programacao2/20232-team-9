@@ -32,10 +32,9 @@ class ContabilJuridica {
 		std::vector<std::pair<std::string, double>> _realizavelLongoPrazo; //CÁLCULO BALANCETE
 		std::vector<std::pair<std::string, double>> _realizavelCurtoPrazo; 
 		std::vector<std::pair<std::string, double>> _emprestimos;
-		std::vector<int> _receitas;
-		std::vector<int> _despesas;
 		std::vector<int> _result_dre;
 		double _receita_bruta;
+		double _despesa;
 		double _resultado_fluxo_caixa;
 		std::string _mes_contabil;
 		double _lucro;
@@ -95,7 +94,7 @@ class ContabilJuridica {
 		void _calculo_DRE(); // cálcula a Demonstração do Resultado do Exercício
 		void _calculo_fluxo_caixa(); // cálcula o fluxo de caixa
 		void _resultado_balancete(); // cálcula o balancete
-		virtual void _calculo_aliquotas_anexos() = 0; // cálcula as alíquotas de acordo com o anexo
+		virtual void _calculo_aliquotas_anexos(std::string cpf) = 0; // cálcula as alíquotas de acordo com o anexo
 		virtual double get_result_simples_nacional() = 0; // retorna o valor a ser pago ou restituído
 		 
 };

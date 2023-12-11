@@ -275,50 +275,50 @@ double ContabilJuridica::get_caixa(){ //RETORNA O VALOR TOTAL DO CAIXA
 double ContabilJuridica::get_contasPagar(){ //RETORNA O VALOR TOTAL DAS CONTAS A PAGAR
     double total = 0;
     for(int i = 0; i < _contasPagar.size(); i++){
-        //std::cout << _contasPagar[i].first << " : " << _contasPagar[i].second << std::endl; //IMPRIME A LISTA DE CONTAS A PAGAR
+        std::cout << _contasPagar[i].first << " : " << _contasPagar[i].second << std::endl; //IMPRIME A LISTA DE CONTAS A PAGAR
         total += _contasPagar[i].second;
     }
-    //std::cout << "Valor total de Contas a Pagar: ";
+    std::cout << "Valor total de Contas a Pagar: ";
     return total; // RETORNA O VALOR TOTAL DAS CONTAS A PAGAR
 }
 
 double ContabilJuridica::get_contasReceber(){ //RETORNA O VALOR TOTAL DAS CONTAS A RECEBER
     double total = 0;
     for(int i = 0; i < _contasReceber.size(); i++){
-        //std::cout << _contasReceber[i].first << " : " << _contasReceber[i].second << std::endl; //IMPRIME A LISTA DE CONTAS A RECEBER
+        std::cout << _contasReceber[i].first << " : " << _contasReceber[i].second << std::endl; //IMPRIME A LISTA DE CONTAS A RECEBER
         total += _contasReceber[i].second;
     }
-    //std::cout << "Valor total de Contas a Receber: ";
+    std::cout << "Valor total de Contas a Receber: ";
     return total; // RETORNA O VALOR TOTAL DAS CONTAS A RECEBER
 }
 
 int ContabilJuridica::get_realizavelCurtoPrazo(){ //RETORNA O VALOR TOTAL DO REALIZÁVEL A CURTO PRAZO
     int total = 0;
     for(int i = 0; i < _realizavelCurtoPrazo.size(); i++){
-        //std::cout << _realizavelCurtoPrazo[i].first << " : " << _realizavelCurtoPrazo[i].second << std::endl; //IMPRIME A LISTA DE REALIZÁVEL A CURTO PRAZO
+        std::cout << _realizavelCurtoPrazo[i].first << " : " << _realizavelCurtoPrazo[i].second << std::endl; //IMPRIME A LISTA DE REALIZÁVEL A CURTO PRAZO
         total += _realizavelCurtoPrazo[i].second;
     }
-    //std::cout << "Valor total de Realizável a Curto Prazo: ";
+    std::cout << "Valor total de Realizável a Curto Prazo: ";
     return total; // RETORNA O VALOR TOTAL DO REALIZÁVEL A CURTO PRAZO
 }
 
 int ContabilJuridica::get_realizavelLongoPrazo(){ //RETORNA O VALOR TOTAL DO REALIZÁVEL A LONGO PRAZO
     int total = 0;
     for(int i = 0; i < _realizavelLongoPrazo.size(); i++){
-        //std::cout << _realizavelLongoPrazo[i].first << " : " << _realizavelLongoPrazo[i].second << std::endl; //IMPRIME A LISTA DE REALIZÁVEL A LONGO PRAZO
+        std::cout << _realizavelLongoPrazo[i].first << " : " << _realizavelLongoPrazo[i].second << std::endl; //IMPRIME A LISTA DE REALIZÁVEL A LONGO PRAZO
         total += _realizavelLongoPrazo[i].second;
     }
-    //std::cout << "Valor total de Realizável a Longo Prazo: ";
+    std::cout << "Valor total de Realizável a Longo Prazo: ";
     return total; // RETORNA O VALOR TOTAL DO REALIZÁVEL A LONGO PRAZO
 }
 
 double ContabilJuridica::get_emprestimos(){ //RETORNA O VALOR TOTAL DE EMPRÉSTIMOS
     double total = 0;
     for(int i = 0; i < _emprestimos.size(); i++){
-        //std::cout << _emprestimos[i].first << " : " << _emprestimos[i].second << std::endl; //IMPRIME A LISTA DE EMPRÉSTIMOS
+        std::cout << _emprestimos[i].first << " : " << _emprestimos[i].second << std::endl; //IMPRIME A LISTA DE EMPRÉSTIMOS
         total += _emprestimos[i].second;
     }
-    //std::cout << "Valor total de Empréstimos: ";
+    std::cout << "Valor total de Empréstimos: ";
     return total; // RETORNA O VALOR TOTAL DE EMPRÉSTIMOS
 }
 
@@ -333,8 +333,8 @@ void ContabilJuridica::_calculo_DRE(){ //CÁLCULO DA DEMONSTRAÇÃO DO RESULTADO
     for(int i = 0; i < _contasPagar.size(); i++){
         despesa += _contasPagar[i].second; //CÁLCULO DAS DESPESAS
     }
-    _receitas.push_back(receita);
-    _despesas.push_back(despesa);
+    _receita_bruta = receita;
+    _despesa = despesa;
     _lucro = receita - despesa; //CÁCULO DO LUCRO OU PREJUÍZO
     _result_dre.push_back(_lucro);
     std::cout << "Receita: " << receita << std::endl;
@@ -396,9 +396,6 @@ void ContabilJuridica::_resultado_balancete(){ //CÁLCULO DO BALANCETE
 }*/
 
 double ContabilJuridica::get_receita_bruta(){ //RETORNA O VALOR DA RECEITA BRUTA
-    for(int i = 0; i < _receitas.size(); i++){
-        _receita_bruta += _receitas[i]; //CÁLCULO DA RECEITA BRUTA
-    }
     return _receita_bruta; //RETORNA O VALOR DA RECEITA BRUTA
 }
 
@@ -437,11 +434,7 @@ std::vector<std::pair<std::string,double>> ContabilJuridica::get_emprestimos_dad
 }
 
 double ContabilJuridica::get_despesa(){
-    double despesa = 0;
-    for(int i = 0; i < _despesas.size(); i++){
-        despesa += _despesas[i];
-    }
-    return despesa;
+    return _despesa;
 }
 
 double ContabilJuridica::get_lucro(){

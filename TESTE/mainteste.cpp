@@ -55,8 +55,13 @@ double contabil_fisica(std::string cpf_informado)
 }
 
 void contabil_juridica(std::string cpf_informado){
+  int _tipo_contabilidade;
   std::fstream in("Pessoa_Juridica.csv", std::ios::in);
   std::string cpf, nome;
+  std::cout << "Qual Tipo de Contabilidade deseja fazer:" << std::endl;
+  std::cout << "(1) - Balanço Mensal" << std::endl;
+  std::cout << "(2) - Contabilidade Simples Nacional" << std::endl;
+  std::cin >> _tipo_contabilidade;
   if (!in.is_open())
   {
     std::cerr << "erro ao abrir arquivo!" << std::endl;
@@ -86,49 +91,108 @@ void contabil_juridica(std::string cpf_informado){
       pessoa.set_modelo_negocio(modelo_negocio);
 
       RecebeArquivo r;
-      
-      if(pessoa.get_modelo_negocio() == "Industrial"){
+
+      switch (_tipo_contabilidade)
+      {
+      case 1:
+        if (pessoa.get_modelo_negocio() == "Industrial")
+        {
           JuridicaIndustrial industria;
           industria.set_mes_contabil();
           industria.set_caixa();
-          std::cout<<industria.get_caixa ()<<std::endl;
-          industria.set_contasPagar ();
-          std::cout<<industria.get_contasPagar ()<<std::endl;
-          industria.set_contasReceber ();
-          std::cout<<industria.get_contasReceber ()<<std::endl;
-          industria._calculo_DRE ();
-          industria._calculo_fluxo_caixa ();
+          std::cout << industria.get_caixa() << std::endl;
+          industria.set_contasPagar();
+          std::cout << industria.get_contasPagar() << std::endl;
+          industria.set_contasReceber();
+          std::cout << industria.get_contasReceber() << std::endl;
+          industria.set_emprestimos();
+          std::cout << industria.get_emprestimos() << std::endl;
+          industria.set_estoque();
+          std:: cout << industria.get_estoque() << std::endl;
+          industria.set_realizavelCurtoPrazo();
+          std::cout << industria.get_realizavelCurtoPrazo() << std::endl;
+          industria.set_realizavelLongoPrazo();
+          std::cout << industria.get_realizavelLongoPrazo() << std::endl;
+
+          industria._calculo_DRE();
+          industria._calculo_fluxo_caixa();
           r.recebe_dados_industrial(industria, pessoa);
+          in.close();
           return;
-      }
-      else if(pessoa.get_modelo_negocio() == "Comercial"){
+        }
+        else if (pessoa.get_modelo_negocio() == "Comercial")
+        {
           JuridicaComercial comercio;
           comercio.set_mes_contabil();
           comercio.set_caixa();
-          std::cout<<comercio.get_caixa ()<<std::endl;
-          comercio.set_contasPagar ();
-          std::cout<<comercio.get_contasPagar ()<<std::endl;
-          comercio.set_contasReceber ();
-          std::cout<<comercio.get_contasReceber ()<<std::endl;
-          comercio._calculo_DRE ();
-          comercio._calculo_fluxo_caixa ();
+          std::cout << comercio.get_caixa() << std::endl;
+          comercio.set_contasPagar();
+          std::cout << comercio.get_contasPagar() << std::endl;
+          comercio.set_contasReceber();
+          std::cout << comercio.get_contasReceber() << std::endl;
+          comercio.set_emprestimos();
+          std::cout << comercio.get_emprestimos() << std::endl;
+          comercio.set_realizavelCurtoPrazo();
+          std::cout << comercio.get_realizavelCurtoPrazo() << std::endl;
+          comercio.set_realizavelLongoPrazo();
+          std::cout << comercio.get_realizavelLongoPrazo() << std::endl;
+          comercio._calculo_DRE();
+          comercio._calculo_fluxo_caixa();
           r.recebe_dados_comercial(comercio, pessoa);
+          in.close();
           return;
-      }
-      else if(pessoa.get_modelo_negocio() == "Prestação de Serviço"){
+        }
+        else if (pessoa.get_modelo_negocio() == "Prestação de Serviço")
+        {
           JuridicaPrestServi prestservi;
           prestservi.set_mes_contabil();
           prestservi.set_caixa();
-          std::cout<<prestservi.get_caixa ()<<std::endl;
-          prestservi.set_contasPagar ();
-          std::cout<<prestservi.get_contasPagar ()<<std::endl;
-          prestservi.set_contasReceber ();
-          std::cout<<prestservi.get_contasReceber ()<<std::endl;
-          prestservi._calculo_DRE ();
-          prestservi._calculo_fluxo_caixa ();
+          std::cout << prestservi.get_caixa() << std::endl;
+          prestservi.set_contasPagar();
+          std::cout << prestservi.get_contasPagar() << std::endl;
+          prestservi.set_contasReceber();
+          std::cout << prestservi.get_contasReceber() << std::endl;
+          prestservi.set_emprestimos();
+          std::cout << prestservi.get_emprestimos() << std::endl;
+          prestservi.set_realizavelCurtoPrazo();
+          std::cout << prestservi.get_realizavelCurtoPrazo() << std::endl;
+          prestservi.set_realizavelLongoPrazo();
+          std::cout << prestservi.get_realizavelLongoPrazo() << std::endl;
+          prestservi._calculo_DRE();
+          prestservi._calculo_fluxo_caixa();
           r.recebe_dados_prestservico(prestservi, pessoa);
-          std::cout << r.retorna_receita_bruta(cpf) << std::endl;
+          in.close();
           return;
+        }
+
+        break;
+      case 2:
+        if (pessoa.get_modelo_negocio() == "Industrial")
+        {
+          JuridicaIndustrial industria;
+          industria._calculo_aliquotas_anexos(cpf);
+          std:: cout << industria.get_result_simples_nacional() << std::endl;
+          in.close();
+          return;
+        }
+        else if (pessoa.get_modelo_negocio() == "Comercial")
+        {
+          JuridicaComercial comercio;
+          comercio._calculo_aliquotas_anexos(cpf);
+          std::cout << comercio.get_result_simples_nacional() << std::endl;
+          in.close();
+          return;
+        }
+        else if (pessoa.get_modelo_negocio() == "Prestação de Serviço")
+        {
+          JuridicaPrestServi prestservi;
+          prestservi._calculo_aliquotas_anexos(cpf);
+          std::cout << prestservi.get_result_simples_nacional() << std::endl;
+          in.close();
+          return;
+        }
+      default:
+        break;
       }
 
     }
