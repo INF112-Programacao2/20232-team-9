@@ -506,8 +506,6 @@ int main()
       }
 
       option = stoi (op);
-      std::cout << "Digite seu CPF: ";
-      std::cin >> cpf;
 
       switch (option)
       {
