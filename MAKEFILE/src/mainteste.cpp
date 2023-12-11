@@ -7,10 +7,11 @@
 #include "juridica_industrial.h"
 #include "juridica_prestservico.h"
 #include "recebe_arquivo.h"
+#include "estatisticosfisico.h"
 
 double contabil_fisica(std::string cpf_informado)
 {
-  std::fstream in("data/Pessoa_Fisica.csv", std::ios::in);
+  std::fstream in("Pessoa_Fisica.csv", std::ios::in);
   std::string cpf, nome;
   if (!in.is_open())
   {
@@ -57,7 +58,7 @@ double contabil_fisica(std::string cpf_informado)
 
 void contabil_juridica(std::string cpf_informado){
   int _tipo_contabilidade;
-  std::fstream in("data/Pessoa_Juridica.csv", std::ios::in);
+  std::fstream in("Pessoa_Juridica.csv", std::ios::in);
   std::string cpf, nome;
   std::cout << "Qual Tipo de Contabilidade deseja fazer:" << std::endl;
   std::cout << "(1) - Balanço Mensal" << std::endl;
@@ -242,9 +243,8 @@ void confere_nomes(std::string &nome)
 
 int main()
 {
-
-  std::string nomepessoa, nomeempresa, apelidoempresa, local, cnpj, cpf, opcao, selecionador;
-  int selecionador2;
+  std::string nomepessoa, nomeempresa, apelidoempresa, local, cnpj, cpf, opcao, selecionador, op;
+  int selecionador2, option;
   bool valide = true;
 
   while (valide)
@@ -364,9 +364,11 @@ int main()
         {
           juridico.edicao_cadastro(juridico);
         }
+
+        std::cout<<std::endl;
         juridico.modelo_negocio();
 
-        std::fstream out("data/Pessoa_Juridica.csv", std::ios::out | std::ios::app);
+        std::fstream out("Pessoa_Juridica.csv", std::ios::out | std::ios::app);
 
         out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << juridico.get_local() << "," << juridico.get_tipo_pessoa() 
         << "," << juridico.get_cnpj() << "," << juridico.get_nomeempresa() << "," << juridico.get_apelidoempresa() << 
@@ -435,9 +437,8 @@ int main()
           fisico.edicao_cadastro_fis(fisico);
         }
         fisico.tipo_pessoa();
-        std::cout << std::endl;
-        std::cout << "Cadastro finalizado com sucesso!" << std::endl;
-        std::fstream arquivofisico("data/Pessoa_Fisica.csv", std::ios::out | std::ios::app);
+        std::cout<<std::endl;
+        std::fstream arquivofisico("Pessoa_Fisica.csv", std::ios::out | std::ios::app);
         arquivofisico << fisico.get_cpf() << "," << fisico.get_nomepessoa() << "," << fisico.get_local() << "," << fisico.get_tipo_pessoa() << std::endl;
         arquivofisico.close();
       }
@@ -446,11 +447,7 @@ int main()
 
     case (2):
 
-      // PARA LUIS:
-
-      // PARA CONFIRMAR O TIPO DE PESSOA
-
-      int op;
+      std::cout<<std::endl;
       std::cout << "Qual é o tipo de pessoa? \n";
       std::cout << "1- Pessoa Jurídica. \n";
       std::cout << "2- Pessoa Física. \n";
@@ -459,7 +456,7 @@ int main()
         try
         {
           std::cin >> op;
-          if (op != 1 && op != 2)
+          if (op != "1" && op != "2")
           {
             throw std::invalid_argument("Opção inválida!! Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física:");
           }
@@ -471,9 +468,39 @@ int main()
         }
       }
 
-      std::cout << "Digite seu cpf: ";
-      std::cin >> cpf;
-      switch (op)
+      option = stoi (op);
+      std::cout << "Digite seu CPF: ";
+      while (true){
+        try{ 
+          std::cin>>cpf;
+
+          if(cpf.size()<11 || cpf.size()>11){
+            throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido:");
+          }
+
+          else{
+            for(int i=0; cpf[i] != '\0'; i++){
+                if (!isdigit (cpf[i])){
+                  throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números:");
+                  break;
+               }
+              }
+          }
+
+         break;
+
+        }catch (std::invalid_argument &e){
+         std::cerr<<e.what()<<std::endl;
+
+        }catch (std::out_of_range &e2){
+         std::cerr<<e2.what()<<std::endl;
+        }    
+
+       }
+
+      std::cout<<std::endl;
+      
+      switch (option)
       {
       case(1):
         contabil_juridica(cpf);
@@ -483,26 +510,46 @@ int main()
         break;
       }
 
-      // PARA CONTABILIDADE DO TIPO JURIDICO INDUSTRIAL
-      
-      /*  JuridicaIndustrial industria;
-          industria.set_caixa();
-          std::cout<<industria.get_caixa ()<<std::endl;
-          industria.set_contasPagar ();
-          std::cout<<industria.get_contasPagar ()<<std::endl;
-          industria.set_contasReceber ();
-          std::cout<<industria.get_contasReceber ()<<std::endl;
-          industria._calculo_DRE ();
-          industria._calculo_fluxo_caixa ();
-       */
-
       break;
 
     case (3):
 
       // ESTATISTICOS
 
-      break;
+      std::cout << "Qual é o tipo de pessoa? \n";
+      std::cout << "1- Pessoa Jurídica. \n";
+      std::cout << "2- Pessoa Física. \n";
+      while (true)
+      {
+        try
+        {
+          std::cin >> op;
+          if (op != "1" && op != "2")
+          {
+            throw std::invalid_argument("Opção inválida!! Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física:");
+          }
+          break;
+        }
+        catch (std::invalid_argument &e)
+        {
+          std::cerr << e.what() << std::endl;
+        }
+      }
+
+      option = stoi (op);
+      switch (option)
+      {
+      case(1):
+       //contabil_juridica(cpf); ESTATÍSTICO JURÍDICO 
+        break;
+      case (2):{
+        EstatisticosFisico e;
+        e.imposto_renda_anual_fisico();
+        break;
+        }  
+        
+      }
+    
 
     default:
       valide = false;

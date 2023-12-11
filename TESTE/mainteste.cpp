@@ -364,6 +364,8 @@ int main()
         {
           juridico.edicao_cadastro(juridico);
         }
+
+        std::cout<<std::endl;
         juridico.modelo_negocio();
 
         std::fstream out("Pessoa_Juridica.csv", std::ios::out | std::ios::app);
@@ -435,8 +437,7 @@ int main()
           fisico.edicao_cadastro_fis(fisico);
         }
         fisico.tipo_pessoa();
-        std::cout << std::endl;
-        std::cout << "Cadastro finalizado com sucesso!" << std::endl;
+        std::cout<<std::endl;
         std::fstream arquivofisico("Pessoa_Fisica.csv", std::ios::out | std::ios::app);
         arquivofisico << fisico.get_cpf() << "," << fisico.get_nomepessoa() << "," << fisico.get_local() << "," << fisico.get_tipo_pessoa() << std::endl;
         arquivofisico.close();
@@ -446,6 +447,7 @@ int main()
 
     case (2):
 
+      std::cout<<std::endl;
       std::cout << "Qual é o tipo de pessoa? \n";
       std::cout << "1- Pessoa Jurídica. \n";
       std::cout << "2- Pessoa Física. \n";
@@ -468,7 +470,36 @@ int main()
 
       option = stoi (op);
       std::cout << "Digite seu CPF: ";
-      std::cin >> cpf;
+      while (true){
+        try{ 
+          std::cin>>cpf;
+
+          if(cpf.size()<11 || cpf.size()>11){
+            throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido:");
+          }
+
+          else{
+            for(int i=0; cpf[i] != '\0'; i++){
+                if (!isdigit (cpf[i])){
+                  throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números:");
+                  break;
+               }
+              }
+          }
+
+         break;
+
+        }catch (std::invalid_argument &e){
+         std::cerr<<e.what()<<std::endl;
+
+        }catch (std::out_of_range &e2){
+         std::cerr<<e2.what()<<std::endl;
+        }    
+
+       }
+
+      std::cout<<std::endl;
+      
       switch (option)
       {
       case(1):
