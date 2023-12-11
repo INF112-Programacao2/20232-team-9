@@ -28,7 +28,6 @@ void EstatisticosJuridico::dados_mensal(){
 
     if(mod == 1){
         std::fstream in("Usuarios_Juridico_Industrial.csv", std::ios::in);
-        std::string cpf, mes;
         if (!in.is_open())
         {
             std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
@@ -44,21 +43,27 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux2, ',');
 
             if (aux1 == cpf && aux2 == mes){
-
-                getline(in, aux1, '\n');
-
-                for (int i = 0; i < 9; i++){
-                    while (aux1 != "//"){
-                        getline(in, aux1, ',');
-                        if (aux1 != "//"){
-                            getline(in, aux2, ',');
-                            std::cout << aux1 << aux2;
+                for(int i = 0; i < 4;i++){
+                    getline(in, aux1, ',');
+                    getline(in, aux2, '\n');
+                    std::cout << aux1 << ": " << aux2 << std::endl;
+                }
+                for(int i = 0; i < 6;i++){
+                    getline(in, aux1, '\n');
+                    for(int j = 0; j < aux1.size(); j++){
+                        if(aux1[j] == ','){
+                            std::cout << " ";
+                        }
+                        else{
+                            std::cout << aux1[j];
                         }
                     }
+                    std::cout << std::endl;
                 }
                 in.close();
                 return;
             }
+            for(int i = 0; i < 11; i++) getline(in, aux1, '\n');
         }
         
     }
@@ -78,7 +83,6 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux1, ',');
             getline(in, aux2, ',');
             getline(in, aux2, ',');
-           std::cout << "AUX1: " <<aux1 << " - AUX2:"<< aux2 << std::endl;
 
             if (aux1 == cpf && aux2 == mes){
                 for(int i = 0; i < 4;i++){
@@ -100,9 +104,10 @@ void EstatisticosJuridico::dados_mensal(){
                 }
                 in.close();
                 return;
+                
             }
         }
-        
+        for(int i = 0; i < 8; i++) getline(in, aux1, '\n');  
     }
     else if(mod == 3){
         std::fstream in("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
@@ -121,22 +126,29 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux2, ',');
 
             if (aux1 == cpf && aux2 == mes){
-
-                getline(in, aux1, '\n');
-
-                for (int i = 0; i < 9; i++){
-                    while (aux1 != "//"){
-                        getline(in, aux1, ',');
-                        if (aux1 != "//"){
-                            getline(in, aux2, ',');
-                            std::cout << aux1 << aux2;
+                for(int i = 0; i < 4;i++){
+                    getline(in, aux1, ',');
+                    getline(in, aux2, '\n');
+                    std::cout << aux1 << ": " << aux2 << std::endl;
+                }
+                for(int i = 0; i < 5;i++){
+                    getline(in, aux1, '\n');
+                    for(int j = 0; j < aux1.size(); j++){
+                        if(aux1[j] == ','){
+                            std::cout << " ";
+                        }
+                        else{
+                            std::cout << aux1[j];
                         }
                     }
+                    std::cout << std::endl;
                 }
                 in.close();
                 return;
+                
             }
         }
+        for(int i = 0; i < 8; i++) getline(in, aux1, '\n');
         
     }
 
