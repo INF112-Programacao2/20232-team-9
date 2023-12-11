@@ -10,7 +10,7 @@
 #include "estatisticosfisico.h"
 #include "estatisticosjuridico.h"
 
-double contabil_fisica(std::string cpf_informado)
+void contabil_fisica(std::string cpf_informado)
 {
   std::fstream in("Pessoa_Fisica.csv", std::ios::in);
   std::string cpf, nome;
@@ -18,7 +18,7 @@ double contabil_fisica(std::string cpf_informado)
   {
     std::cerr << "erro ao abrir arquivo!" << std::endl;
   }
-  while (in.peek() != EOF || cpf_informado != cpf)
+  while (in.peek() != EOF && cpf_informado != cpf)
   {
 
     getline(in, cpf, ',');
@@ -44,7 +44,8 @@ double contabil_fisica(std::string cpf_informado)
       RecebeArquivo r;
       r.recebe_dados_fisico(conta, pessoa);
       in.close();
-      return conta.get_Imposto_Renda_Final();
+      std::cout<<conta.get_Imposto_Renda_Final()<<std::endl;
+      return;
 
     }
 
@@ -53,8 +54,9 @@ double contabil_fisica(std::string cpf_informado)
       getline(in, cpf, '\n');
     }
   }
+  std::cout<<"O CPF informado não está cadastrado no sistema!! \n";
   in.close();
-  return -1;
+  return;
 }
 
 void contabil_juridica(std::string cpf_informado){
@@ -69,7 +71,7 @@ void contabil_juridica(std::string cpf_informado){
   {
     std::cerr << "erro ao abrir arquivo!" << std::endl;
   }
-  while (in.peek() != EOF || cpf_informado != cpf)
+  while (in.peek() != EOF && cpf_informado != cpf)
   {
 
     getline(in, cpf, ',');
@@ -85,6 +87,8 @@ void contabil_juridica(std::string cpf_informado){
       getline(in, nome_empresa, ',');
       getline(in, apelido_empresa, ',');
       getline(in, modelo_negocio, '\n');
+      //Para evitar que modelo de negócio "pegue" caracteres indesejados no csv que atrapalhem a comparação no momento da conferência do modelo de negócio no switch case:
+      modelo_negocio.erase(std::remove_if(modelo_negocio.begin(), modelo_negocio.end(), ::isspace), modelo_negocio.end()); 
 
       PessoaJuridica pessoa(nome, nome_empresa, apelido_empresa, local);
 
@@ -208,6 +212,7 @@ void contabil_juridica(std::string cpf_informado){
       getline(in, cpf, '\n');
     }
   }
+  std::cout<<"O CPF informado não está cadastrado no sistema!! \n";
   in.close();
   return;
 }
@@ -257,7 +262,7 @@ int main()
     std::cout << "(1) - Cadastrar \n";
     std::cout << "(2) - Realizar contabilidade (cliente já deve ser cadastrado) \n";
     std::cout << "(3) - Checar análises estatísticas (cliente já deve ser cadastrado) \n";
-    std::cout << "(4) - Sair do Menu \n";
+    std::cout << "(4) - Fechar programa \n";
     while (true)
     {
       try
@@ -508,7 +513,7 @@ int main()
         std::cout<<std::endl;
         break;
       case (2):
-        std::cout << contabil_fisica(cpf) << std::endl;
+        contabil_fisica(cpf);
         std::cout<<std::endl;
         break;
       }
