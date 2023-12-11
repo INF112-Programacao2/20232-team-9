@@ -97,7 +97,7 @@ void contabil_juridica(std::string cpf_informado){
 
       switch (_tipo_contabilidade)
       {
-      case 1:
+      case (1):
         if (pessoa.get_modelo_negocio() == "Industrial")
         {
           JuridicaIndustrial industria;
@@ -172,7 +172,7 @@ void contabil_juridica(std::string cpf_informado){
         }
 
         break;
-      case 2:
+      case (2):
         if (pessoa.get_modelo_negocio() == "Industrial")
         {
           JuridicaIndustrial industria;
@@ -505,9 +505,11 @@ int main()
       {
       case(1):
         contabil_juridica(cpf);
+        std::cout<<std::endl;
         break;
       case (2):
         std::cout << contabil_fisica(cpf) << std::endl;
+        std::cout<<std::endl;
         break;
       }
 
