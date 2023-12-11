@@ -34,6 +34,7 @@ double contabil_fisica(std::string cpf_informado)
       pessoa.set_cpf(cpf);
       pessoa.set_tipo_pessoa(tipo);
       
+      conta.set_ano_contabil();
       conta._calcula_inss(pessoa);
       conta._calcula_deducao_dependente();
       conta._base_calculos();
@@ -99,6 +100,7 @@ void contabil_juridica(std::string cpf_informado){
         {
           JuridicaIndustrial industria;
           industria.set_mes_contabil();
+          industria.set_ano_contabil();
           industria.set_caixa();
           std::cout << industria.get_caixa() << std::endl;
           industria.set_contasPagar();
@@ -124,6 +126,7 @@ void contabil_juridica(std::string cpf_informado){
         {
           JuridicaComercial comercio;
           comercio.set_mes_contabil();
+          comercio.set_ano_contabil();
           comercio.set_caixa();
           std::cout << comercio.get_caixa() << std::endl;
           comercio.set_contasPagar();
@@ -146,6 +149,7 @@ void contabil_juridica(std::string cpf_informado){
         {
           JuridicaPrestServi prestservi;
           prestservi.set_mes_contabil();
+          prestservi.set_ano_contabil();
           prestservi.set_caixa();
           std::cout << prestservi.get_caixa() << std::endl;
           prestservi.set_contasPagar();
