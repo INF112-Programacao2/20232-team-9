@@ -90,7 +90,6 @@ void EstatisticosJuridico::dados_mensal(){
                     getline(in, aux1, '\n');
                     for(int j = 0; j < aux1.size(); j++){
                         if(aux1[j] == ',') std::cout << " ";
-                        else if(aux1[j] == '\n') break;
                         else{
                             std::cout << aux1[j];
                         }
