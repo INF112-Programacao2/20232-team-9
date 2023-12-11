@@ -44,17 +44,22 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux2, ',');
 
             if (aux1 == cpf && aux2 == mes){
-
-                getline(in, aux1, '\n');
-
-                for (int i = 0; i < 9; i++){
-                    while (aux1 != "//"){
-                        getline(in, aux1, ',');
-                        if (aux1 != "//"){
-                            getline(in, aux2, ',');
-                            std::cout << aux1 << aux2;
+                for(int i = 0; i < 4;i++){
+                    getline(in, aux1, ',');
+                    getline(in, aux2, '\n');
+                    std::cout << aux1 << ": " << aux2 << std::endl;
+                }
+                for(int i = 0; i < 5;i++){
+                    getline(in, aux1, '\n');
+                    for(int j = 0; j < aux1.size(); j++){
+                        if(aux1[j] == ','){
+                            std::cout << " ";
+                        }
+                        else{
+                            std::cout << aux1[j];
                         }
                     }
+                    std::cout << std::endl;
                 }
                 in.close();
                 return;
@@ -78,7 +83,6 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux1, ',');
             getline(in, aux2, ',');
             getline(in, aux2, ',');
-           std::cout << "AUX1: " <<aux1 << " - AUX2:"<< aux2 << std::endl;
 
             if (aux1 == cpf && aux2 == mes){
                 for(int i = 0; i < 4;i++){
