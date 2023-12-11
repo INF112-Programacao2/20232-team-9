@@ -402,9 +402,22 @@ double ContabilJuridica::get_receita_bruta(){ //RETORNA O VALOR DA RECEITA BRUTA
 void ContabilJuridica::set_mes_contabil(){
     std::string mes;
     std::cout << "Digite o mês contábil: ";
-    std::cin.ignore ();
-    getline (std::cin,mes);
-    _mes_contabil = mes;
+    while (true){
+     try
+     {
+      std::cin>>mes;
+      if(mes != "1" && mes != "2" && mes != "3" && mes != "4" && mes != "5" && mes != "6" && mes != "7" && mes != "8" && mes != "9" && mes != "10" && mes != "11" && mes != "11"){
+        throw std::invalid_argument ("O mês digitado não existe! Digite um mês válido (1 à 12): ");
+      }
+      _mes_contabil = mes;
+      break;
+     }
+     catch(const std::invalid_argument& e)
+     {
+        std::cerr << e.what() << '\n';
+     }
+    }
+    
 }
 
 std::string ContabilJuridica::get_mes_contabil(){
