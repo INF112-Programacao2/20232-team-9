@@ -10,7 +10,7 @@
 
 double contabil_fisica(std::string cpf_informado)
 {
-  std::fstream in("Pessoa_Fisica.csv", std::ios::in);
+  std::fstream in("data/Pessoa_Fisica.csv", std::ios::in);
   std::string cpf, nome;
   if (!in.is_open())
   {
@@ -34,6 +34,7 @@ double contabil_fisica(std::string cpf_informado)
       pessoa.set_cpf(cpf);
       pessoa.set_tipo_pessoa(tipo);
       
+      conta.set_ano_contabil();
       conta._calcula_inss(pessoa);
       conta._calcula_deducao_dependente();
       conta._base_calculos();
@@ -56,7 +57,7 @@ double contabil_fisica(std::string cpf_informado)
 
 void contabil_juridica(std::string cpf_informado){
   int _tipo_contabilidade;
-  std::fstream in("Pessoa_Juridica.csv", std::ios::in);
+  std::fstream in("data/Pessoa_Juridica.csv", std::ios::in);
   std::string cpf, nome;
   std::cout << "Qual Tipo de Contabilidade deseja fazer:" << std::endl;
   std::cout << "(1) - Balanço Mensal" << std::endl;
@@ -99,6 +100,7 @@ void contabil_juridica(std::string cpf_informado){
         {
           JuridicaIndustrial industria;
           industria.set_mes_contabil();
+          industria.set_ano_contabil();
           industria.set_caixa();
           std::cout << industria.get_caixa() << std::endl;
           industria.set_contasPagar();
@@ -124,6 +126,7 @@ void contabil_juridica(std::string cpf_informado){
         {
           JuridicaComercial comercio;
           comercio.set_mes_contabil();
+          comercio.set_ano_contabil();
           comercio.set_caixa();
           std::cout << comercio.get_caixa() << std::endl;
           comercio.set_contasPagar();
@@ -146,6 +149,7 @@ void contabil_juridica(std::string cpf_informado){
         {
           JuridicaPrestServi prestservi;
           prestservi.set_mes_contabil();
+          prestservi.set_ano_contabil();
           prestservi.set_caixa();
           std::cout << prestservi.get_caixa() << std::endl;
           prestservi.set_contasPagar();
@@ -362,7 +366,7 @@ int main()
         }
         juridico.modelo_negocio();
 
-        std::fstream out("Pessoa_Juridica.csv", std::ios::out | std::ios::app);
+        std::fstream out("data/Pessoa_Juridica.csv", std::ios::out | std::ios::app);
 
         out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << juridico.get_local() << "," << juridico.get_tipo_pessoa() 
         << "," << juridico.get_cnpj() << "," << juridico.get_nomeempresa() << "," << juridico.get_apelidoempresa() << 
@@ -433,7 +437,7 @@ int main()
         fisico.tipo_pessoa();
         std::cout << std::endl;
         std::cout << "Cadastro finalizado com sucesso!" << std::endl;
-        std::fstream arquivofisico("Pessoa_Fisica.csv", std::ios::out | std::ios::app);
+        std::fstream arquivofisico("data/Pessoa_Fisica.csv", std::ios::out | std::ios::app);
         arquivofisico << fisico.get_cpf() << "," << fisico.get_nomepessoa() << "," << fisico.get_local() << "," << fisico.get_tipo_pessoa() << std::endl;
         arquivofisico.close();
       }

@@ -106,6 +106,9 @@ double JuridicaIndustrial::get_estoque(){ //valor do estoque
         std::cout <<"Fonte: " <<  _estoque[i].first << std::endl << "Valor: " << _estoque[i].second << std::endl; // lista os produtos e valores do estoque
         _valor_estoque += _estoque[i].second;
     }
+    if(_estoque.empty()){
+        _valor_estoque = 0;
+    }
     std::cout << "Valor total do estoque: ";
     return  _valor_estoque; // valor total do estoque
 }

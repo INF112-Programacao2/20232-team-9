@@ -13,8 +13,8 @@
 
 void RecebeArquivo::recebe_dados_fisico(ContabilFisica &dados, Pessoa &fisico)
 {
-    std::fstream out("Usuarios_Fisico.csv", std::ios::out | std::ios::app);
-    out << fisico.get_cpf() << "," << fisico.get_nomepessoa() << std::endl;
+    std::fstream out("data/Usuarios_Fisico.csv", std::ios::out | std::ios::app);
+    out << fisico.get_cpf() << "," << fisico.get_nomepessoa() << ","<< dados.get_ano_contabil() <<std::endl;
     out << "Salario"
         << "," << dados.get_salario_bruto() << std::endl;
     out << "INSS"
@@ -34,8 +34,8 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
 {
     std::vector<std::pair<std::string, double>> aux;
     aux = dados.get_contasPagar_dados();
-    std::fstream out("Usuarios_Juridico_Industrial.csv", std::ios::out | std::ios::app);
-    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil()<<std::endl;
+    std::fstream out("data/Usuarios_Juridico_Industrial.csv", std::ios::out | std::ios::app);
+    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil() << "," << dados.get_ano_contabil() <<std::endl;
 
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
 
@@ -105,8 +105,8 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
 {
     std::vector<std::pair<std::string, double>> aux;
     aux = dados.get_contasPagar_dados();
-    std::fstream out("Usuarios_Juridico_Comercial.csv", std::ios::out | std::ios::app);
-    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," <<dados.get_mes_contabil()<<std::endl;
+    std::fstream out("data/Usuarios_Juridico_Comercial.csv", std::ios::out | std::ios::app);
+    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," <<dados.get_mes_contabil()<< "," << dados.get_ano_contabil() <<std::endl;
     
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
 
@@ -167,9 +167,8 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
 {
     std::vector<std::pair<std::string, double>> aux;
     aux = dados.get_contasPagar_dados();
-    std::fstream out("Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::out | std::ios::app);
-    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil()<< std::endl;
-
+    std::fstream out("data/Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::out | std::ios::app);
+    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil()<< "," << dados.get_ano_contabil() <<std::endl;
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
 
     out << "Receita" << "," << dados.get_receita_bruta() << std::endl;
@@ -225,7 +224,7 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
 }
 
 double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
-    std::fstream in("Pessoa_Juridica.csv", std::ios::in);
+    std::fstream in("data/Pessoa_Juridica.csv", std::ios::in);
     std::string cpf, nome;
     double receita_bruta = 0.0;
     if (!in.is_open()){
@@ -259,7 +258,7 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
           if (pessoa.get_modelo_negocio() == "Industrial")
           {
               JuridicaIndustrial industria;
-              std::fstream ent("Usuarios_Juridico_Industrial.csv", std::ios::in | std::ios::app);
+              std::fstream ent("data/Usuarios_Juridico_Industrial.csv", std::ios::in | std::ios::app);
               std::string cpf2, aux;
               while (ent.peek() != EOF)
               {
@@ -299,7 +298,7 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
           else if (pessoa.get_modelo_negocio() == "Comercial")
           {
               JuridicaComercial comercio;
-              std::fstream ent("Usuarios_Juridico_Comercial.csv", std::ios::in | std::ios::app);
+              std::fstream ent("data/Usuarios_Juridico_Comercial.csv", std::ios::in | std::ios::app);
               std::string cpf2, aux;
               while (ent.peek() != EOF)
               {
@@ -339,7 +338,7 @@ double RecebeArquivo::retorna_receita_bruta(std::string cpf_informado){
 
               JuridicaPrestServi prestservi;
 
-              std::fstream ent("Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::in | std::ios::app);
+              std::fstream ent("data/Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::in | std::ios::app);
               std::string cpf2, aux;
               while (ent.peek() != EOF)
               {
