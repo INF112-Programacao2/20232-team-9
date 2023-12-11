@@ -368,7 +368,7 @@ int main()
         std::cout<<std::endl;
         juridico.modelo_negocio();
 
-        std::fstream out("Pessoa_Juridica.csv", std::ios::out | std::ios::app);
+        std::fstream out("data/Pessoa_Juridica.csv", std::ios::out | std::ios::app);
 
         out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << juridico.get_local() << "," << juridico.get_tipo_pessoa() 
         << "," << juridico.get_cnpj() << "," << juridico.get_nomeempresa() << "," << juridico.get_apelidoempresa() << 
@@ -437,7 +437,7 @@ int main()
           fisico.edicao_cadastro_fis(fisico);
         }
         fisico.tipo_pessoa();
-        std::fstream arquivofisico("Pessoa_Fisica.csv", std::ios::out | std::ios::app);
+        std::fstream arquivofisico("data/Pessoa_Fisica.csv", std::ios::out | std::ios::app);
         arquivofisico << fisico.get_cpf() << "," << fisico.get_nomepessoa() << "," << fisico.get_local() << "," << fisico.get_tipo_pessoa() << std::endl;
         arquivofisico.close();
       }
