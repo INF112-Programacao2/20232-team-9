@@ -10,7 +10,6 @@
 
 void EstatisticosJuridico::dados_mensal(){
     std::string cpf, mes;
-    std::fstream *in;
     int mod;
 
     std::cout << "Informe o CPF: ";
@@ -28,48 +27,144 @@ void EstatisticosJuridico::dados_mensal(){
     std::cout << std::endl;
 
     if(mod == 1){
-        std::fstream in2("Usuarios_Juridico_Industrial.csv", std::ios::in);
-        in = &in2;
+        std::fstream in("Usuarios_Juridico_Industrial.csv", std::ios::in);
+        std::string cpf, mes;
+        if (!in.is_open())
+        {
+            std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
+            return;
+        }
+        
+        std::string aux1, aux2;
+
+        while (in.peek() != EOF){
+
+            getline(in, aux1, ',');
+            getline(in, aux2, ',');
+            getline(in, aux2, ',');
+
+            if (aux1 == cpf && aux2 == mes){
+
+                getline(in, aux1, '\n');
+
+                for (int i = 0; i < 9; i++){
+                    while (aux1 != "//"){
+                        getline(in, aux1, ',');
+                        if (aux1 != "//"){
+                            getline(in, aux2, ',');
+                            std::cout << aux1 << aux2;
+                        }
+                    }
+                }
+                in.close();
+                return;
+            }
+        }
+        
     }
     else if(mod == 2){
-        std::fstream in2("Usuarios_Juridico_Comercial.csv", std::ios::in);
-        in = &in2;
-    }
-    else if(mod == 3){
-        std::fstream in2("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
-        in = &in2;
-    }
-
-    if(!(*in).is_open()){
-        std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
-        return;
-    }
-
-    std::string aux1, aux2;
-
-    while((*in).peek() != EOF){
+        std::fstream in("Usuarios_Juridico_Comercial.csv", std::ios::in);
+        if (!in.is_open())
+        {
+            std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
+            return;
+        }
         
-        getline(*in, aux1, ',');
-        getline(*in, aux2, ',');
-        getline(*in, aux2, ',');
+        std::string aux1, aux2;
 
-        if(aux1 == cpf && aux2 == mes){
-            
-            getline(*in, aux1, '\n');
 
-            for(int i = 0; i < 9; i++){
-                while(aux1 != "//"){
-                    getline(*in, aux1, ',');
-                    if(aux1 != "//"){
-                        getline(*in, aux2, ',');
-                        std::cout << aux1 << aux2;
+        while (in.peek() != EOF){
+
+            getline(in, aux1, ',');
+            getline(in, aux2, ',');
+            getline(in, aux2, ',');
+           std::cout << "AUX1: " <<aux1 << " - AUX2:"<< aux2 << std::endl;
+
+            if (aux1 == cpf && aux2 == mes){
+                for(int i = 0; i < 4;i++){
+                    getline(in, aux1, ',');
+                    getline(in, aux2, '\n');
+                    std::cout << aux1 << ": " << aux2 << std::endl;
+                }
+                for(int i = 0; i < 5;i++){
+                    getline(in, aux1, ',');
+                    std::cout << "AQUI: " << aux1 << ": ";
+                    
+                    while (aux2 != "//" || aux1 != "//")
+                    {
+                        std::cout << "AQUIIIIIIII: " << aux1 << std::endl;
+                        getline(in, aux1, ',');
+                        if (aux2 != "//")
+                        {
+                            getline(in, aux2, ',');
+                            std::cout << aux1 << ": " << aux2 << std::endl;
+                        }
                     }
                     
+                    std::cout << std::endl;
+                    getline(in, aux1, '\n');
                 }
+                //getline(in, aux2, ',');
+                //getline(in, aux2, '\n');
+                //std::cout << aux2 << ": ";
+                /*for(int i = 0; i < 5;i++){
+                    if(i < 1){
+                        getline(in, aux2, ',');
+                        getline(in, aux2, '\n');
+                    }
+                    std::cout << "AQUI: " << aux1 << ": ";
+                    if(i>=1){
+                        while (aux1 != "//"){
+                            getline(in, aux1, ',');
+                            if (aux1 == "//"){
+                                getline(in, aux1, '\n');
+                                std::cout << aux1;
+                            }
+                        }
+                    }
+                    getline(in, aux1, '\n');
+                }*/
+                in.close();
+                return;
             }
-            (*in).close();
-            delete in;
-            break;
         }
+        
     }
+    else if(mod == 3){
+        std::fstream in("Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
+        if (!in.is_open())
+        {
+            std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
+            return;
+        }
+        
+        std::string aux1, aux2;
+
+        while (in.peek() != EOF){
+
+            getline(in, aux1, ',');
+            getline(in, aux2, ',');
+            getline(in, aux2, ',');
+
+            if (aux1 == cpf && aux2 == mes){
+
+                getline(in, aux1, '\n');
+
+                for (int i = 0; i < 9; i++){
+                    while (aux1 != "//"){
+                        getline(in, aux1, ',');
+                        if (aux1 != "//"){
+                            getline(in, aux2, ',');
+                            std::cout << aux1 << aux2;
+                        }
+                    }
+                }
+                in.close();
+                return;
+            }
+        }
+        
+    }
+
+    return;
 }
