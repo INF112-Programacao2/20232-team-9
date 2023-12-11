@@ -268,7 +268,7 @@ double ContabilJuridica::get_caixa(){ //RETORNA O VALOR TOTAL DO CAIXA
     for(int i = 0; i < _caixa.size(); i++){
         total += _caixa[i];
     }
-    //std::cout << "Valor total de Caixa: ";
+    std::cout << "Valor total de Caixa: ";
     return total;
 }
 
