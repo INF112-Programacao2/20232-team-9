@@ -122,7 +122,6 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
         std::cout << "Fonte: " << aux[i].first << " Valor: " << aux[i].second << std::endl;
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << ",//";
     out << std::endl;
 
     aux = dados.get_contasReceber_dados();
@@ -132,7 +131,6 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << ",//";
     out << std::endl;
 
     aux = dados.get_realizavelCurtoPrazo_dados();
@@ -142,7 +140,6 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << ",//";
     out << std::endl;
 
     aux = dados.get_realizavelLongoPrazo_dados();
@@ -152,7 +149,6 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << ",//";
     out << std::endl;
 
     aux = dados.get_emprestimos_dados();
@@ -162,7 +158,6 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     {
         out << aux[i].first << "," << aux[i].second << ",";
     }
-    out << ",//";
     out<<std::endl;
 
     out.close();
