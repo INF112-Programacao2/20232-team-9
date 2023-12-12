@@ -8,7 +8,7 @@
 
 void EstatisticosFisico::imposto_renda_anual_fisico(){ 
     std::string cpf, ano;
-    bool mes_valido = false;
+    bool ano_valido = false;
     int ano_int;
     
     std::cout << "Digite seu CPF: ";
@@ -49,6 +49,7 @@ void EstatisticosFisico::imposto_renda_anual_fisico(){
         getline(in, aux1, ',');
         getline(in, aux2, ',');
         getline(in, aux2, '\n');
+        aux2.erase(std::remove_if(aux2.begin(), aux2.end(), ::isspace), aux2.end()); 
 
         if(aux1 == cpf){
             std::cout << std::endl
@@ -71,8 +72,9 @@ void EstatisticosFisico::imposto_renda_anual_fisico(){
                     std::cerr << e.what() << std::endl;
                 }
             }
+
             if(aux2 == ano){
-                mes_valido = true;
+                ano_valido = true;
                 std::cout << std::endl;
                 std::cout << "Dados " << aux2 << ": " << std::endl;
                 for(int i = 0; i < 6; i++){
