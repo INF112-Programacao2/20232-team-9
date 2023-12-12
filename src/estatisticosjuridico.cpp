@@ -10,6 +10,8 @@
 
 void EstatisticosJuridico::dados_mensal(){
     std::string cnpj, mes, mod;
+    bool mes_valido = false;
+    bool cnpj_valido = false;
 
     std::cout << "Digite seu CNPJ: ";
     while (true){
@@ -91,28 +93,33 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux2, ',');
             getline(in, aux2, ',');
 
-            if (aux1 == cnpj && aux2 == mes){
-                for(int i = 0; i < 4;i++){
-                    getline(in, aux1, ',');
-                    getline(in, aux2, '\n');
-                    std::cout << aux1 << ": " << aux2 << std::endl;
-                }
-                for(int i = 0; i < 6;i++){
-                    getline(in, aux1, '\n');
-                    for(int j = 0; j < aux1.size(); j++){
-                        if(aux1[j] == ','){
-                            std::cout << " ";
-                        }
-                        else{
-                            std::cout << aux1[j];
-                        }
+            if (aux1 == cnpj){
+                cnpj_valido = true;
+                    if(aux2 == mes){
+                    mes_valido = true;
+                    for(int i = 0; i < 4;i++){
+                        getline(in, aux1, ',');
+                        getline(in, aux2, '\n');
+                        std::cout << aux1 << ": " << aux2 << std::endl;
                     }
-                    std::cout << std::endl;
+                    for(int i = 0; i < 6;i++){
+                        getline(in, aux1, '\n');
+                        for(int j = 0; j < aux1.size(); j++){
+                            if(aux1[j] == ','){
+                                std::cout << " ";
+                            }
+                            else{
+                                std::cout << aux1[j];
+                            }
+                        }
+                        std::cout << std::endl;
+                    }
+                    in.close();
+                    return;
                 }
-                in.close();
-                return;
             }
-            for(int i = 0; i < 11; i++) getline(in, aux1, '\n');
+            for (int i = 0; i < 11; i++)
+                getline(in, aux1, '\n');
         }
     }
     else if(mod == "2"){
@@ -151,27 +158,31 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux2, ',');
             getline(in, aux2, ',');
 
-            if (aux1 == cnpj && aux2 == mes){
-                for(int i = 0; i < 4;i++){
-                    getline(in, aux1, ',');
-                    getline(in, aux2, '\n');
-                    std::cout << aux1 << ": " << aux2 << std::endl;
-                }
-                for(int i = 0; i < 5;i++){
-                    getline(in, aux1, '\n');
-                    for(int j = 0; j < aux1.size(); j++){
-                        if(aux1[j] == ','){
-                            std::cout << " ";
-                        }
-                        else{
-                            std::cout << aux1[j];
-                        }
+            if (aux1 == cnpj){
+                cnpj_valido = true;
+                if(aux2 == mes){
+                    mes_valido = true;
+                    for(int i = 0; i < 4;i++){
+                        getline(in, aux1, ',');
+                        getline(in, aux2, '\n');
+                        std::cout << aux1 << ": " << aux2 << std::endl;
                     }
-                    std::cout << std::endl;
+                    for(int i = 0; i < 5;i++){
+                        getline(in, aux1, '\n');
+                        for(int j = 0; j < aux1.size(); j++){
+                            if(aux1[j] == ','){
+                                std::cout << " ";
+                            }
+                            else{
+                                std::cout << aux1[j];
+                            }
+                        }
+                        std::cout << std::endl;
+                    }
+                    in.close();
+                    return;
+                    
                 }
-                in.close();
-                return;
-                
             }
             for (int i = 0; i < 8; i++){
                 getline(in, aux1, '\n');
@@ -214,33 +225,44 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux2, ',');
             getline(in, aux2, ',');
 
-            if (aux1 == cnpj && aux2 == mes){
-                for(int i = 0; i < 4;i++){
-                    getline(in, aux1, ',');
-                    getline(in, aux2, '\n');
-                    std::cout << aux1 << ": " << aux2 << std::endl;
-                }
-                for(int i = 0; i < 5;i++){
-                    getline(in, aux1, '\n');
-                    for(int j = 0; j < aux1.size(); j++){
-                        if(aux1[j] == ','){
-                            std::cout << " ";
-                        }
-                        else{
-                            std::cout << aux1[j];
-                        }
+            if (aux1 == cnpj){
+                cnpj_valido = true;
+                std::cout << "MES" << mes << std::endl;
+                std::cout << "AUX " << aux2 << std::endl;
+                if(aux2 == mes){
+                    mes_valido = true;
+                    for(int i = 0; i < 4;i++){
+                        getline(in, aux1, ',');
+                        getline(in, aux2, '\n');
+                        std::cout << aux1 << ": " << aux2 << std::endl;
                     }
-                    std::cout << std::endl;
+                    for(int i = 0; i < 5;i++){
+                        getline(in, aux1, '\n');
+                        for(int j = 0; j < aux1.size(); j++){
+                            if(aux1[j] == ','){
+                                std::cout << " ";
+                            }
+                            else{
+                                std::cout << aux1[j];
+                            }
+                        }
+                        std::cout << std::endl;
+                    }
+                    in.close();
+                    return;
+                    
                 }
-                in.close();
-                return;
-                
             }
             for (int i = 0; i < 8; i++){
                 getline(in, aux1, '\n');
             }
         }
         
+    }
+    if(!mes_valido && cnpj_valido==true){
+        std::cout << std::endl;
+        std::cout << "Mês não registrado no Sistema!" << std::endl;
+        return;
     }
     std::cout << std::endl;
     std::cout << "CPNJ não registrado no Sistema!" << std::endl;
