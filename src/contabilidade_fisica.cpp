@@ -64,25 +64,44 @@ void ContabilFisica::_calcula_inss(Pessoa &fisico) // cálculo do inss do client
     // Para Contribuinte Individual, Facultativo e MEI
     else{
 
-        std::cout<<fisico.get_tipo_pessoa ()<<std::endl;
 
         // individual
         if (_salario_bruto >= 1320  &&  fisico.get_tipo_pessoa()=="Contribuinte Individual"){ // individual
-            std::cout<<"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA "<<_inss<<std::endl;
             _inss = _salario_bruto*0.05;
             if(_inss > 66){
                 _inss = 66;
             }
             // valor = 65.10
         }
-        else if (_salario_bruto >= 1320  &&  fisico.get_tipo_pessoa()=="Contribuinte Facultativo"){ // facultativo
+        else if(_salario_bruto < 1320  &&  fisico.get_tipo_pessoa()=="Contribuinte Individual"){ // individual
+            _inss = _salario_bruto*0.05;
+            if(_inss > 66){
+                _inss = 66;
+            }
+            // valor = 65.10
+        }
+        if (_salario_bruto >= 1320  &&  fisico.get_tipo_pessoa()=="Contribuinte Facultativo"){ // facultativo
             _inss = _salario_bruto*0.11;
             if(_inss > 145.20){
                 _inss = 145.20;
             }
             // valor = 143.22
         }
-        else if (_salario_bruto >= 1320  &&  _salario_bruto <= 7507.49  &&  fisico.get_tipo_pessoa()=="Microempreendedor"){ // MEI
+        else if(_salario_bruto < 1320  &&  fisico.get_tipo_pessoa()=="Contribuinte Facultativo"){ // facultativo
+            _inss = _salario_bruto*0.11;
+            if(_inss > 145.20){
+                _inss = 145.20;
+            }
+            // valor = 143.22
+        }
+        if (_salario_bruto >= 1320  &&  _salario_bruto <= 7507.49  &&  fisico.get_tipo_pessoa()=="Microempreendedor"){ // MEI
+            _inss = _salario_bruto*0.20;
+            if(_inss > 1501.49){
+                _inss = 1501.49;
+            }
+            // valor = entre 260.40 e 1501.49(teto)
+        }
+        else if(_salario_bruto < 1320  &&  _salario_bruto <= 7507.49  &&  fisico.get_tipo_pessoa()=="Microempreendedor"){ // MEI
             _inss = _salario_bruto*0.20;
             if(_inss > 1501.49){
                 _inss = 1501.49;
