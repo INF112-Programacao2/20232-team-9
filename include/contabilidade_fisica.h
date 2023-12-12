@@ -7,10 +7,6 @@
 class ContabilFisica
 {
 private:
-    //std::vector<double> _aliquotas;
-    //std::vector<double> _deducao_dependente_mensal;
-    //std::vector<double> _desconto_simplificado;
-    //std::vector<double> _porcentagem_tabelas;
     long double _salario_bruto;
     long double _base_calculo;
     long double _inss;

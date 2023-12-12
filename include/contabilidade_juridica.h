@@ -32,7 +32,7 @@ class ContabilJuridica {
 		std::vector<std::pair<std::string, double>> _realizavelLongoPrazo; //CÁLCULO BALANCETE
 		std::vector<std::pair<std::string, double>> _realizavelCurtoPrazo; 
 		std::vector<std::pair<std::string, double>> _emprestimos;
-		std::vector<int> _result_dre;
+		long double _result_dre;
 		long double _receita_bruta;
 		long double _despesa;
 		long double _resultado_fluxo_caixa;
@@ -66,22 +66,22 @@ class ContabilJuridica {
 		//GET
 
 		//ATIVO CIRCULANTE
-		double get_caixa(); // retorna o valor total do caixa
-		double get_contasReceber(); // retorna o valor total das contas a receber
+		long double get_caixa(); // retorna o valor total do caixa
+		long double get_contasReceber(); // retorna o valor total das contas a receber
 		std::vector<std::pair<std::string, double>> get_contasReceber_dados(); // retorna a lista das contas a receber
 
 		//ATIVO NÃO CIRCULANTE
-		int get_realizavelLongoPrazo(); // retorna o valor total dos realizaveis a longo prazo
+		long double get_realizavelLongoPrazo(); // retorna o valor total dos realizaveis a longo prazo
 		std::vector<std::pair<std::string, double>> get_realizavelLongoPrazo_dados(); // retorna a lista dos realizaveis a longo prazo
 
 		//PASSIVO CIRCULANTE
-		int get_realizavelCurtoPrazo(); // retorna o valor total dos realizaveis a curto prazo
+		long double get_realizavelCurtoPrazo(); // retorna o valor total dos realizaveis a curto prazo
 		std::vector<std::pair<std::string, double>> get_realizavelCurtoPrazo_dados(); // retorna a lista dos realizaveis a curto prazo
 
 		//PASSIVO NÃO CIRCULANTE
-		double get_emprestimos(); // retorna o valor total de emprestimos
+		long double get_emprestimos(); // retorna o valor total de emprestimos
 		std::vector<std::pair<std::string, double>> get_emprestimos_dados(); // retorna a lista dos emprestimos
-		double get_contasPagar(); // retorna o valor total de contas a pagar
+		long double get_contasPagar(); // retorna o valor total de contas a pagar
 		std::vector<std::pair<std::string, double>> get_contasPagar_dados(); // retorna a lista das contas a pagar
 
 		//MẼS E ANO DA CONTABILIDADE FEITA
@@ -89,9 +89,9 @@ class ContabilJuridica {
 		int get_ano_contabil(); // retorna o ano contábil
 
 		//GETS DE RECEITA E DESPESA
-		double get_despesa(); // retorna o valor total das despesas
-		double get_lucro(); // retorna o valor total do lucro
-		double get_receita_bruta(); // retorna o valor da receita bruta (contribui no cálculo do simples nacional)
+		long double get_despesa(); // retorna o valor total das despesas
+		long double get_lucro(); // retorna o valor total do lucro
+		long double get_receita_bruta(); // retorna o valor da receita bruta (contribui no cálculo do simples nacional)
 
 		//METODOS
 		void _calculo_DRE(); // cálcula a Demonstração do Resultado do Exercício
@@ -99,6 +99,10 @@ class ContabilJuridica {
 		void _resultado_balancete(); // cálcula o balancete
 		virtual void _calculo_aliquotas_anexos(std::string cpf) = 0; // cálcula as alíquotas de acordo com o anexo
 		virtual double get_result_simples_nacional() = 0; // retorna o valor a ser pago ou restituído
+
+
+		//LIMPEZA
+		void _limpa_vectors(); // limpa o caixa
 		 
 };
 #endif
