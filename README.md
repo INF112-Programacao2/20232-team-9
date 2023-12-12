@@ -24,5 +24,6 @@
 
 ## Diagrama de classes:
 >O diagrama de classes encontra-se no link abaixo:
+>será escrito...
 
 ##
