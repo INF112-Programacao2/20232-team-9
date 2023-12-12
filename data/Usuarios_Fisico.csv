@@ -9,6 +9,7 @@ Imposto de Renda,1605.12
 Salario,50000
 INSS,66
 Dependente,379.18
+<<<<<<< HEAD
 Base,49554.8
 Aliquota,13627.6
 Imposto de Renda,12742.6
@@ -26,3 +27,29 @@ Dependente,379.18
 Base,149555
 Aliquota,41127.6
 Imposto de Renda,40242.6
+=======
+Base,49620.8
+Aliquota,13645.7
+Imposto de Renda,12760.8
+15262524656,Nicolas Reis,2010
+Salario,2000
+INSS,nan
+Dependente,379.18
+Base,-nan
+Aliquota,-nan
+Imposto de Renda,0
+12345678009,Julio,2010
+Salario,50000
+INSS,0
+Dependente,379.18
+Base,49620.8
+Aliquota,13645.7
+Imposto de Renda,12760.8
+12345678009,Julio,2017
+Salario,2000
+INSS,0
+Dependente,379.18
+Base,1620.82
+Aliquota,0
+Imposto de Renda,0
+>>>>>>> 837615b2f10f71e5465e1f4bc87c93185ae3341f
