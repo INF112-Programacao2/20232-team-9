@@ -79,6 +79,7 @@ void contabil_juridica(std::string cnpj_informado){
 
     if (cnpj == cnpj_informado)
     {
+      
       while (true)
       {
         std::cout << "Qual Tipo de Contabilidade deseja fazer:" << std::endl;
@@ -106,7 +107,7 @@ void contabil_juridica(std::string cnpj_informado){
         }
       }
 
-      std::string nome, local, tipo, cnpj, nome_empresa, apelido_empresa, modelo_negocio;
+      std::string nome_empresa, apelido_empresa, modelo_negocio;
 
       getline(in, nome_empresa, ',');
       getline(in, apelido_empresa, ',');

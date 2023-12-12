@@ -1,168 +1,19 @@
-12345678998,Luis Felipe,1,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,2,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,3,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,4,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,5,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,6,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,7,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,8,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,9,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,10,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,11,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,
-12345678998,Luis Felipe,12,2023
-Caixa,5000
-Receita,25000
-Lucro,18000
-Despesa,7000
-Contas a pagar:,Plano de Saúde:,7000;,
-Contas a receber:,Salarios:,25000;,
-Realizavel a curto prazo:,Pagamento Funcionarios:,8500;,
-Realizavel a longo prazo:,Pagamento Emprestimo:,5000;,
-Emprestimos:,Banco:,7500;,12345678900,Julio,1,2023
-Caixa,100000
+11111111111111,Luis Reis,1,2023
+Caixa,50000
 Receita,0
-Lucro,-200000
-Despesa,200000
-Contas a pagar:,Plano de Saúde:,200000;,
+Lucro,0
+Despesa,0
+Contas a pagar:,
 Contas a receber:,
 Realizavel a curto prazo:,
 Realizavel a longo prazo:,
 Emprestimos:,
-12345678900,Julio,2,2023
-Caixa,100000
-Receita,100001
-Lucro,-99999
-Despesa,200000
-Contas a pagar:,Plano de Saúde:,200000;,
-Contas a receber:,Salarios:,100001;,
-Realizavel a curto prazo:,
-Realizavel a longo prazo:,
-Emprestimos:,
-12345678900,Julio,3,2023
-Caixa,100000
-Receita,200001
-Lucro,1
-Despesa,200000
-Contas a pagar:,Plano de Saúde:,200000;,
-Contas a receber:,Salarios:,200001;,
-Realizavel a curto prazo:,
-Realizavel a longo prazo:,
-Emprestimos:,
-12345678900,,1,2020
-Caixa,20000
+11111111111111,Luis Reis,2,2023
+Caixa,50000
 Receita,0
-Lucro,-200
-Despesa,200
-Contas a pagar:,200:,200;,
-Contas a receber:,
-Realizavel a curto prazo:,
-Realizavel a longo prazo:,
-Emprestimos:,
-12345678900,,1,2010
-Caixa,2000
-Receita,0
-Lucro,-500
-Despesa,500
-Contas a pagar:,Plano de Saúde:,500;,
+Lucro,0
+Despesa,0
+Contas a pagar:,
 Contas a receber:,
 Realizavel a curto prazo:,
 Realizavel a longo prazo:,

@@ -39,22 +39,6 @@ void EstatisticosJuridico::dados_mensal(){
      }    
     }
 
-    std::cout << std::endl << "Informe o mes: ";
-     while (true){
-     try
-     {
-      std::cin>>mes;
-      if(mes != "1" && mes != "2" && mes != "3" && mes != "4" && mes != "5" && mes != "6" && mes != "7" && mes != "8" && mes != "9" && mes != "10" && mes != "11" && mes != "11"){
-        throw std::invalid_argument ("O mês digitado não existe! Digite um mês válido (1 à 12): ");
-      }
-
-      break;
-     }
-     catch(const std::invalid_argument& e)
-     {
-        std::cerr << e.what() << '\n';
-     }
-    }
     std::cout<<std::endl;
     std::cout<<"Qual é o modelo jurídico da empresa? \n";
     std::cout<<"(1)- Industrial \n"<<"(2)- Comercial \n"<<"(3)- Prestação de Serviço \n";
@@ -73,6 +57,25 @@ void EstatisticosJuridico::dados_mensal(){
     std::cout << std::endl;
 
     if(mod == "1"){
+        std::cout << std::endl
+                  << "Informe o mes: ";
+        while (true)
+        {
+            try
+            {
+                std::cin >> mes;
+                if (mes != "1" && mes != "2" && mes != "3" && mes != "4" && mes != "5" && mes != "6" && mes != "7" && mes != "8" && mes != "9" && mes != "10" && mes != "11" && mes != "11")
+                {
+                    throw std::invalid_argument("O mês digitado não existe! Digite um mês válido (1 à 12): ");
+                }
+
+                break;
+            }
+            catch (const std::invalid_argument &e)
+            {
+                std::cerr << e.what() << '\n';
+            }
+        }
         std::fstream in("data/Usuarios_Juridico_Industrial.csv", std::ios::in);
         if (!in.is_open())
         {
@@ -111,9 +114,27 @@ void EstatisticosJuridico::dados_mensal(){
             }
             for(int i = 0; i < 11; i++) getline(in, aux1, '\n');
         }
-        
     }
     else if(mod == "2"){
+        std::cout << std::endl
+                  << "Informe o mes: ";
+        while (true)
+        {
+            try
+            {
+                std::cin >> mes;
+                if (mes != "1" && mes != "2" && mes != "3" && mes != "4" && mes != "5" && mes != "6" && mes != "7" && mes != "8" && mes != "9" && mes != "10" && mes != "11" && mes != "11")
+                {
+                    throw std::invalid_argument("O mês digitado não existe! Digite um mês válido (1 à 12): ");
+                }
+
+                break;
+            }
+            catch (const std::invalid_argument &e)
+            {
+                std::cerr << e.what() << '\n';
+            }
+        }
         std::fstream in("data/Usuarios_Juridico_Comercial.csv", std::ios::in);
         if (!in.is_open())
         {
@@ -152,11 +173,33 @@ void EstatisticosJuridico::dados_mensal(){
                 return;
                 
             }
+            for (int i = 0; i < 8; i++){
+                getline(in, aux1, '\n');
+            }
         }
-        for(int i = 0; i < 8; i++) getline(in, aux1, '\n');  
+          
     }
     else if(mod == "3"){
-        std::fstream in("data/Usuarios_Juridico_Prestacao_de_Servico", std::ios::in);
+        std::cout << std::endl
+                  << "Informe o mes: ";
+        while (true)
+        {
+            try
+            {
+                std::cin >> mes;
+                if (mes != "1" && mes != "2" && mes != "3" && mes != "4" && mes != "5" && mes != "6" && mes != "7" && mes != "8" && mes != "9" && mes != "10" && mes != "11" && mes != "11")
+                {
+                    throw std::invalid_argument("O mês digitado não existe! Digite um mês válido (1 à 12): ");
+                }
+
+                break;
+            }
+            catch (const std::invalid_argument &e)
+            {
+                std::cerr << e.what() << '\n';
+            }
+        }
+        std::fstream in("data/Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::in);
         if (!in.is_open())
         {
             std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
@@ -193,10 +236,14 @@ void EstatisticosJuridico::dados_mensal(){
                 return;
                 
             }
+            for (int i = 0; i < 8; i++){
+                getline(in, aux1, '\n');
+            }
         }
-        for(int i = 0; i < 8; i++) getline(in, aux1, '\n');
         
     }
+    std::cout << std::endl;
+    std::cout << "CPNJ não registrado no Sistema!" << std::endl;
 
     return;
 }
