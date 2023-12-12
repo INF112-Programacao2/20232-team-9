@@ -3,25 +3,25 @@
 #include "pessoa.h"
 
 
-Pessoa::Pessoa (std::string nomepessoa, std::string local):
+Pessoa::Pessoa (std::string nomepessoa, std::string local): //construtor
 
 _nomepessoa(nomepessoa), _local(local) {}
 
 
 
-void Pessoa::insere_cpf ( ) {
+void Pessoa::insere_cpf ( ) { //função para inserir cpf
    
     while (true){
-     try{ 
+     try{ //para tratar o cpf inserido
       std::cin>>_cpf;
 
-        if(_cpf.size()<11 || _cpf.size()>11){
+        if(_cpf.size()<11 || _cpf.size()>11){ //caso tenha tamanho inválido
           throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido (11):");
         }
 
         else{
           for(int i=0; _cpf[i] != '\0'; i++){
-              if (!isdigit (_cpf[i])){
+              if (!isdigit (_cpf[i])){ //caso seja inserido algum caractere diferente de número
                 throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números (11):");
                 break;
               }
@@ -41,12 +41,12 @@ void Pessoa::insere_cpf ( ) {
 
 }
 
-void Pessoa::edicao_cadastro_fis (Pessoa &fisico){
+void Pessoa::edicao_cadastro_fis (Pessoa &fisico){ //função para editar cadastro
     std::string opcao;
     bool averigua=false;
     int selecionador;
 
-          while (averigua==false){
+          while (averigua==false){ //para repetir enquanto o cliente desejar editar algum dado
             std::cout<<std::endl;
             std::cout<<"Qual dado deseja alterar? \n";
             std::cout<<"1- Nome do proprietário (DIGITE 1) \n";
@@ -74,14 +74,14 @@ void Pessoa::edicao_cadastro_fis (Pessoa &fisico){
                 
                   std::cout<<"Digite o novo nome que deseja cadastrar: \n";
                   while(true){
-                    try{
+                    try{ //para tratar o nome 
                       std::cin.ignore ();
                       getline(std::cin,_nomepessoa);
                        for (int i=0; _nomepessoa[i] != '\0'; i++){
                           if((_nomepessoa.at(i) == ' ') && i != 0){
                             continue;
                           }
-                          else if(!isalpha (_nomepessoa[i])){
+                          else if(!isalpha (_nomepessoa[i])){ //caso seja digitado algo diferente de uma letra
                             throw std::invalid_argument ("Nome inválido!! O nome deve conter apenas letras! Digite novamente:");
                             break;
                           }
@@ -124,11 +124,11 @@ void Pessoa::edicao_cadastro_fis (Pessoa &fisico){
                 case(3): 
 
                   std::cout<<"Digite o novo CPF: \n";
-                  fisico.insere_cpf ( );
+                  fisico.insere_cpf ( ); //chama a função para inserir novo cpf
                   break;  
 
             }
-                averigua=fisico.confirma_cadastro_fis (fisico);
+                averigua=fisico.confirma_cadastro_fis (fisico); //chama a função confirma cadastro e seu retorno é gravado na variável averigua
 
                 if(averigua==true){
                   std::cout<<"Cadastro realizado com sucesso! Obrigado!! \n";
@@ -143,7 +143,7 @@ bool Pessoa::confirma_cadastro_fis (Pessoa &fisico){
   std::string opcao;
 
     std::cout<<std::endl;
-    std::cout<<"NOME: "<<fisico.get_nomepessoa()<<" | CPF: "<<fisico.get_cpf()<<" | LOCALIDADE: "<<fisico.get_local();
+    std::cout<<"NOME: "<<fisico.get_nomepessoa()<<" | CPF: "<<fisico.get_cpf()<<" | LOCALIDADE: "<<fisico.get_local(); //imprime todas as informações do usuário em tela
     std::cout<<std::endl;
     std::cout<<"Você confirma os dados inseridos no cadastro? \n";
     std::cout<<"1- Sim. \n";
@@ -162,16 +162,16 @@ bool Pessoa::confirma_cadastro_fis (Pessoa &fisico){
         }
        }
     
-    if(opcao=="1"){
+    if(opcao=="1"){ //se a resposta for 1
       return true;
     }
-    else{
+    else{ //caso contrário
       return false;
     }   
 
 }
 
-void Pessoa::tipo_pessoa (){
+void Pessoa::tipo_pessoa (){ //função para declarar o tipo de pessoa física 
  std::string opcao;
   std::cout<<std::endl;
   std::cout<<"Digite o número correspondente ao tipo de pessoa física ao qual se enquadra: \n";

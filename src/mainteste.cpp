@@ -247,6 +247,7 @@ void contabil_juridica(std::string cnpj_informado){
 void confere_nomes(std::string &nome)
 {
 
+  //função para conferir se o nome digitado é válido
   while (true)
   {
     try
@@ -257,7 +258,7 @@ void confere_nomes(std::string &nome)
         {
           continue;
         }
-        else if (!isalpha(nome[i]))
+        else if (!isalpha(nome[i])) //se for um caractere diferente de uma letra
         {
           throw std::invalid_argument("Nome inválido!! O nome deve conter apenas letras! Digite novamente:");
           break;
@@ -280,7 +281,7 @@ int main()
   int selecionador2, option;
   bool valide = true;
 
-  while (valide)
+  while (valide) //para repetir o menu enquanto o usuário não fechar o programa
   {
 
     std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>> MENU <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< \n";
@@ -292,10 +293,10 @@ int main()
     std::cout << "(4) - Fechar programa \n";
     while (true)
     {
-      try
+      try //para tratar as opções que o usuário irá escolher
       {
         std::cin >> selecionador;
-        if (selecionador != "1" && selecionador != "2" && selecionador != "3" && selecionador != "4")
+        if (selecionador != "1" && selecionador != "2" && selecionador != "3" && selecionador != "4") //se for algo diferente das opções ofertadas
         {
           throw std::invalid_argument("Opção inválida!! Digite uma opção válida:");
         }
@@ -306,7 +307,7 @@ int main()
         std::cerr << e.what() << std::endl;
       }
     }
-    selecionador2 = stoi(selecionador);
+    selecionador2 = stoi(selecionador); //transforma em inteiro para entrar no switch case 
 
     switch (selecionador2)
     {
@@ -318,10 +319,10 @@ int main()
       std::cout << "Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física: \n";
       while (true)
       {
-        try
+        try //para tratar as opções que o usuário irá escolher
         {
-          std::cin >> opcao;
-          if (opcao != "1" && opcao != "2")
+          std::cin >> opcao; 
+          if (opcao != "1" && opcao != "2") //se for algo diferente das opções ofertadas
           {
             throw std::invalid_argument("Opção inválida!! Digite 1 para Pessoa Jurídica ou 2 para Pessoa Física:");
           }
@@ -343,7 +344,7 @@ int main()
         std::cout << "Digite o nome completo do proprietário da empresa: \n";
         std::cin.ignore();
         getline(std::cin, nomepessoa);
-        confere_nomes(nomepessoa);
+        confere_nomes(nomepessoa); //chama a função para conferir se o nome é válido
         std::cout << "Digite o nome da empresa: \n";
         getline(std::cin, nomeempresa);
         std::cout << "Digite o apelido da empresa: \n";
@@ -354,10 +355,10 @@ int main()
                   << "(3)- RJ \n";
         while (true)
         {
-          try
+          try //para tratar as opções que o usuário irá escolher
           {
             std::cin >> opcao;
-            if (opcao != "1" && opcao != "2" && opcao != "3")
+            if (opcao != "1" && opcao != "2" && opcao != "3") //se for algo diferente das opções ofertadas
             {
               throw std::invalid_argument("Opção inválida!! Digite uma opção válida: ");
             }
@@ -370,36 +371,36 @@ int main()
           }
         }
 
-        if (opcao == "1")
+        if (opcao == "1") //se a opção for 1
         {
           local = "MG";
         }
-        else if (opcao == "2")
+        else if (opcao == "2") //se a opção for 2
         {
           local = "SP";
         }
-        else
+        else //se a opção for 3
         {
           local = "RJ";
         }
 
-        PessoaJuridica juridico(nomepessoa, nomeempresa, apelidoempresa, local);
+        PessoaJuridica juridico(nomepessoa, nomeempresa, apelidoempresa, local); //cria uma pessoa jurídica
         std::cout << "Digite o CNPJ da empresa: \n";
-        juridico.insere_cnpj();
+        juridico.insere_cnpj(); //função para o usuário inserir cnpj
         std::cout << "Digite o CPF do proprietario: \n";
-        juridico.insere_cpf();
+        juridico.insere_cpf(); //função para o usuário inserir cpf
         std::cout << std::endl;
-        if (juridico.confirma_cadastro(juridico) == true)
+        if (juridico.confirma_cadastro(juridico) == true) //se os dados do cadastro forem confirmados pelo usuário nessa função booleana
         {
           std::cout << "Cadastro realizado com sucesso! Obrigado!! \n";
         }
-        else
+        else //caso contrário
         {
-          juridico.edicao_cadastro(juridico);
+          juridico.edicao_cadastro(juridico); //chama a função para editar o cadastro
         }
 
         std::cout<<std::endl;
-        juridico.modelo_negocio();
+        juridico.modelo_negocio(); //função para o usuário informar o modelo de negócio
 
         std::fstream out("data/Pessoa_Juridica.csv", std::ios::out | std::ios::app);
 
@@ -422,17 +423,17 @@ int main()
         std::cout << "Digite seu nome completo: \n";
         std::cin.ignore();
         getline(std::cin, nomepessoa);
-        confere_nomes(nomepessoa);
+        confere_nomes(nomepessoa); //chama a função para conferir se o nome é válido
         std::cout << "Digite o número correpondente ao seu estado de residência: \n";
         std::cout << "(1)- MG \n"
                   << "(2)- SP \n"
                   << "(3)- RJ \n";
         while (true)
         {
-          try
+          try //para tratar as opções que o usuário irá escolher
           {
             std::cin >> opcao;
-            if (opcao != "1" && opcao != "2" && opcao != "3")
+            if (opcao != "1" && opcao != "2" && opcao != "3") //se for algo diferente das opções ofertadas
             {
               throw std::invalid_argument("Opção inválida!! Digite uma opção válida: ");
             }
@@ -457,19 +458,19 @@ int main()
           local = "RJ";
         }
 
-        Pessoa fisico(nomepessoa, local);
+        Pessoa fisico(nomepessoa, local); //cria uma pessoa física
         std::cout << "Digite seu CPF: \n";
-        fisico.insere_cpf();
+        fisico.insere_cpf(); //função para o usuário inserir o CPF
         std::cout << std::endl;
-        if (fisico.confirma_cadastro_fis(fisico) == true)
+        if (fisico.confirma_cadastro_fis(fisico) == true) //se a função para a confirmação do cadastro do usuário retornar true
         {
           std::cout << "Cadastro realizado com sucesso! Obrigado!! \n";
         }
-        else
+        else //caso contrário
         {
-          fisico.edicao_cadastro_fis(fisico);
+          fisico.edicao_cadastro_fis(fisico); //chama a função para a edição do cadastro
         }
-        fisico.tipo_pessoa();
+        fisico.tipo_pessoa(); //função para a pessoa declarar qual é o tipo de pessoa física ao qual pertence 
         std::cout<<std::endl;
         std::fstream arquivofisico("data/Pessoa_Fisica.csv", std::ios::out | std::ios::app);
         arquivofisico << fisico.get_cpf() << "," << fisico.get_nomepessoa() << "," << fisico.get_local() << "," << fisico.get_tipo_pessoa() << std::endl;
@@ -486,7 +487,7 @@ int main()
       std::cout << "2- Pessoa Física. \n";
       while (true)
       {
-        try
+        try //já explicado em outras partes do código
         {
           std::cin >> op;
           if (op != "1" && op != "2")
@@ -501,23 +502,23 @@ int main()
         }
       }
 
-      option = stoi (op);
+      option = stoi (op); //transforma para int para entrar no switch case
       
       switch (option)
       {
       case(1):
        std::cout<<"Digite o CNPJ da empresa: \n";
        while (true){
-        try{ 
+        try{ //para tratar o cnpj
           std::cin>>cnpj;
 
-          if(cnpj.size()<14 || cnpj.size()>14){
+          if(cnpj.size()<14 || cnpj.size()>14){ //se tiver tamanho inválido
             throw std::out_of_range ("CNPJ Inválido!! Digite um novo CNPJ com tamanho válido (14):");
           }
 
           else{
            for(int i=0; cnpj[i] != '\0'; i++){
-              if (!isdigit (cnpj[i])){
+              if (!isdigit (cnpj[i])){ //se tiver caractere diferente de número
                 throw std::invalid_argument ("CNPJ Inválido!! Digite um novo CNPJ apenas com números (14):");
                 break;
               }
@@ -533,22 +534,22 @@ int main()
         std::cerr<<e2.what()<<std::endl;
         }    
        }
-        contabil_juridica(cnpj);
+        contabil_juridica(cnpj); //chama a função passando cnpj como parâmetro
         std::cout<<std::endl;
         break;
       
       case (2):
        std::cout<<"Digite seu CPF: \n";
        while (true){
-        try{ 
+        try{ //para tratar o cpf
           std::cin>>cpf;
 
-          if(cpf.size()<11 || cpf.size()>11){
+          if(cpf.size()<11 || cpf.size()>11){ //se tiver tamanho inválido
             throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido (11):");
           }
 
           else{
-            for(int i=0; cpf[i] != '\0'; i++){
+            for(int i=0; cpf[i] != '\0'; i++){ //se tiver algum caractere diferente de número
                 if (!isdigit (cpf[i])){
                   throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números (11):");
                   break;
@@ -566,7 +567,7 @@ int main()
         }    
 
        }
-        contabil_fisica(cpf);
+        contabil_fisica(cpf); //chama a função passando cpf como parâmetro
         std::cout<<std::endl;
         break;
       }
@@ -582,7 +583,7 @@ int main()
       std::cout << "2- Pessoa Física. \n";
       while (true)
       {
-        try
+        try //já explicado em outras partes do código
         {
           std::cin >> op;
           if (op != "1" && op != "2")
@@ -597,18 +598,18 @@ int main()
         }
       }
 
-      option = stoi (op);
+      option = stoi (op); //transforma para int para entrar no switch case 
       switch (option)
       {
       case(1):{
-        EstatisticosJuridico e;
+        EstatisticosJuridico e; //cria um objeto do tipo estatisticos jurídico
         e.dados_mensal();
         break;
       }
 
         break;
       case (2):{
-        EstatisticosFisico e;
+        EstatisticosFisico e; //cria um objeto do tipo estatisticos físico
         e.imposto_renda_anual_fisico();
         break;
         }  
@@ -618,7 +619,7 @@ int main()
       break;
 
     default:
-      valide = false;
+      valide = false; //para sair do while do menu caso essa opção seja selecionada
 
       break;
     }

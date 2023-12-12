@@ -4,24 +4,24 @@
 #include "pessoa.h"
 
 
-PessoaJuridica::PessoaJuridica(std::string nomepessoa, std::string nomeempresa, std::string apelidoempresa, std::string local):
+PessoaJuridica::PessoaJuridica(std::string nomepessoa, std::string nomeempresa, std::string apelidoempresa, std::string local): //construtor
 
 Pessoa (nomepessoa, local), _nomeempresa (nomeempresa), _apelidoempresa (apelidoempresa) {}
 
 
-void PessoaJuridica::insere_cnpj ( ){
+void PessoaJuridica::insere_cnpj ( ){ //função para inserir cnpj
 
     while (true){
-     try{ 
+     try{ //para tratar cnpj inválido digitado pelo usuário
       std::cin>>_cnpj;
 
-        if(_cnpj.size()<14 || _cnpj.size()>14){
+        if(_cnpj.size()<14 || _cnpj.size()>14){ //caso tenha tamanho inválido
           throw std::out_of_range ("CNPJ Inválido!! Digite um novo CNPJ com tamanho válido (14):");
         }
 
         else{
           for(int i=0; _cnpj[i] != '\0'; i++){
-              if (!isdigit (_cnpj[i])){
+              if (!isdigit (_cnpj[i])){ //caso tenha algum caractere diferente de um número
                 throw std::invalid_argument ("CNPJ Inválido!! Digite um novo CNPJ apenas com números (14):");
                 break;
               }
@@ -42,7 +42,7 @@ void PessoaJuridica::insere_cnpj ( ){
 
 
 
-void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){
+void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){ //para editar cadastro, igual à função de pessoa física, porém com mais informações que serão comentadas
     std::string opcao;
     bool averigua=false;
     int selecionador;
@@ -100,14 +100,14 @@ void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){
 
                 case (2):
 
-                  std::cout<<"Digite o novo nome da empresa: \n";
+                  std::cout<<"Digite o novo nome da empresa: \n"; //para digitar o novo nome da empresa
                   std::cin.ignore ();
                   getline (std::cin, _nomeempresa); 
                   break;
 
                 case (3):
 
-                  std::cout<<"Digite o novo apelido da empresa: \n";
+                  std::cout<<"Digite o novo apelido da empresa: \n"; //para digitar o novo apelido da empresa
                   std::cin.ignore ();
                   getline (std::cin, _apelidoempresa); 
                   break;
@@ -142,7 +142,7 @@ void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){
                 case(5): 
 
                   std::cout<<"Digite o novo CNPJ: \n"; 
-                  juridico.insere_cnpj ( );
+                  juridico.insere_cnpj ( ); //chama a função insere cnpj para digitar o novo cnpj
                   break;
 
                 default:
@@ -150,7 +150,7 @@ void PessoaJuridica::edicao_cadastro (PessoaJuridica &juridico){
                   juridico.insere_cpf ( );
                   break;  
             }
-                averigua=juridico.confirma_cadastro (juridico);
+                averigua=juridico.confirma_cadastro (juridico); ///chama a função confirma cadastro e seu retorno é gravado na variável averigua
 
                 if(averigua==true){
                   std::cout<<"Cadastro realizado com sucesso! Obrigado!! \n";
@@ -165,7 +165,7 @@ bool PessoaJuridica::confirma_cadastro (PessoaJuridica &juridico){
   std::string opcao;
 
     std::cout<<std::endl;
-    std::cout<<"NOME: "<<juridico.get_nomepessoa()<<" | CNPJ: "<<juridico.get_cnpj()<<" | CPF: "<<juridico.get_cpf()
+    std::cout<<"NOME: "<<juridico.get_nomepessoa()<<" | CNPJ: "<<juridico.get_cnpj()<<" | CPF: "<<juridico.get_cpf()  //imprime todas as informações do usuário em tela
     <<" | NOME EMPRESA: "<<juridico.get_nomeempresa()<<" | APELIDO EMPRESA: "<<juridico.get_apelidoempresa()<<
     " | LOCALIDADE: "<<juridico.get_local();
     std::cout<<std::endl;
@@ -186,10 +186,10 @@ bool PessoaJuridica::confirma_cadastro (PessoaJuridica &juridico){
         }
        }
     
-    if(opcao=="1"){
+    if(opcao=="1"){ //se a resposta for 1
       return true;
     }
-    else{
+    else{ //caso contrário
       return false;
     }   
 
@@ -237,7 +237,7 @@ void PessoaJuridica::set_modelo_negocio(std::string modelo_empresa){
   _modeloempresa = modelo_empresa;
 }
 
-void PessoaJuridica::modelo_negocio (){
+void PessoaJuridica::modelo_negocio (){ //função para inserir o modelo de negócio jurídico
   std::string opcao;
 
   std::cout<<"Qual é o modelo jurídico da empresa? \n";
