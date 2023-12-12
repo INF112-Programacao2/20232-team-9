@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 15262524656,Nicolas Reis,2105
 Salario,900000
 INSS,66
@@ -5,3 +6,12 @@ Dependente,379.18
 Base,899555
 Aliquota,247378
 Imposto de Renda,246493
+=======
+15262524656,Nicolas Reis,2010
+Salario,70000
+INSS,0
+Dependente,379.18
+Base,69620.8
+Aliquota,19145.7
+Imposto de Renda,18260.8
+>>>>>>> f8c0eb48fa365d12ed7ed6f599b242a7b21fafbc
