@@ -148,32 +148,39 @@ void EstatisticosJuridico::dados_mensal(){
             std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
             return;
         }
-        
+
         std::string aux1, aux2;
 
-
-        while (in.peek() != EOF){
+        while (in.peek() != EOF)
+        {
 
             getline(in, aux1, ',');
             getline(in, aux2, ',');
             getline(in, aux2, ',');
 
-            if (aux1 == cnpj){
+            if (aux1 == cnpj)
+            {
                 cnpj_valido = true;
-                if(aux2 == mes){
+                if (aux2 == mes)
+                {
                     mes_valido = true;
-                    for(int i = 0; i < 4;i++){
+                    for (int i = 0; i < 4; i++)
+                    {
                         getline(in, aux1, ',');
                         getline(in, aux2, '\n');
                         std::cout << aux1 << ": " << aux2 << std::endl;
                     }
-                    for(int i = 0; i < 5;i++){
+                    for (int i = 0; i < 5; i++)
+                    {
                         getline(in, aux1, '\n');
-                        for(int j = 0; j < aux1.size(); j++){
-                            if(aux1[j] == ','){
+                        for (int j = 0; j < aux1.size(); j++)
+                        {
+                            if (aux1[j] == ',')
+                            {
                                 std::cout << " ";
                             }
-                            else{
+                            else
+                            {
                                 std::cout << aux1[j];
                             }
                         }
@@ -181,14 +188,11 @@ void EstatisticosJuridico::dados_mensal(){
                     }
                     in.close();
                     return;
-                    
                 }
             }
-            for (int i = 0; i < 8; i++){
+            for (int i = 0; i < 10; i++)
                 getline(in, aux1, '\n');
-            }
         }
-          
     }
     else if(mod == "3"){
         std::cout << std::endl
@@ -216,33 +220,39 @@ void EstatisticosJuridico::dados_mensal(){
             std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
             return;
         }
-        
+
         std::string aux1, aux2;
 
-        while (in.peek() != EOF){
+        while (in.peek() != EOF)
+        {
 
             getline(in, aux1, ',');
             getline(in, aux2, ',');
             getline(in, aux2, ',');
 
-            if (aux1 == cnpj){
+            if (aux1 == cnpj)
+            {
                 cnpj_valido = true;
-                std::cout << "MES" << mes << std::endl;
-                std::cout << "AUX " << aux2 << std::endl;
-                if(aux2 == mes){
+                if (aux2 == mes)
+                {
                     mes_valido = true;
-                    for(int i = 0; i < 4;i++){
+                    for (int i = 0; i < 4; i++)
+                    {
                         getline(in, aux1, ',');
                         getline(in, aux2, '\n');
                         std::cout << aux1 << ": " << aux2 << std::endl;
                     }
-                    for(int i = 0; i < 5;i++){
+                    for (int i = 0; i < 5; i++)
+                    {
                         getline(in, aux1, '\n');
-                        for(int j = 0; j < aux1.size(); j++){
-                            if(aux1[j] == ','){
+                        for (int j = 0; j < aux1.size(); j++)
+                        {
+                            if (aux1[j] == ',')
+                            {
                                 std::cout << " ";
                             }
-                            else{
+                            else
+                            {
                                 std::cout << aux1[j];
                             }
                         }
@@ -250,14 +260,12 @@ void EstatisticosJuridico::dados_mensal(){
                     }
                     in.close();
                     return;
-                    
                 }
             }
-            for (int i = 0; i < 8; i++){
+            for (int i = 0; i < 10; i++){
                 getline(in, aux1, '\n');
             }
         }
-        
     }
     if(!mes_valido && cnpj_valido==true){
         std::cout << std::endl;
@@ -265,7 +273,7 @@ void EstatisticosJuridico::dados_mensal(){
         return;
     }
     std::cout << std::endl;
-    std::cout << "CPNJ não registrado no Sistema!" << std::endl;
+    std::cout << "CNPJ não registrado no Sistema!" << std::endl;
 
     return;
 }
