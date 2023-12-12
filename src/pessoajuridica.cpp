@@ -16,13 +16,13 @@ void PessoaJuridica::insere_cnpj ( ){
       std::cin>>_cnpj;
 
         if(_cnpj.size()<14 || _cnpj.size()>14){
-          throw std::out_of_range ("CNPJ Inválido!! Digite um novo CNPJ com tamanho válido:");
+          throw std::out_of_range ("CNPJ Inválido!! Digite um novo CNPJ com tamanho válido (14):");
         }
 
         else{
           for(int i=0; _cnpj[i] != '\0'; i++){
               if (!isdigit (_cnpj[i])){
-                throw std::invalid_argument ("CNPJ Inválido!! Digite um novo CNPJ apenas com números:");
+                throw std::invalid_argument ("CNPJ Inválido!! Digite um novo CNPJ apenas com números (14):");
                 break;
               }
           }

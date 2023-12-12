@@ -59,21 +59,25 @@ void contabil_fisica(std::string cpf_informado)
   return;
 }
 
-void contabil_juridica(std::string cpf_informado){
+void contabil_juridica(std::string cnpj_informado){
   int _tipo_contabilidade;
   std::fstream in("data/Pessoa_Juridica.csv", std::ios::in);
-  std::string cpf, nome;
+  std::string cnpj, cpf, nome, local, tipo;
 
   if (!in.is_open())
   {
     std::cerr << "erro ao abrir arquivo!" << std::endl;
   }
-  while (in.peek() != EOF && cpf_informado != cpf)
+  while (in.peek() != EOF && cnpj_informado != cnpj)
   {
 
     getline(in, cpf, ',');
+    getline(in, nome, ',');
+    getline(in, local, ',');
+    getline(in, tipo, ',');
+    getline(in, cnpj, ',');
 
-    if (cpf == cpf_informado)
+    if (cnpj == cnpj_informado)
     {
       while (true)
       {
@@ -104,10 +108,6 @@ void contabil_juridica(std::string cpf_informado){
 
       std::string nome, local, tipo, cnpj, nome_empresa, apelido_empresa, modelo_negocio;
 
-      getline(in, nome, ',');
-      getline(in, local, ',');
-      getline(in, tipo, ',');
-      getline(in, cnpj, ',');
       getline(in, nome_empresa, ',');
       getline(in, apelido_empresa, ',');
       getline(in, modelo_negocio, '\n');
@@ -236,7 +236,7 @@ void contabil_juridica(std::string cpf_informado){
       getline(in, cpf, '\n');
     }
   }
-  std::cout<<"O CPF informado não está cadastrado no sistema!! \n";
+  std::cout<<"O CNPJ informado não está cadastrado no sistema!! \n";
   in.close();
   return;
 }
@@ -381,7 +381,7 @@ int main()
         }
 
         PessoaJuridica juridico(nomepessoa, nomeempresa, apelidoempresa, local);
-        std::cout << "Digite o CNPJ do proprietario: \n";
+        std::cout << "Digite o CNPJ da empresa: \n";
         juridico.insere_cnpj();
         std::cout << "Digite o CPF do proprietario: \n";
         juridico.insere_cpf();
@@ -499,19 +499,55 @@ int main()
       }
 
       option = stoi (op);
-      std::cout << "Digite seu CPF: ";
-      while (true){
+      
+      switch (option)
+      {
+      case(1):
+       std::cout<<"Digite o CNPJ da empresa: \n";
+       while (true){
+        try{ 
+          std::cin>>cnpj;
+
+          if(cnpj.size()<14 || cnpj.size()>14){
+            throw std::out_of_range ("CNPJ Inválido!! Digite um novo CNPJ com tamanho válido (14):");
+          }
+
+          else{
+           for(int i=0; cnpj[i] != '\0'; i++){
+              if (!isdigit (cnpj[i])){
+                throw std::invalid_argument ("CNPJ Inválido!! Digite um novo CNPJ apenas com números (14):");
+                break;
+              }
+            }
+          }
+
+         break;
+
+        }catch (std::invalid_argument &e){
+        std::cerr<<e.what()<<std::endl;
+
+        }catch (std::out_of_range &e2){
+        std::cerr<<e2.what()<<std::endl;
+        }    
+       }
+        contabil_juridica(cnpj);
+        std::cout<<std::endl;
+        break;
+      
+      case (2):
+       std::cout<<"Digite seu CPF: \n";
+       while (true){
         try{ 
           std::cin>>cpf;
 
           if(cpf.size()<11 || cpf.size()>11){
-            throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido:");
+            throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido (11):");
           }
 
           else{
             for(int i=0; cpf[i] != '\0'; i++){
                 if (!isdigit (cpf[i])){
-                  throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números:");
+                  throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números (11):");
                   break;
                }
               }
@@ -527,16 +563,6 @@ int main()
         }    
 
        }
-
-      std::cout<<std::endl;
-      
-      switch (option)
-      {
-      case(1):
-        contabil_juridica(cpf);
-        std::cout<<std::endl;
-        break;
-      case (2):
         contabil_fisica(cpf);
         std::cout<<std::endl;
         break;

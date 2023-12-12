@@ -16,13 +16,13 @@ void Pessoa::insere_cpf ( ) {
       std::cin>>_cpf;
 
         if(_cpf.size()<11 || _cpf.size()>11){
-          throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido:");
+          throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido (11):");
         }
 
         else{
           for(int i=0; _cpf[i] != '\0'; i++){
               if (!isdigit (_cpf[i])){
-                throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números:");
+                throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números (11):");
                 break;
               }
           }
