@@ -35,7 +35,7 @@ void RecebeArquivo::recebe_dados_industrial(JuridicaIndustrial &dados, PessoaJur
     std::vector<std::pair<std::string, double>> aux;
     aux = dados.get_contasPagar_dados();
     std::fstream out("data/Usuarios_Juridico_Industrial.csv", std::ios::out | std::ios::app);
-    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil() << "," << dados.get_ano_contabil() <<std::endl;
+    out << juridico.get_cnpj() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil() << "," << dados.get_ano_contabil() <<std::endl;
 
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
 
@@ -106,7 +106,7 @@ void RecebeArquivo::recebe_dados_comercial(JuridicaComercial &dados, PessoaJurid
     std::vector<std::pair<std::string, double>> aux;
     aux = dados.get_contasPagar_dados();
     std::fstream out("data/Usuarios_Juridico_Comercial.csv", std::ios::out | std::ios::app);
-    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," <<dados.get_mes_contabil()<< "," << dados.get_ano_contabil() <<std::endl;
+    out << juridico.get_cnpj() << "," << juridico.get_nomepessoa() << "," <<dados.get_mes_contabil()<< "," << dados.get_ano_contabil() <<std::endl;
     
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
 
@@ -168,7 +168,7 @@ void RecebeArquivo::recebe_dados_prestservico(JuridicaPrestServi &dados, PessoaJ
     std::vector<std::pair<std::string, double>> aux;
     aux = dados.get_contasPagar_dados();
     std::fstream out("data/Usuarios_Juridico_Prestacao_de_Servico.csv", std::ios::out | std::ios::app);
-    out << juridico.get_cpf() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil()<< "," << dados.get_ano_contabil() <<std::endl;
+    out << juridico.get_cnpj() << "," << juridico.get_nomepessoa() << "," << dados.get_mes_contabil()<< "," << dados.get_ano_contabil() <<std::endl;
     out <<"Caixa" << "," <<dados.get_caixa() << std::endl;
 
     out << "Receita" << "," << dados.get_receita_bruta() << std::endl;

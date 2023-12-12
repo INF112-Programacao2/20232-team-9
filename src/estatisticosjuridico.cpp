@@ -9,21 +9,21 @@
 #include "estatisticosjuridico.h"
 
 void EstatisticosJuridico::dados_mensal(){
-    std::string cpf, mes, mod;
+    std::string cnpj, mes, mod;
 
-    std::cout << "Digite seu CPF: ";
+    std::cout << "Digite seu CNPJ: ";
     while (true){
      try{ 
-      std::cin>>cpf;
+      std::cin>>cnpj;
 
-        if(cpf.size()<11 || cpf.size()>11){
-          throw std::out_of_range ("CPF Inválido!! Digite um novo CPF com tamanho válido:");
+        if(cnpj.size()<14 || cnpj.size()>14){
+          throw std::out_of_range ("CNPJ Inválido!! Digite um novo CNPJ com tamanho válido:");
         }
 
         else{
-          for(int i=0; cpf[i] != '\0'; i++){
-              if (!isdigit (cpf[i])){
-                throw std::invalid_argument ("CPF Inválido!! Digite um novo CPF apenas com números:");
+          for(int i=0; cnpj[i] != '\0'; i++){
+              if (!isdigit (cnpj[i])){
+                throw std::invalid_argument ("CNPJ Inválido!! Digite um novo CNPJ apenas com números:");
                 break;
               }
           }
@@ -88,7 +88,7 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux2, ',');
             getline(in, aux2, ',');
 
-            if (aux1 == cpf && aux2 == mes){
+            if (aux1 == cnpj && aux2 == mes){
                 for(int i = 0; i < 4;i++){
                     getline(in, aux1, ',');
                     getline(in, aux2, '\n');
@@ -130,7 +130,7 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux2, ',');
             getline(in, aux2, ',');
 
-            if (aux1 == cpf && aux2 == mes){
+            if (aux1 == cnpj && aux2 == mes){
                 for(int i = 0; i < 4;i++){
                     getline(in, aux1, ',');
                     getline(in, aux2, '\n');
@@ -171,7 +171,7 @@ void EstatisticosJuridico::dados_mensal(){
             getline(in, aux2, ',');
             getline(in, aux2, ',');
 
-            if (aux1 == cpf && aux2 == mes){
+            if (aux1 == cnpj && aux2 == mes){
                 for(int i = 0; i < 4;i++){
                     getline(in, aux1, ',');
                     getline(in, aux2, '\n');
