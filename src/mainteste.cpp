@@ -145,10 +145,10 @@ void contabil_juridica(std::string cnpj_informado){
           std::cout << industria.get_realizavelCurtoPrazo() << std::endl;
           industria.set_realizavelLongoPrazo();
           std::cout << industria.get_realizavelLongoPrazo() << std::endl;
-
           industria._calculo_DRE();
           industria._calculo_fluxo_caixa();
           r.recebe_dados_industrial(industria, pessoa);
+          industria._limpa_vectors ();
           in.close();
           return;
         }
@@ -172,6 +172,7 @@ void contabil_juridica(std::string cnpj_informado){
           comercio._calculo_DRE();
           comercio._calculo_fluxo_caixa();
           r.recebe_dados_comercial(comercio, pessoa);
+          comercio._limpa_vectors ();
           in.close();
           return;
         }
@@ -195,6 +196,7 @@ void contabil_juridica(std::string cnpj_informado){
           prestservi._calculo_DRE();
           prestservi._calculo_fluxo_caixa();
           r.recebe_dados_prestservico(prestservi, pessoa);
+          prestservi._limpa_vectors ();
           in.close();
           return;
         }

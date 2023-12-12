@@ -64,8 +64,11 @@ void ContabilFisica::_calcula_inss(Pessoa &fisico) // cálculo do inss do client
     // Para Contribuinte Individual, Facultativo e MEI
     else{
 
+        std::cout<<fisico.get_tipo_pessoa ()<<std::endl;
+
         // individual
         if (_salario_bruto >= 1320  &&  fisico.get_tipo_pessoa()=="Contribuinte Individual"){ // individual
+            std::cout<<"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA "<<_inss<<std::endl;
             _inss = _salario_bruto*0.05;
             if(_inss > 66){
                 _inss = 66;
