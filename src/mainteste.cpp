@@ -12,22 +12,31 @@
 
 void contabil_fisica(std::string cpf_informado)
 {
+  //abertura do arquivo
   std::fstream in("data/Pessoa_Fisica.csv", std::ios::in);
   std::string cpf, nome;
+
+  //verificacao da abertura do arquivo
   if (!in.is_open())
   {
     std::cerr << "erro ao abrir arquivo!" << std::endl;
   }
+
+  //laco de repeticao para o arquivo, termina quando acha um cpf igual ao informado
   while (in.peek() != EOF && cpf_informado != cpf)
   {
 
+    //le a linha ate uma ','
     getline(in, cpf, ',');
 
+    //se cpf e igual ao informado executa
     if (cpf == cpf_informado)
     {
+      //instancia um objeto auxiliar e algumas strings pare recebimento de dados
       std::string nome, local, tipo;
       ContabilFisica conta;
 
+      //realiza o set e construcao de tudo que sera usado em pessoa
       getline(in, nome, ',');
       getline(in, local, ',');
       Pessoa pessoa(nome, local);
@@ -36,11 +45,15 @@ void contabil_fisica(std::string cpf_informado)
       pessoa.set_cpf(cpf);
       pessoa.set_tipo_pessoa(tipo);
       
+
+      //realiza calculos e passando pessoa como parametro
       conta.set_ano_contabil();
       conta._calcula_inss(pessoa);
       conta._calcula_deducao_dependente();
       conta._base_calculos();
       conta._calcula_imposto_renda();
+
+      //instancia um objeto para arquivo e utiliza um metodo que passa uma conta e uma pessoa como parametro
       RecebeArquivo r;
       r.recebe_dados_fisico(conta, pessoa);
       in.close();
@@ -49,37 +62,46 @@ void contabil_fisica(std::string cpf_informado)
 
     }
 
+    //caso nao ache o cpf, pula a linha e retorna ao loop
     else
     {
       getline(in, cpf, '\n');
     }
   }
+  //tratamento de excecao para cpf invalido
   std::cout<<"O CPF informado não está cadastrado no sistema!! \n";
   in.close();
   return;
 }
 
 void contabil_juridica(std::string cnpj_informado){
+  //abre arquivo e declara variaveis que serao utilizadas
   int _tipo_contabilidade;
   std::fstream in("data/Pessoa_Juridica.csv", std::ios::in);
   std::string cnpj, cpf, nome, local, tipo;
 
+  //confere se arquivo foi aberto
   if (!in.is_open())
   {
     std::cerr << "erro ao abrir arquivo!" << std::endl;
   }
+
+  //loop que prossegue ate achar o cnpj
   while (in.peek() != EOF && cnpj_informado != cnpj)
   {
 
+    //faz a leitura da linha ate o cnpj
     getline(in, cpf, ',');
     getline(in, nome, ',');
     getline(in, local, ',');
     getline(in, tipo, ',');
     getline(in, cnpj, ',');
 
+    //se cnpj e igual ao informado executa bloco
     if (cnpj == cnpj_informado)
     {
       
+      //laco para tratamento de excecao
       while (true)
       {
         std::cout << "Qual Tipo de Contabilidade deseja fazer:" << std::endl;
@@ -107,6 +129,7 @@ void contabil_juridica(std::string cnpj_informado){
         }
       }
 
+      //declaracao de variaveis da empresa
       std::string nome_empresa, apelido_empresa, modelo_negocio;
 
       getline(in, nome_empresa, ',');
@@ -115,6 +138,7 @@ void contabil_juridica(std::string cnpj_informado){
       //Para evitar que modelo de negócio "pegue" caracteres indesejados no csv que atrapalhem a comparação no momento da conferência do modelo de negócio no switch case:
       modelo_negocio.erase(std::remove_if(modelo_negocio.begin(), modelo_negocio.end(), ::isspace), modelo_negocio.end()); 
 
+      //instancia um objeto do tipo pessoajuridica, constroi e da set seus atributos
       PessoaJuridica pessoa(nome, nome_empresa, apelido_empresa, local);
 
       pessoa.set_cpf(cpf);
@@ -122,14 +146,19 @@ void contabil_juridica(std::string cnpj_informado){
       pessoa.set_cnpj(cnpj);
       pessoa.set_modelo_negocio(modelo_negocio);
 
+      //objeto do tipo RecebeArquivo
       RecebeArquivo r;  
 
+      //switch case para as 3 opcoes de modelo de negocio, fazendo o calculo em cada uma e enviando para os arquivos
       switch (_tipo_contabilidade)
       {
       case (1):
         if (pessoa.get_modelo_negocio() == "Industrial")
         {
+          //declaracao
           JuridicaIndustrial industria;
+
+          //calculos e saidas
           industria.set_mes_contabil();
           industria.set_ano_contabil();
           industria.set_caixa();
@@ -148,14 +177,21 @@ void contabil_juridica(std::string cnpj_informado){
           std::cout << industria.get_realizavelLongoPrazo() << std::endl;
           industria._calculo_DRE();
           industria._calculo_fluxo_caixa();
+
+          //envio para os arquivos
           r.recebe_dados_industrial(industria, pessoa);
+
+          //fechamentos e liberacoes
           industria._limpa_vectors ();
           in.close();
           return;
         }
         else if (pessoa.get_modelo_negocio() == "Comercial")
         {
+          //declaracao
           JuridicaComercial comercio;
+
+          //calculos e saida
           comercio.set_mes_contabil();
           comercio.set_ano_contabil();
           comercio.set_caixa();
@@ -172,7 +208,11 @@ void contabil_juridica(std::string cnpj_informado){
           std::cout << comercio.get_realizavelLongoPrazo() << std::endl;
           comercio._calculo_DRE();
           comercio._calculo_fluxo_caixa();
+
+          //envio para os arquivos
           r.recebe_dados_comercial(comercio, pessoa);
+
+          //fechamentos e liberacoes
           comercio._limpa_vectors ();
           in.close();
           return;
@@ -180,6 +220,8 @@ void contabil_juridica(std::string cnpj_informado){
         else if (pessoa.get_modelo_negocio() == "PrestaçãodeServiço")
         {
           JuridicaPrestServi prestservi;
+
+          //calculos e saidas
           prestservi.set_mes_contabil();
           prestservi.set_ano_contabil();
           prestservi.set_caixa();
@@ -196,7 +238,11 @@ void contabil_juridica(std::string cnpj_informado){
           std::cout << prestservi.get_realizavelLongoPrazo() << std::endl;
           prestservi._calculo_DRE();
           prestservi._calculo_fluxo_caixa();
+
+          //envio para os arquivos
           r.recebe_dados_prestservico(prestservi, pessoa);
+
+          //fechamentos e liberacoes
           prestservi._limpa_vectors ();
           in.close();
           return;
@@ -206,25 +252,40 @@ void contabil_juridica(std::string cnpj_informado){
       case (2):
         if (pessoa.get_modelo_negocio() == "Industrial")
         {
+          //declaracao
           JuridicaIndustrial industria;
+
+          //calculos e saidas
           industria._calculo_aliquotas_anexos(cpf);
           std:: cout << industria.get_result_simples_nacional() << std::endl;
+
+          //fechamento e return
           in.close();
           return;
         }
         else if (pessoa.get_modelo_negocio() == "Comercial")
         {
+          //declaracao
           JuridicaComercial comercio;
+
+          //calculos e saidas
           comercio._calculo_aliquotas_anexos(cpf);
           std::cout << comercio.get_result_simples_nacional() << std::endl;
+
+          //fechamento e return
           in.close();
           return;
         }
         else if (pessoa.get_modelo_negocio() == "PrestaçãodeServiço")
         {
+          //declaracao
           JuridicaPrestServi prestservi;
+
+          //calculos e saidas
           prestservi._calculo_aliquotas_anexos(cpf);
           std::cout << prestservi.get_result_simples_nacional() << std::endl;
+
+          //fechamento e return
           in.close();
           return;
         }
@@ -234,11 +295,14 @@ void contabil_juridica(std::string cnpj_informado){
 
     }
 
+    //repete o laco ate encontrar um cnpj valido
     else
     {
       getline(in, cpf, '\n');
     }
   }
+
+  //tratamento de excecao
   std::cout<<"O CNPJ informado não está cadastrado no sistema!! \n";
   in.close();
   return;
