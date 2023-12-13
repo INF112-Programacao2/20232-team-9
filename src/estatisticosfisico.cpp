@@ -7,11 +7,14 @@
 
 
 void EstatisticosFisico::imposto_renda_anual_fisico(){ 
+    //declaracao de variaveis 
     std::string cpf, ano;
     bool ano_valido = false;
     int ano_int;
     
     std::cout << "Digite seu CPF: ";
+
+    //tratamento de excecao para cpf
     while (true){
      try{ 
       std::cin>>cpf;
@@ -39,21 +42,30 @@ void EstatisticosFisico::imposto_renda_anual_fisico(){
      }    
 
     }
-    //std::cout << std::endl;
-
+    
+    //abertura de arquivo e variaveis auxiliares declaradas
     std::fstream in("data/Usuarios_Fisico.csv", std::ios::in);
 
     std::string aux1, aux2;
 
+
+    //percorre arquivo completamente
     while(in.peek() != EOF){
+
+        //le o primeiro e ultimo termo da linha
         getline(in, aux1, ',');
         getline(in, aux2, ',');
         getline(in, aux2, '\n');
+
+        //expressao para remover caractere indesejado e oculto
         aux2.erase(std::remove_if(aux2.begin(), aux2.end(), ::isspace), aux2.end()); 
 
+
+        //condicional para cpf igual ao informado
         if(aux1 == cpf){
             std::cout << std::endl
                       << "Digite o ano: ";
+
             while (true)
             {
                 try
@@ -74,9 +86,12 @@ void EstatisticosFisico::imposto_renda_anual_fisico(){
             }
 
             if(aux2 == ano){
+                //valida o ano juntamente com o cpf e atribui true a variavel booleana
                 ano_valido = true;
                 std::cout << std::endl;
                 std::cout << "Dados " << aux2 << ": " << std::endl;
+
+                //printa todos os dados no arquivo, pulando as linhas
                 for(int i = 0; i < 6; i++){
                     getline(in, aux1, ',');
                     getline(in, aux2, '\n');
@@ -84,16 +99,22 @@ void EstatisticosFisico::imposto_renda_anual_fisico(){
                 }
                 return;
             }
+
+            //mensagem para caso usuario nao esteja cadastrado
             else{
                 std::cout << std::endl;
                 std::cout << "Ano não cadastrado no Sistema!" << std::endl;
                 return;
             }
         }
+
+        //verifica proxima linha
         else{
             getline(in, aux1, '\n');
         }
     }
+
+    //retorna se cpf esta ou nao cadastrado
     std::cout << std::endl;
     std::cout << "CPF não cadastrado no Sistema!" << std::endl;
 

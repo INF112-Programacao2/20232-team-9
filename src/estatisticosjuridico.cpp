@@ -9,11 +9,15 @@
 #include "estatisticosjuridico.h"
 
 void EstatisticosJuridico::dados_mensal(){
+    
+    //declaracao de variaveis
     std::string cnpj, mes, mod;
     bool mes_valido = false;
     bool cnpj_valido = false;
 
     std::cout << "Digite seu CNPJ: ";
+
+    //tratamento de excecao para entradas invalidas 
     while (true){
      try{ 
       std::cin>>cnpj;
@@ -41,9 +45,12 @@ void EstatisticosJuridico::dados_mensal(){
      }    
     }
 
+    //pergunta o modelo de negocio
     std::cout<<std::endl;
     std::cout<<"Qual é o modelo jurídico da empresa? \n";
     std::cout<<"(1)- Industrial \n"<<"(2)- Comercial \n"<<"(3)- Prestação de Serviço \n";
+
+    //tratamento de excecao para entradas invalidas
     while(true){
       try{
         std::cin>>mod;
@@ -58,9 +65,12 @@ void EstatisticosJuridico::dados_mensal(){
     }
     std::cout << std::endl;
 
+    //confere o modelo de negocio a ser seguido
     if(mod == "1"){
         std::cout << std::endl
                   << "Informe o mes: ";
+
+        //tratamento de excecao para entrada invalida
         while (true)
         {
             try
@@ -78,33 +88,53 @@ void EstatisticosJuridico::dados_mensal(){
                 std::cerr << e.what() << '\n';
             }
         }
+
+        //abre arquivo
         std::fstream in("data/Usuarios_Juridico_Industrial.csv", std::ios::in);
+
+        //verifica abertura
         if (!in.is_open())
         {
             std::cerr << "FALHA AO ABRIR O ARQUIVO!" << std::endl;
             return;
         }
-        
+
+
+        //variaveis auxiliares
         std::string aux1, aux2;
-
+        
+        //percorre arquivo
         while (in.peek() != EOF){
+            
 
+            //le dados da linha
             getline(in, aux1, ',');
             getline(in, aux2, ',');
             getline(in, aux2, ',');
 
+            //confere igualdade de cnpj informado e lido
             if (aux1 == cnpj){
+
+                //confere se foi achado algum cpf valido
+
                 cnpj_valido = true;
                     if(aux2 == mes){
+                    //confere se foi achado algum mes valido com o cpf informado
                     mes_valido = true;
+
+                    //printa 4 linhas
                     for(int i = 0; i < 4;i++){
                         getline(in, aux1, ',');
                         getline(in, aux2, '\n');
                         std::cout << aux1 << ": " << aux2 << std::endl;
                     }
+
+                    //for alinhado para printar 6 linhas de vetor
                     for(int i = 0; i < 6;i++){
                         getline(in, aux1, '\n');
                         for(int j = 0; j < aux1.size(); j++){
+                           
+                            //if para formatar no prompt corretamente
                             if(aux1[j] == ','){
                                 std::cout << " ";
                             }
@@ -114,14 +144,19 @@ void EstatisticosJuridico::dados_mensal(){
                         }
                         std::cout << std::endl;
                     }
+                    //fechamento de arquivo  
                     in.close();
                     return;
                 }
             }
+
+            //numero de linhas puladas para caso cnpj ou mes nao tenha sido achado
             for (int i = 0; i < 11; i++)
                 getline(in, aux1, '\n');
         }
     }
+
+    //o processo realizado e o mesmo do modelo 1, porem com arquivo comercial sendo percorrido
     else if(mod == "2"){
         std::cout << std::endl
                   << "Informe o mes: ";
@@ -194,6 +229,8 @@ void EstatisticosJuridico::dados_mensal(){
                 getline(in, aux1, '\n');
         }
     }
+
+    //o processo realizado e o mesmo do modelo 1, porem com arquivo de prestacao de servico sendo percorrido
     else if(mod == "3"){
         std::cout << std::endl
                   << "Informe o mes: ";
